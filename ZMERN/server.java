@@ -23,32 +23,9 @@ const readXlsxFile = require('read-excel-file/node');
 
 
 */ 
-//STRUCTURE 
-/*
-PROJECTNAME                              --> INSTALL,RUN(WINDOWS)
-  |-CONFIG                                   INSTALL,RUN(LINUX)
-     |-default.json
-     |-development.json
-     |-testing.json
-     |-production.json
-     |-custom-environment-variables.json    
-  |-node_modules                            
-  |-package.json
-  |-package-lock.json
-  ROUTES  
-    |-courses.js                 
-    |-food.JS  
-  MIDDLEWARE
-    |-logger.js                       
-  |-index.js
-
-  |-VIEWS
-  
-
 
 //WEB ARCHITECTURE 
-
-                                                   
+/*                                                   
                                                    
              HTTP REQUEST                         DBCONNECTOR;
 CLIENT  ----------------------------------> API -------------> DATABASE----------->SERVER
@@ -95,6 +72,39 @@ CLIENT  ----------------------------------> API -------------> DATABASE---------
 
   
 
+ */
+
+//STRUCTURE 
+/*
+server                              --> INSTALL,CREATE PROJECT AND RUN(LINUX , WINDOWS)
+  |-config                                   
+     |-default.json
+     |-development.json
+     |-testing.json
+     |-production.json
+     |-custom-environment-variables.json  
+  |-bin
+    |-www
+  |-node_modules                            
+  |-package.json
+  |-package-lock.json
+  routes  
+    |-courses.js                 
+    |-food.JS  
+  middleware
+    |-logger.js                       
+  |-app.js
+  |-views
+    |-error.pug
+    |-index.pg
+    |-layout.pug
+  |-public
+    |-images
+    |-javascript
+    |-stylesheet
+
+
+
 
 
 
@@ -104,68 +114,14 @@ CLIENT  ----------------------------------> API -------------> DATABASE---------
 */
 
 
-
-//INSTALL,RUN(WINDOWS)
-/* #region Main */
-//INSTALL 
+//INSTALL(WINDOWS , LINUX)
 /*
-//INSTALL NODE 
+//INSTALL NODE(WINDOWS)
 INSTALL     -- >Install using link -- https://nodejs.org/en/   
 SET ENV VAR -- >C:\Program Files\nodejs\                         
-                >node -version                                  
-
-//INSTALL NODEMON AND JSHINT
->npm install –g jshint --> install compiler for node glbally
->npm install -g nodemon --> install nodemon globally 
-SET ENV VAR -->No Need
-
-//INSTALL  MONDODB     
-INSTALL          -->Install mongodb using link  https://www.mongodb.com/try/download/community (Platform:Windows ; Package:MSI)
-                   C:\data\db -->Mongo db stores data in data\db but not created at instalation so create it 
-SET ENV VAR      -->C:\ProgramFiles\MongoDB\Server\3.6\bin         
-                 >mongo --version-->gives mongodb version
-
-                 >npm init
-                 >npm install mongoose --save
-
-
-
-//INSTALL MONGODB COMPASS(MONGODB GUI) 
-INSTALL   ->Install Compass using link --https://www.mongodb.com/try/download/compass (Platform:Windows ; Package:Zip)
-
-//INSTALL EXPRESS  
-INSTALL  --> >npm init
-             >npm install express --save 
-
-
-
-//INSTALL POSTMAN
-Add "chrome postman" to  chrome extension 
-*/
-
-//RUN
-/*
-//RUN NODE 
->jshint filename.js    --> compile  the js file  for any compileTime  erroros
->node filename.js      --> run the js file  in node 
->nodemon filename.js   --> run the js file  in node  with nodemon ; hot  reload no need to do cntrl + c and start server for every chabge
-
-//RUN MONGODB
->mongod  -->start mongodb server at 127.0.0.1:27017
->mongo    --> start mongo shell 
-
-*/
-
-
-
-/* #endregion */
-
-//INSTALL,RUN(LINUX)
-/* #region Main */
-
-//INSTALL
-/*
-//INSTALL NODE 
+                >node -version   
+   
+//INSTALL NODE(LINUX) 
 INSTALL      -->sudo apt update              -->update installation
                >sudo apt install nodejs      -->install nodejs
                >sudo apt install npm         -->install npm
@@ -173,12 +129,15 @@ INSTALL      -->sudo apt update              -->update installation
                >whereis node                  --> gives node: /usr/bin/node /usr/share/man/man1/node.1.gz
 SET ENV VAR -->No Need
 
-//INSTALL NODEMON AND JSHINT
->sudo npm install –g jshint --> install compiler for node glbally
->sudo npm install -g nodemon --> install nodemon globally 
-SET ENV VAR -->No Need
 
-//INSTALL MONGODB 
+//INSTALL  MONDODB(WINDOWS)    
+INSTALL          -->Install mongodb using link  https://www.mongodb.com/try/download/community (Platform:Windows ; Package:MSI)
+                   C:\data\db -->Mongo db stores data in data\db but not created at instalation so create it 
+SET ENV VAR      -->C:\ProgramFiles\MongoDB\Server\3.6\bin         
+                 >mongo --version-->gives mongodb version    
+       
+
+//INSTALL MONGODB(LINUX)
 INSTALL         --> >sudo apt update                -->update installation
                     >sudo apt install -y mongodb    -->install mongodb
                     >sudo mkdir -p /data/db         -->Mongo db stores data in data\db but not created at instalation so create it 
@@ -186,46 +145,79 @@ INSTALL         --> >sudo apt update                -->update installation
                     >mongod -version                 -->gives mongodb version
                     >whereis mongo                   --> gives mongo: /usr/bin/mongo /usr/share/man/man1/mongo.1.gz
                     >whereis mongodb                 --> mongodb: /etc/mongodb.conf
-
-                    >npm init
-                    >npm install mongoose --save
-
 SET ENV VAR -->No Need
 
-//INSTALL MONGODB COMPASS(MONGODB GUI) 
+
+//INSTALL MONGODB COMPASS(MONGODB GUI) (WINDOWS)
+INSTALL   ->Install Compass using link --https://www.mongodb.com/try/download/compass (Platform:Windows ; Package:Zip)                 
+
+
+//INSTALL MONGODB COMPASS(MONGODB GUI)   (LINUX)
 INSTALL   -->Install Compass using link --https://www.mongodb.com/try/download/compass (Platform:Ubuntu ; Package:deb)
             >cd ~/Downloads
             >dpkg -i DownloadedFilename.deb
     
 
-//INSTALL EXPRESS  
-INSTALL  --> >npm init
-             >npm install express --save 
+//INSTALL POSTMAN(WINDOWS)
+Add "chrome postman" to  chrome extension 
 
-
-//INSTALL POSTMAN
-Go to chrome postman and add extension 
+//INSTALL POSTMAN(LINUX)
+Add "chrome postman" to  chrome extension 
 
 */
 
-//RUN
+
+
+
+
+
+//CREATE PROJECT AND RUN(WINDOWS(WITHOUT SUDO) , LINUX(WITH SUDO))
 /*
-//RUN NODE
->jshint filename.js    --> compile  the js file  for any compileTime  erroros
->node filename.js      --> run the js file  in node 
->nodemon filename.js   --> run the js file  in node  with nodemon ; hot  reload no need to do cntrl + c and start server for every chabge
+//CREATE SERVER
+>sudo npm install -g jshint         --> install compiler for node glbally
+>sudo npm install -g nodemon        --> install nodemon globally 
+>sudo npm install -g express        -->install express globally
+>express --view=pug  server         -->create a templat called "server"
+>Create config ,middleware folder   -->create folders 
+>cd server
+>sudo npm install                    -->install package.json dependencies which include "cookie-parser","debug","express","http-errors","morgan","pug"
+>sudo npm install express --save     -->install express locally(already installed in npm install)
+>sudo npm install mongoose --save    -->install mongoose locally
 
 
-//RUN MONGODB 
+//RUN SERVER  
+>cd server
+>sudo npm start   -->run server at 127.0.0.1:3000 
+                    package.json
+                    "scripts": {
+                            "start": "node ./bin/www"    -->npm start = node ./bin/www 
+                            "start": "nodemon ./bin/www" -->npm start = nodemon ./bin/www   (provides hot reload so rename node to nodemon)
+                    },
+                    bin/www
+                    var port = normalizePort(process.env.PORT || '3000');->port = 3000  -->start at port 3000 (react runs at 3000 so change this port to 8000)
+
+//RUN MONGODB
 >sudo systemctl status mongodb.service   OR service mongodb status            -->check mongodb status
->sudo systemctl start  mongod.service    OR service mongodb start  OR mongod -->start mongodb server at 127.0.0.1:27107
->sudo systemctl stop   mongod.service    OR service mongodb stop             -->stop mongodb server  at 127.0.0.1:27107
-                       (mongo likhke tab marde 
-                       baki ka aa jayega)
->mongo                                                                          --> start mongo shell 
-*/ 
+>sudo systemctl start  mongod.service    OR service mongodb start  OR mongod  -->start mongodb server at 127.0.0.1:27107
+>sudo systemctl stop   mongod.service    OR service mongodb stop              -->stop mongodb server  at 127.0.0.1:27107
+>mongo                                                                        --> start mongo shell 
 
-/* #endregion */
+**WINDOWS HAVE ONLY MONGOD AND MONGO COMMAND SYSTEMCTL ARE FOR LINUX
+*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

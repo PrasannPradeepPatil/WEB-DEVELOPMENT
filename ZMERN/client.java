@@ -9,7 +9,7 @@ REACTAPP
     |-index.html
     |-manifest.json
   |-SRC
-    |-component          -- folder and files  made by you 
+    |-component          --
        |-component1.jsx
        |-component2.jsx
     |-app.js
@@ -21,35 +21,39 @@ REACTAPP
 
 
 
-
-
-//INSTALL AND RUN(LINUX)
+//INSTALL(WINDOWS , LINUX)
 /*
-//INSTALL REACT
-OLD VERSION
->Install extension Prettier-Code Formatter and Simple React Snippets
->sudo npm install -g create-react-app@1.5.2 -->install package globally "create-react-app version 1.5.2"                     
->sudo create-react-app reactAppName         -->create react app template using global package "create-react-app version 1.5.2" 
-
-NEW VERSION(Node >= 10.16 and npm >= 5.6 )
->sudo npm -g uninstall create-react-app    -->uninstall global package  "create-react-app" as global package no longer supported  
->sudo npx create-react-app appName          -->npx installs package "create-react-app version latest" and creates react app template using package
-
-//INSTALL BOOTSTRAP
-OLD VERSION
->sudo npm install bootstrap@4.1.1
-
-NEW VERSION
->sudo npm install bootstrap
-
-//INSTALL REACT DEVELOPER TOOLS EXTENSION
 Add  "react developer tools" to chrome extension 
 In developer Tools you will see 1 more tab called "compoents"  where you can see the component tree
-
-//RUN REACT
->cd reactAppName
->sudo npm start                    -->start react at 127.0.0.1:3000
 */
+
+//CREATE PROJECT AND RUN(WINDOWS(WITHOUT SUDO) , LINUX(WITH SUDO))
+/*
+//CREATE CLIENT
+>sudo npm -g uninstall create-react-app    -->uninstall global package  "create-react-app" as global package no longer supported  
+>sudo npx create-react-app client          -->installs package "create-react-app version latest" and create a templat called "client"(Node >= 10.16 and npm >= 5.6 )
+>Create /src/components folder             -->create folders
+>cd client
+>sudo npm install                    -->install package.json dependencies  locally
+>sudo npm install bootstrap  --save   -->install bootstrap locally
+
+
+//RUN CLIENT
+>cd client
+>sudo npm start   -->run client at 127.0.0.1:8000 
+                    package.json
+                      "scripts": {                               
+                        "start": "react-scripts start",  -->npm start = "react-scripts start"
+                        "build": "react-scripts build",
+                        "test": "react-scripts test",
+                        "eject": "react-scripts eject"
+                      },
+
+
+
+*/
+
+
 
 
 //NODE MODULES , PACKAGE.JSON , PACKAGE-LOCK.JSON
