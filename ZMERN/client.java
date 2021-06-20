@@ -1,7 +1,7 @@
 //STRUCTURE
 /*
 REACTAPP 
-  |-node_modules           --> INSTALL,RUN(WINDOWS,LINUX)                     
+  |-node_modules           --> INSTALL,CREATE PROJECT AND RUN(WINDOWS,LINUX)                     
   |-package.json               
   |-package-lock.json
   |-PUBLIC

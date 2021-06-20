@@ -30,6 +30,27 @@ OBJECT                                 --> NUMBER;BOOLEAN;NULL;NaN;SYMBOL ;STRIN
 EXCEPTION                              -->EXCEPTION CLASS,EXCEPTION HANDLING 
 
 CONDITIONAL                            -->IF; WHILE, DO WHILE;FOR,FOR –IN ,FOR-OF ,ARRAY METHODS ,BREAK CONTINUE
+
+
+
+** JS VS TS**
+TYPESCRIPT : ts  shows err at runtime ; but you need extra work to run ts
+JAVASCRIPT : js does not show err at run time but you can see those byjshint filename.js
+EXTRA FILE FOR TS 
+|-tcsconfig.json -->run tcs –init and in the created tcsconfig.json overwrite the existing code with the code in audio-transcoder(typescript)
+|-typings.t.ds --> create a file with name typings.t.ds 
+Run code --> run tcs which will create a equivalent .js file in dist/src ; then run node dist/src/filename.js
+
+DIFFERENT CODE OF TS 
+1.import
+const readXlsxFile = require('read-excel-file/node');
+                  TO
+ import * as readXlsxFile from 'read-excel-file/node'; and also create a file  typings.d.ts and add declare module 'read-excel-file/node';
+
+2.statically typed lang : so you have to write datatype or write “any” if datatype is not known 
+
+
+
 */
 
 

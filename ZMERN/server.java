@@ -1,28 +1,3 @@
-/*
-REMAINING/
-Mosh Hemadani -- ADVANCE EXPRESS TOPICS --TEMPLATES (VIEWS)
-
-
-
-
-//** JS VS TS
-TYPESCRIPT : ts  shows err at runtime ; but you need extra work to run ts
-JAVASCRIPT : js does not show err at run time but you can see those byjshint filename.js
-EXTRA FILE FOR TS 
-|-tcsconfig.json -->run tcs –init and in the created tcsconfig.json overwrite the existing code with the code in audio-transcoder(typescript)
-|-typings.t.ds --> create a file with name typings.t.ds 
-Run code --> run tcs which will create a equivalent .js file in dist/src ; then run node dist/src/filename.js
-
-DIFFERENT CODE OF TS 
-1.import
-const readXlsxFile = require('read-excel-file/node');
-                  TO
- import * as readXlsxFile from 'read-excel-file/node'; and also create a file  typings.d.ts and add declare module 'read-excel-file/node';
-
-2.statically typed lang : so you have to write datatype or write “any” if datatype is not known 
-
-
-*/ 
 
 //WEB ARCHITECTURE 
 /*                                                   
@@ -165,12 +140,6 @@ Add "chrome postman" to  chrome extension
 Add "chrome postman" to  chrome extension 
 
 */
-
-
-
-
-
-
 //CREATE PROJECT AND RUN(WINDOWS(WITHOUT SUDO) , LINUX(WITH SUDO))
 /*
 //CREATE SERVER
@@ -206,21 +175,6 @@ Add "chrome postman" to  chrome extension
 */
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 //ENV VAR
 /*
 //SETTING ENV VAR
@@ -234,9 +188,6 @@ const express = require('express')-->npm install express --save
 const app = express()  
 app.get('env')        -->returns value set for envVarName ; if not set return undefined
 */
-
-
-
 //CONFIG
 /*
 |-CONFIG
@@ -313,95 +264,107 @@ debugb("message")             if export DEBUG=worker:b then debugb will log
                               if export DEBUG= then nothing will log
 
 
-//PORT
-http://127.0.0.1:3000/endpoints     -->if export PORT=3000 then this application will be active on port 3000
+
 
 */
 
 
 //NODE MODULES , PACKAGE.JSON , PACKAGE-LOCK.JSON
 /*
-package.json                 -->PACKAGE.JSON KEEPS TRACK OF ALL PACKAGE DEPENDENCY
-{
-  "name": "package",         -->DEPENDENCY PROPERTIES
-  "version": "1.0.0",           when you create package.json  using npm init
-  "description": "",            you are asked these options 
-  "main": "index.js",
-  "scripts": {
-  "test": "echo \"Error: no test specified\" && exit 1"
+package.json                    -->PACKAGE.JSON KEEPS TRACK OF ALL PACKAGE DEPENDENCY
+{                                  PROPERTIES:When you run  express --view=pug  dirname  then these properties are created for the directory 
+  "name": "server",                name of dir     
+  "version": "0.0.0",              version of dir 
+  "private": true,                 privacy of dir   
+
+                                  
+  "scripts": {                      SCRIPTS: when you run npm key ;then we execute value of the key
+    "start": "node ./bin/www"       npm start = node ./bin/www
+    "start":nodemon ./bin/www       npm start = nodemon ./bin/www
   },
-  "author": "",
-  "license": "ISC",
-  "dependencies": {           -->DEPENDENCIES(DEPLOYED)
-    "express": "^4.17.1",      “packageName: ^/~ majorVersion.minorVersion.patchVersion”
-    "joi": "^17.4.0"
-  }
-  "dev-dependencies": {       -->DEVELOPMENT DEPENDENCIES(NOT DEPLOYED )
-    "express": "^4.17.1",       “packageName: ^/~ majorVersion.minorVersion.patchVersion”
-  }                              patchversion = bug fix ;
-}                                minorVersion = changes without disturbing API;
-                                 majorVersion = change API itself 
-                                 ^ --> supose you have a “module: ^4.1.13” and someone   forks your   repo and performs      
-                                      npm –i modulename which my have diff version later in time   ; then
-                                      ^ tells install modue as long as its major version = 4  so ^4.1.8 can be written as ^4.x
-                                 ~ --> tells install module as long as major version = 4 ; minor version = 1 so ~4.1.8 can be        
-                                        written as ~4.1.x
-                                 no % or ~ --> install the exact version so this is the best 
 
-//INITIALISE JSON FILE
->npm init                           -->create a package.json which will keep all meta data for packahges
-
-//INSTALL PACKAGES
->npm install package@version --save     -->create node_modules and inside it installs package 
-                                        adds the package dependency in package.json ka dependencies{}     
->npm install package@version dev--save -->create node_modules and inside it installs package 
-                                        adds the package dependency in package.json ka dev dependencies{}    
-                                        telling that this is a devloper package and must not be deployed                                                           
+  "dependencies": {                 DEPENDENCIES:  When you install a package it is added in dependency and deployed
+    "cookie-parser": "~1.4.4",      package used for?(already included on creating project)
+    "debug": "~2.6.9",              package used for ?(already included on creating project)
+    "express": "~4.16.1",           package used for api(already included on creating project template) 
+    "http-errors": "~1.6.3",        package used for ? (already included on creating project template)  
+    "jade": "~1.11.0",              package used for ? (already included on creating project template)  
+    "mongoose": "^5.12.14",         package used for db(ypu include this after creating project template)  
+    "morgan": "~1.9.1"              package used for ? (already included on creating project template)  
+  } 
+  "dev-dependencies": {              DEVELOPMENT DEPENDENCIES:When you install a package using -dev it is added in dev-dependency and is not  deployed           
+  }                                   |
+                                      |
+                                    //DEPENDENCY STRUCTIRE
+                                    “packageName: ^/~ majorVersion.minorVersion.patchVersion”
+                                    patchversion = bug fix ;
+                                    minorVersion = changes without disturbing API;
+                                    majorVersion = change API itself 
+                                    ^ --> supose you have a “module: ^4.1.13” and someone   forks your   repo and performs      
+                                        npm –i modulename which my have diff version later in time   ; then
+                                        ^ tells install modue as long as its major version = 4  so ^4.1.8 can be written as ^4.x
+                                    ~ --> tells install module as long as major version = 4 ; minor version = 1 so ~4.1.8 can be        
+                                            written as ~4.1.x
+                                    no % or ~ --> install the exact version so this is the best 
 
 
-//UNINSTALL PACKAGES                                        
->npm uninstall packagename           -->In node_modules remove package
-                                        remove package from package.json ka dependencies{}    
 
-//UPDATE PACKAGE
->npm outdated                       --> show the package with outdated versions ; with current wanted and latest version
->npm  update                        --> update the package to latest ver only if the majorversion is same ; else to wanted ver
-                                        and updates package.json
->npm-check-updates                  -->install check updates package
-                                       and updates package.json
->npm-check-updates and  ncu –u      --> update the outdated package to latest version in package.json
-                                       and updates package.json
->npm install                        --> update the outdated package to latest version 
-                                        and updates package.json
-                                         
-                                                              
-//VIEW PACKAGES             
-> npm list                          --> view  all the  packages  and their sub dependencies;
-                                        or view package.json
-> npm list  - -depth=0              --> view all the  packages 
-                                        or view package.json
->npm view packagename               --> view all the metadata of a packages
-                                        or view package.json  
->npm view packagename dependencies  --> you can view all the dependencies of package 
-                                        or view package.json
->npm view packagename  version      --> you can view current   version of package
-                                        or view package.json
->npm view modulename versions       --> you can view current version of package
-                                        or view package.json
->npm outdated                      --> show the package with outdated versions ; with current wanted and latest version
-                                        or view package.json
+                                    //INITIALISE JSON FILE
+                                    >npm init                           -->create a package.json which will keep all meta data for packahges
 
-//-G FLAG(COMANDS WITH -G FLAG ARE TO BE WRITTEN WITH SUDO IN LINUX)
--g flag -->Without -g the package will be installed in node_moduules in current directory
-          With -g flag the package will be installed globally where node is installed and all directories in all projects can acess it 
-           Eg npm install – g packagename@version -- install package globally so available for all packages
-              npm uninstall –g packagename          --uninstall global package
-              npm list –g ; npm list –g –depth=0 ; npm view –g packagename and so on 
+                                    //INSTALL PACKAGES
+                                    >npm install                            -->install the packages already mentioned in package.json when
+                                                                            you create the project
+                                    >npm install package@version --save     -->create node_modules and inside it installs package 
+                                                                            adds the package dependency in package.json ka dependencies{}     
+                                    >npm install package@version dev--save -->create node_modules and inside it installs package 
+                                                                            adds the package dependency in package.json ka dev dependencies{}    
+                                                                            telling that this is a devloper package and must not be deployed                                                           
+
+
+                                    //UNINSTALL PACKAGES                                        
+                                    >npm uninstall packagename           -->In node_modules remove package
+                                                                            remove package from package.json ka dependencies{}    
+
+                                    //UPDATE PACKAGE
+                                    >npm outdated                       --> show the package with outdated versions ; with current wanted and latest version
+                                    >npm  update                        --> update the package to latest ver only if the majorversion is same ; else to wanted ver
+                                                                            and updates package.json
+                                    >npm-check-updates                  -->install check updates package
+                                                                        and updates package.json
+                                    >npm-check-updates and  ncu –u      --> update the outdated package to latest version in package.json
+                                                                        and updates package.json
+                                    >npm install                        --> update the outdated package to latest version 
+                                                                            and updates package.json
+                                                                            
+                                                                                                
+                                    //VIEW PACKAGES             
+                                    > npm list                          --> view  all the  packages  and their sub dependencies;
+                                                                            or view package.json
+                                    > npm list  - -depth=0              --> view all the  packages 
+                                                                            or view package.json
+                                    >npm view packagename               --> view all the metadata of a packages
+                                                                            or view package.json  
+                                    >npm view packagename dependencies  --> you can view all the dependencies of package 
+                                                                            or view package.json
+                                    >npm view packagename  version      --> you can view current   version of package
+                                                                            or view package.json
+                                    >npm view modulename versions       --> you can view current version of package
+                                                                            or view package.json
+                                    >npm outdated                      --> show the package with outdated versions ; with current wanted and latest version
+                                                                            or view package.json
+
+                                    //-G FLAG(COMANDS WITH -G FLAG ARE TO BE WRITTEN WITH SUDO IN LINUX)
+                                    -g flag -->Without -g the package will be installed in node_moduules in current directory
+                                            With -g flag the package will be installed globally where node is installed and all directories in all projects can acess it 
+                                            Eg npm install – g packagename@version -- install package globally so available for all packages
+                                                npm uninstall –g packagename          --uninstall global package
+                                                npm list –g ; npm list –g –depth=0 ; npm view –g packagename and so on 
 
 */
 
 
-//ROUTES,MIDDLEWARE ,INDEX.JS-- https://expressjs.com/ -->Go to Resources to get Middleware etc 
+//ROUTES,MIDDLEWARE ,APP.JS-- https://expressjs.com/ -->Go to Resources to get Middleware etc 
 //                                                       
 /* #region Main */
 
