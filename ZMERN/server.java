@@ -64,15 +64,13 @@ server                              --> INSTALL,CREATE PROJECT AND RUN(LINUX , W
   |-package.json
   |-package-lock.json
   routes  
-    |-courses.js                 
-    |-food.JS  
-  middleware
-    |-logger.js                       
+    |-index.js                 
+    |-user.JS                       
   |-app.js
   |-views
-    |-error.pug
-    |-index.pg
-    |-layout.pug
+    |-error.jade
+    |-index.jade
+    |-layout.jade
   |-public
     |-images
     |-javascript
@@ -175,99 +173,12 @@ Add "chrome postman" to  chrome extension
 */
 
 
-//ENV VAR
+//BIN
 /*
-//SETTING ENV VAR
-export/set envVarName=3000  //linux/windows
+bin
+|-www  -->This file is run on npm start (Look in create project and run ka run server)
 
-
-//GETTING ENV VAR 
-process.env.NODE_ENV  -->returns value set for envVarName ; if not set return undefined
-OR
-const express = require('express')-->npm install express --save   
-const app = express()  
-app.get('env')        -->returns value set for envVarName ; if not set return undefined
-*/
-//CONFIG
-/*
-|-CONFIG
-    |-default.json
-    |-development.json
-    |-testing.json
-    |-production.json
-    |-custom-environment-variables.json    
-
-default.json
-{ 
-    name:"MERNAPP"                      
-    mail:{                                
-        host:"mail-server"
-    }
-}
-
-development.json
-{ 
-    name:"MERNAPP-DEVELOPMENT"           
-    mail:{                               
-        host:"development-mail-server"
-    }
-}
-
-testing.json
-{
-    name:"MERNAPP-TESTING"                
-    mail:{                               
-        host:"test-mail-server"
-    }
-}
-
-production.json
-{                                         -
-    name:"MERNAPP-PRODUCTION"              
-    mail:{                                 
-        password:"prod-mail-server""
-    }
-}
-
-custom-environment-variables.json       
-{                                       
-    mail:{                              
-        password:'AppName_password'      
-                                       
-    }                                          
-}                                               
-                                              
-
-
-
-//CONFIGURATION --  https://www.npmjs.com/package/config; https://www.npmjs.com/package/rc   --Config  is less popular but better than RC 
-const config = require('config')  --> npm install config --save
-
-config.get('name')          -->if export NODE_ENV=not yet set  then return  name from default.json 
-                               if export NODE_ENV=development then return  name from development.json 
-                               if export NODE_ENV=testing     then return  name from testing.json 
-                               if export NODE_ENV=production  then return  name from production.json 
-config.get('mail.password') -->if export AppName_password='1234' then return password from custom-environment-variables.json 
-                               Note:password is not set any value in json file              (so the source code will not have password)
-                                    password holds env var which is passed value through cmd(so the user knowing password will pass to source code)
-                                      
-                                
-
-//DEBUGGING
-const debuga = require('debug')('worker:a')      -->npm install debug   
-const debugb = require('debug')('worker:b')                            
- 
-debuga("message")          -->if export DEBUG=worker:a then debuga will log
-debugb("message")             if export DEBUG=worker:b then debugb will log
-                              if export DEBUG=worker:a,worker:b then debuga,debugb will log
-                              if export DEBUG=worker:* then debuga,debugb will log
-                              if export DEBUG= then nothing will log
-
-
-
-
-*/
-
+ */
 
 //NODE MODULES , PACKAGE.JSON , PACKAGE-LOCK.JSON
 /*
@@ -364,44 +275,23 @@ package.json                    -->PACKAGE.JSON KEEPS TRACK OF ALL PACKAGE DEPEN
 */
 
 
-//ROUTES,MIDDLEWARE ,APP.JS-- https://expressjs.com/ -->Go to Resources to get Middleware etc 
+
+//ROUTES , APP.JS
+/*
+
+
+
+*/
+
+//ROUTES,APP.JS-- https://expressjs.com/ -->Go to Resources to get Middleware etc 
 //                                                       
 /* #region Main */
 
-//MIDDLEWARE
-/*
-ROUTES  
-  |-courses.js                 
-  |-food.JS                          
-MIDDLEWARE
-  |-logger.js                       
-index.js
-*/
-
-//ALL MIDDLEWARE(index.js)
-/*
-index.js
-const express  = require('express')-->npm install express --save 
-const app = express()
-const logger   = require(./MIDDLEWARE/logger)
-const courses  = require(./ROUTES/course) 
 
 
-app.use(express.json())                        -->/allRoutes handled by "inbuilt middleware " json()   
-app.use(logger)                                -->/allRoutes handled by "custom middleware"  log()       
-app.use('/course' , courses)                   -->/courses   handled by "route middleware" in courses 
-                                                 (/ = /courses  in course.js)
-
-*/
 
 
-//INBUILT MIDDLEWARE(index.js)
-/*
-app.use(express.json())                                     -->takes req from all url      ;parses req body(raw body) into json and sets req.body to json ; sends res to next middleware fn called router() 
-app.use(express.urlencoded({extended:truw}))                -->takesreq from all url       ;parses req body(encoded) into json and sets req.body to json ; sends res to next middleware fn called router() 
-app.use(express.static("foldername"))                       -->takes req from url with endpoint  foldername ka static file(not foldername); sends the static content of foldername to url
-                                                              (static file folder me hoga tobhi endpint static file hoga EG consider public/readme.md then url is http:127.0.0.1/readme.txt(not /public/readme.txt))
-*/   
+
 
 //CUSTOM MIDDLEWARE(MIDDLEWARE/logger.js  )
 /*
@@ -871,6 +761,101 @@ Compass UI
 
 
 
+
+
+
+//ENV VAR
+/*
+//SETTING ENV VAR
+export/set envVarName=3000  //linux/windows
+
+
+//GETTING ENV VAR 
+process.env.NODE_ENV  -->returns value set for envVarName ; if not set return undefined
+OR
+const express = require('express')-->npm install express --save   
+const app = express()  
+app.get('env')        -->returns value set for envVarName ; if not set return undefined
+*/
+//CONFIG
+/*
+|-CONFIG                 -->FOLDER CREATED BY YOU
+    |-default.json
+    |-development.json
+    |-testing.json
+    |-production.json
+    |-custom-environment-variables.json    
+
+default.json
+{ 
+    name:"MERNAPP"                      
+    mail:{                                
+        host:"mail-server"
+    }
+}
+
+development.json
+{ 
+    name:"MERNAPP-DEVELOPMENT"           
+    mail:{                               
+        host:"development-mail-server"
+    }
+}
+
+testing.json
+{
+    name:"MERNAPP-TESTING"                
+    mail:{                               
+        host:"test-mail-server"
+    }
+}
+
+production.json
+{                                         -
+    name:"MERNAPP-PRODUCTION"              
+    mail:{                                 
+        password:"prod-mail-server""
+    }
+}
+
+custom-environment-variables.json       
+{                                       
+    mail:{                              
+        password:'AppName_password'      
+                                       
+    }                                          
+}                                               
+                                              
+
+
+
+//CONFIGURATION --  https://www.npmjs.com/package/config; https://www.npmjs.com/package/rc   --Config  is less popular but better than RC 
+const config = require('config')  --> npm install config --save
+
+config.get('name')          -->if export NODE_ENV=not yet set  then return  name from default.json 
+                               if export NODE_ENV=development then return  name from development.json 
+                               if export NODE_ENV=testing     then return  name from testing.json 
+                               if export NODE_ENV=production  then return  name from production.json 
+config.get('mail.password') -->if export AppName_password='1234' then return password from custom-environment-variables.json 
+                               Note:password is not set any value in json file              (so the source code will not have password)
+                                    password holds env var which is passed value through cmd(so the user knowing password will pass to source code)
+                                      
+                                
+
+//DEBUGGING
+const debuga = require('debug')('worker:a')      -->npm install debug   
+const debugb = require('debug')('worker:b')                            
+ 
+debuga("message")          -->if export DEBUG=worker:a then debuga will log
+debugb("message")             if export DEBUG=worker:b then debugb will log
+                              if export DEBUG=worker:a,worker:b then debuga,debugb will log
+                              if export DEBUG=worker:* then debuga,debugb will log
+                              if export DEBUG= then nothing will log
+
+
+
+
+*/
 
 
 //OTHER MODULES
