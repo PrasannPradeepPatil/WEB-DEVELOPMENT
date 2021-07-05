@@ -15,6 +15,20 @@ var postsRouter = require('./routes/posts');
 
 
 //SET ENV VARIABLES(APPLIED TO ALL ENDPOINTS)
+/* #region Main */
+/*
+//SETTING ENV VAR
+export/set envVarName=3000  //linux/windows
+
+
+//GETTING ENV VAR 
+process.env.NODE_ENV  -->returns value set for envVarName ; if not set return undefined
+OR
+const express = require('express')-->npm install express --save   
+const app = express()  
+app.get('env')        -->returns value set for envVarName ; if not set return undefined
+*/
+/* #endregion */
 app.set('views', path.join(__dirname, 'views'));  //get them by app.get('varname')
 app.set('view engine', 'jade');
 

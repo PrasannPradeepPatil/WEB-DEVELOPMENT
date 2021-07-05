@@ -1,9 +1,9 @@
 //STRUCTURE
 /*
 REACTAPP 
-  |-node_modules            -->external modules and external module dependency                  
-  |-package.json              
-  |-package-lock.json
+  |-node_modules            -->external modules                 
+  |-package.json            -->external module dependency     
+  |-package-lock.json       -->external module dependency  
   |-PUBLIC
     |-filename.png/.ico   -->images and icons of project
     |-manifest.json       -->tells browser about app and how it should be installed on mobile or desktop   

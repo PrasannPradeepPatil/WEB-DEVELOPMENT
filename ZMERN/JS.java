@@ -1814,7 +1814,110 @@ continue --> skip certain cond and jump  to start of loop
 /* #endregion */
 
 
+//JS NODE MODULES
+/* #region Main */
 
+//PATH--https://nodejs.org/docs/latest-v8.x/api/path.html
+/*
+const  path = require(‘path’); -->returns  path object
+
+path.parse(“filepath to  .js file”) --> returns object containing important feature of path
+*/
+
+//OS -- https://nodejs.org/docs/latest-v8.x/api/os.html
+/*
+const os = require(‘os’);    -->returns  os object
+
+os.totoalmem(); -->returns string  of total memory in OS
+os.fremem();    -->returns string of available mem in OS
+*/
+
+//FILE SYSTEM-- https://nodejs.org/docs/latest-v8.x/api/fs.html
+/*
+const fs  = require(‘fs’);  --> returns fs object
+
+fs.writefilesync(“filepath”, data)           --> synchronously write data to filepath
+s.writefile(‘filepath’,data, (params) =>{})  --> asynchronously write data to filepath 
+fs.copyfilesync(“filepath1” , “filepath2”)   -->synchronously copy data from filepath2 to filepath1
+fs.copyfile(“filepath1” , “filepath2”,(params)=>{} ) -->asynchronously copy data from filepath2 to filepath1
+*/
+
+//EVENT -- https://nodejs.org/docs/latest-v8.x/api/events.html
+/*
+const EventEmitter =  require(“emitter”);   --> retruns EventEmitter class
+const emitter = new EventEmmiter();        -->  returns EventEmmiter object
+
+emmiter.emit(“eventname” , {id:1,name:pras}})         -->emit  event  
+                                                           
+                                                              
+emitter.on(“eventname” , (eventArgs) => {            -->listens  event 
+             cconsole.log(eventArg.id) })               
+                                                        //EMIT , LISTEN SAME FILE-->EMIT AFTER  REGISTERING  LISTENER
+                                                        (Emit after  registering listen 
+                                                        because emit calls all listeners sybnchronously
+                                                        so you must have listeners available before raise)
+                                                        EG
+                                                        filr.js
+                                                        emitter.on(“eventname” , (eventArgs) => {           -->listens  events         
+                                                                    console.log(eventArg.id) })   
+
+                                                        emmiter.emit(“eventname” , {id:1,name:pras}})         -->emits event 
+                                                        
+                                                        
+                                                        
+                                                        //EMIT ANS LISTEN IN DIFFERENT FILE--> EMIT LISTEN ON DAME OBJECT
+                                                        (Emit,Listen must be on same object 
+                                                        So emit on a class , listen on object of that class)
+                                                        EG
+                                                        file1.js                                    file2.js           
+                                                        const EventEmitter =  require(“emitter”);   const EventEmitter =  require(“emitter”); 
+                                                        const emitter = new EventEmmiter();         const emitter = new EventEmmiter();  
+                                                                                                    const foo = require(./file1)  
+                                                        function foo(){
+                                                            emitter.emit("event1")}                emitter.on("event1") () => {} } -->RAISING ,LISTENENG ON DIFFERENT emmiter object
+
+                                                        module.exports = log
+
+
+                                                        file1.js                                    file2.js    
+                                                        const EventEmitter = require('events');     const Emmiter  = require(./file1)
+                                                        class Emitter  extends EventEmitter {       const emmiter = new Emmiter()
+                                                            foo() {
+                                                                this.emit('event1');}               emmiter.on("event1",()=>{})-->RAISING ,LISTENENG ON SAME emmiter object
+                                                        }
+
+                                                        module.exports = Emitter
+
+                                                        
+
+
+                                                        
+*/
+
+//HTTP -- https://nodejs.org/docs/latest-v8.x/api/http.html  -- INSTEAD YOU CAN USE EXPRESS
+/*
+const http  = require('http');
+
+const server = http.createServer((req,res)=>{    -->emit an http request at server side
+
+    if(req.url === "/"){                    
+        res.write("Hello World");
+        res.end();
+    }
+
+    if(req.url === "/myPersonalApi"){           
+        res.write("Hello world2");
+        res.end();
+    }
+});
+
+server.listen(3000);                               -->listen to http request at client side at port 3000
+                                                     at http://127.0.0.1:3000 you will get hwllo worls and at 
+                                                     at http://127.0.0.1:3000 /myPersonalApi ypu will get Hello World2
+*/
+
+
+/* #endregion */
 
 
 
