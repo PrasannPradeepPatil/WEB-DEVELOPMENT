@@ -2,10 +2,11 @@
 var createError = require('http-errors');   
 var express = require('express');           //sudo npm install express --save 
 var path = require('path');
+var app = express();
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
-var app = express();
+
 
 //IMPORTS MODULES
 var indexRouter = require('./routes/index');  
