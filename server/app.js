@@ -19,20 +19,16 @@ app.set('view engine', 'jade');
 
 
 //INBUILT MIDDLEWARE FNS(APPLIED ON  ALL ENDPOINTS)
-/* #region Main *//*
+/* #region Main */
+/*
 var express = require('express');           //sudo npm install express --save 
 var path = require('path'); 
 var logger = require('morgan');
 
 app.use(logger('dev'));         -->For every endpoint,apply logger() fn
 app.use(express.json());        -->For every endpoint,apply json() fn
-
-
-*//* #endregion */
-
-
-
-
+*/
+/* #endregion */
 app.use(logger('dev'));
 app.use(express.json());                                   //json() fn parses req body(raw body) into json and sets req.body to json ; sends res to next middleware fn called router() 
 app.use(express.urlencoded({ extended: false }));         //urlencoded()fnparses req body(encoded) into json and sets req.body to json ; sends res to next middleware fn called router()  
@@ -42,13 +38,15 @@ app.use(express.static(path.join(__dirname, 'public'))); //static() fn takes req
 
 
 //ROUTES MIDDLEWARE FNS(APPLIED ON GIVEN END POINTS)
- 
-/* #region Main *//*
+/* #region Main */
+/*
+
 var indexRouter = require('./routes/index');  
 var usersRouter = require('./routes/users');
-app.use('/',indexRouter)                          -->For endpoint /  go to go to routes/indexRouter  and inside indexRouter  / =  /  
-app.use('/users', usersRouter);                   -->For endpoint /user  go to go to routes/usersRouter  and inside usersRouter  / =  /user  
-*//* #endregion */
+app.use('/',indexRouter)                          -->For endpoint /    ;apply the functions inside routes/indexRouter  and inside indexRouter  / =  /  
+app.use('/users', usersRouter);                   -->For endpoint /user;apply the functions inside routes/usersRouter  and inside usersRouter  / =  /user  
+*/
+/* #endregion */
 
 
 
@@ -58,6 +56,22 @@ app.use('/posts',postsRouter)
 
 
 //CUSTOM MIDDLEWARE FNS(APPLIED ON  ALL ENDPOINTS) 
+/* #region Main */
+/*
+app.use(function(req, res, next) {      -->For all endpoints; apply the function
+  next(createError(404));                 req.query                            --> returns {param1:value1,param2:Value2 ;params , values sent by URL query}
+                                          req.body                             --> returns {body sent by url }                   
+                                                                                                                                                                                               
+                                          res.status(errcode).send("Message")  --> send status error code to client
+                                          res.send(object)                     --> send object to client
+
+                                          next()                                --> send response to next middleware 
+});
+
+*/
+/* #endregion */
+
+
 app.use(function(req, res, next) {       // catch 404 and forward to error handler
   next(createError(404));
 });
