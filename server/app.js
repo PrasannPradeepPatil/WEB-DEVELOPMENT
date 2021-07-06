@@ -1,12 +1,19 @@
 //IMPORT EXTERNAL MODULES
-var createError = require('http-errors');   
-var express = require('express');           //sudo npm install express --save 
-var path = require('path');
+var express = require('express');            //sudo npm install express  --save(while project creation)
+var mongoose = require('mongoose')           //sudo npm install mongoose --save(while creating project) 
+var cors = require('cors');                  //sudo npm install cors     --save(while creating project)  
+var cookieParser = require('cookie-parser'); //sudo npm install (while project creation)
+var logger = require('morgan');              //sudo npm install (while project creation)
+var debug = require('debug');                //sudo npm install (while project creation)
+var createError = require('http-errors');    //sudo npm install (while project creation)
+var jade = require('jade');                  //sudo npm install (while project creation)
+var path = require('path');                  //sudo npm install (while project creation)
+
+
+
+
+
 var app = express();
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
-
-
 
 //IMPORTS MODULES
 var indexRouter = require('./routes/index');  
@@ -44,12 +51,12 @@ app.use(logger('dev'));         -->For every endpoint,apply logger() fn
 app.use(express.json());        -->For every endpoint,apply json() fn
 */
 /* #endregion */
+app.use(express.json({limit:"30mb",extended:true}));         //express.json()     fn parses req body(raw body) into json populates req.body with json ;returns a middleware fn  ; limit sets the limit of req body ;extended allows to choose between parsing req body with the querystring library (when false) or the qs library (when true). 
+app.use(express.urlencoded({limit:"30mb",extended: true }));//express.urlencoded()fn parses req body(encoded)  into json populates req.body with json ;returns a middleware fn  ; limit sets the limit of req body ;extended allows to choose between parsing req body with the querystring library (when false) or the qs library (when true). 
+app.use(express.static(path.join(__dirname, 'public')));   //express.static()     fn serves static file in public folder
+app.use(cookieParser());                                   //cookieParser()      fn parse cookie header populate req.cookies with an object keyed by the cookie names.
 app.use(logger('dev'));
-app.use(express.json());                                   //json() fn parses req body(raw body) into json and sets req.body to json ; sends res to next middleware fn called router() 
-app.use(express.urlencoded({ extended: false }));         //urlencoded()fnparses req body(encoded) into json and sets req.body to json ; sends res to next middleware fn called router()  
-app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public'))); //static() fn takes req from url with endpoint foldername ka static file(not foldername); sends the static content of foldername to url
-
+app.use(cors());
 
 
 //ROUTES MIDDLEWARE FNS(APPLIED ON GIVEN END POINTS)
@@ -62,9 +69,6 @@ app.use('/',indexRouter)                          -->For endpoint /    ;apply th
 app.use('/users', usersRouter);                   -->For endpoint /user;apply the functions inside routes/usersRouter  and inside usersRouter  / =  /user  
 */
 /* #endregion */
-
-
-
 app.use('/', indexRouter);                                
 app.use('/users', usersRouter);
 app.use('/posts',postsRouter)        
@@ -85,12 +89,9 @@ app.use(function(req, res, next) {      -->For all endpoints; apply the function
 
 */
 /* #endregion */
-
-
 app.use(function(req, res, next) {       // catch 404 and forward to error handler
   next(createError(404));
 });
-
 app.use(function(err, req, res, next) {  // error handler
   // set locals, only providing error in development
   res.locals.message = err.message;
@@ -101,8 +102,17 @@ app.use(function(err, req, res, next) {  // error handler
   res.render('error');
 });
 
+//MONGODB
+/*
 
+*/
+const CONNECTION_URL = 'mongodb+srv://js_mastery:123123123@practice.jto9p.mongodb.net/test';
+const PORT = process.env.PORT|| 5000;
+mongoose.connect(CONNECTION_URL, { useNewUrlParser: true, useUnifiedTopology: true })
+.then(() => app.listen(PORT, () => console.log(`Server Running on Port: http://localhost:${PORT}`)))
+.catch((error) => console.log(`${error} did not connect`));
 
+mongoose.set('useFindAndModify', false);
 
 //EXPORTS
 module.exports = app;              

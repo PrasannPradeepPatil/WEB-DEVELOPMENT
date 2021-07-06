@@ -69,7 +69,7 @@ package.json
                                     //VIEW PACKAGES             
                                     > npm list                          --> view  all the  packages  and their sub dependencies;
                                                                             or view package.json
-                                    > npm list  - -depth=0              --> view all the  packages 
+                                    > npm list  --depth=0               --> view all the  packages 
                                                                             or view package.json
                                     >npm view packagename               --> view all the metadata of a packages
                                                                             or view package.json  

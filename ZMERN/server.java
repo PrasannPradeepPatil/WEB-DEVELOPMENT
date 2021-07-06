@@ -156,7 +156,7 @@ Add "chrome postman" to  chrome extension
 >express --view=pug  server         -->create a templat called "server"
 >Create config ,middleware folder   -->create folders 
 >cd server
->sudo npm install                    -->install package.json dependencies which include "cookie-parser","debug","express","http-errors","morgan","pug"
+>sudo npm install                    -->install package.json dependencies which include "express","cookie-parser","morgan","debug","http-errors","jade"
 >sudo npm install express --save     -->install express locally(already installed in npm install)
 >sudo npm install mongoose --save    -->install mongoose locally
 
