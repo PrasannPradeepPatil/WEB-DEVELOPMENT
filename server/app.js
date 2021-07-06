@@ -8,35 +8,29 @@ var debug = require('debug');                //sudo npm install (while project c
 var createError = require('http-errors');    //sudo npm install (while project creation)
 var jade = require('jade');                  //sudo npm install (while project creation)
 var path = require('path');                  //sudo npm install (while project creation)
-
-
-
-
+//IMPORTS MODULES
+var postsRouter = require('./routes/posts');
 
 var app = express();
 
-//IMPORTS MODULES
-var indexRouter = require('./routes/index');  
-var usersRouter = require('./routes/users');
-var postsRouter = require('./routes/posts');  
-
-
-//SET ENV VARIABLES(APPLIED TO ALL ENDPOINTS)
+//GLOBAL, ENV VARIABLES(APPLIED TO ALL ENDPOINTS)
 /* #region Main */
 /*
-//SETTING ENV VAR
-export/set envVarName=3000  //linux/windows
+//GLOBAL VAR
+app.set('varName',value);
+app.get('varName');
+
+//ENV VAR
+>export/set VAR_NAME=value  //linux/windows
+>process.env.VAR_NAME
 
 
-//GETTING ENV VAR 
-process.env.NODE_ENV  -->returns value set for envVarName ; if not set return undefined
-OR
-const express = require('express')-->npm install express --save   
-const app = express()  
-app.get('env')        -->returns value set for envVarName ; if not set return undefined
+
+
+  
 */
 /* #endregion */
-app.set('views', path.join(__dirname, 'views'));  //get them by app.get('varname')
+app.set('views', path.join(__dirname, 'views'));  
 app.set('view engine', 'jade');
 
 
@@ -64,13 +58,11 @@ app.use(cors());
 /*
 
 var indexRouter = require('./routes/index');  
-var usersRouter = require('./routes/users');
-app.use('/',indexRouter)                          -->For endpoint /    ;apply the functions inside routes/indexRouter  and inside indexRouter  / =  /  
-app.use('/users', usersRouter);                   -->For endpoint /user;apply the functions inside routes/usersRouter  and inside usersRouter  / =  /user  
+var postsRouter = require('./routes/posts');  
+app.use('/',indexRouter)                          -->For endpoint /    ;apply the functions inside routes/indexRouter  and inside index.js  / =  /  
+app.use('/posts', usersRouter);                   -->For endpoint /posts;apply the functions inside routes/usersRouter and inside posts.js  / =  /user  
 */
-/* #endregion */
-app.use('/', indexRouter);                                
-app.use('/users', usersRouter);
+/* #endregion */                              
 app.use('/posts',postsRouter)        
 
 
@@ -104,15 +96,27 @@ app.use(function(err, req, res, next) {  // error handler
 
 //MONGODB
 /*
+//ATLAS
+ATLAS -->https://www.youtube.com/watch?v=ngc9gnGgUdA&t=522s  :10:30 TO 13:00
 
-*/
-const CONNECTION_URL = 'mongodb+srv://js_mastery:123123123@practice.jto9p.mongodb.net/test';
+//CONNECT  MONGODB TO SERVER(ATLAS)
+const CONNECTION_URL = 'connection url received from atlas';
 const PORT = process.env.PORT|| 5000;
-mongoose.connect(CONNECTION_URL, { useNewUrlParser: true, useUnifiedTopology: true })
-.then(() => app.listen(PORT, () => console.log(`Server Running on Port: http://localhost:${PORT}`)))
-.catch((error) => console.log(`${error} did not connect`));
+mongoose.connect(CONNECTION_URL, { useNewUrlParser: true, useUnifiedTopology: true })            
+  .then(() => app.listen(PORT, () => console.log(`Server Running on Port: http://localhost:${PORT}`)))
+  .catch((error) => console.log(`${error} did not connect`));
 
 mongoose.set('useFindAndModify', false);
 
-//EXPORTS
-module.exports = app;              
+
+*/
+const CONNECTION_URL = 'mongodb+srv://prasann:prasann123@cluster0.qb7ve.mongodb.net/myFirstDatabase?retryWrites=true&w=majority';
+const PORT = process.env.PORT|| 5001;
+mongoose.connect(CONNECTION_URL, { useNewUrlParser: true, useUnifiedTopology: true })
+  .then(() => app.listen(PORT, () => console.log(`Server Running on Port: http://localhost:${PORT}`)))
+  .catch((error) => console.log(`${error} did not connect`));
+
+mongoose.set('useFindAndModify', false);
+
+//EXPORT
+module.exports = app;    

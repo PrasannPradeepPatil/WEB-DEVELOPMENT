@@ -4,6 +4,7 @@ package.json
   "name": "server",                name of dir     
   "version": "0.0.0",              version of dir 
   "private": true,                 privacy of dir   
+  "type":"module",                 ALLIOWS ES6 IMPORTS,EXPORTS
 
                                   
   "scripts": {                      SCRIPTS: when you run npm key ;then we execute value of the key

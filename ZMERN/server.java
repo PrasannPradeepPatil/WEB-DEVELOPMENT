@@ -107,6 +107,8 @@ INSTALL      -->sudo apt update              -->update installation
                >sudo apt install npm         -->install npm
                >node --version               -->gives npde version
                >whereis node                  --> gives node: /usr/bin/node /usr/share/man/man1/node.1.gz
+               >curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.37.2/install.sh | bash -->update node
+               >nvm install v14.17.0
 SET ENV VAR -->No Need
 
 
@@ -154,7 +156,8 @@ Add "chrome postman" to  chrome extension
 >sudo npm install -g nodemon        --> install nodemon globally 
 >sudo npm install -g express        -->install express globally
 >express --view=pug  server         -->create a templat called "server"
->Create config ,middleware folder   -->create folders 
+>https://www.freecodecamp.org/news/how-to-enable-es6-and-beyond-syntax-with-node-and-express-68d3e11fe1ab/-->Convert Express template to ES6 if requires
+
 >cd server
 >sudo npm install                    -->install package.json dependencies which include "express","cookie-parser","morgan","debug","http-errors","jade"
 >sudo npm install express --save     -->install express locally(already installed in npm install)

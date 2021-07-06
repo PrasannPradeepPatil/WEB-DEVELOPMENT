@@ -4,6 +4,9 @@
   "private": true,
   "scripts": {
     "start": "nodemon ./bin/www"
+ 
+
+
   },
   "dependencies": {
     "cookie-parser": "~1.4.4",

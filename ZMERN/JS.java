@@ -439,81 +439,37 @@ function((exports , require , module, filename , __filename, __dirname)){   --> 
 //IMPORT EXPORT
 /* #region Main */
 
-
-
-
-
-//IMPORT, EXPORT(ES5 - NODE JS)
-/* 
-
-import ofcName = require(‘modulename’)-->imports   objName/fnName/className  and assigns thm objName/fnName/className   
-                                        MODULENAME
-                                        modlename'     -->import  objName/fnName/className  from  inbuiltModules and nodeModulename (first looks in inbuiltModule then looks in nodeModules)
-                                        './modulename' -->import  objName/fnName/className   from   moduleName of current directory
-
-
-
-module.exports.ofcName  = ofcName -->exports objName/fnName/className to “module object ka exports object {}”  like   fnname:fnname()}/{fnname()}                                                                                                                    
-exports.ofcName  = ofcName        -->exports objName/fnName/className to  “exports object {}” as {fnname:fnname()}/{fnname()}
-     |      
-     |
-     |
-Export can be on last line OR before defination 
-Eg:
-function calculate(){}
-module.exports.calculate = calculate
-OR
-module.exports = function calculate(){return 22;}
-module.exports =  class calculate{ ...}        
-
-
-*/
-
-
-
-//IMORT,EXPORT(ES6 - REACT)
+//IMPORT , EXPORT (ES5 - NODEJS)
 /*
-import ofcName from ‘modulename’    -->imports   objName/fnName/className  and assigns thm objName/fnName/className   
-                                    MODULENAME
-                                    modlename'     -->import  objName/fnName/className  from  inbuiltModules and nodeModulename (first looks in inbuiltModule then looks in nodeModules)
-                                    './modulename' -->import  objName/fnName/className   from   moduleName of current directory
+//SINLE 
+module1.js                          module2.js
+fnName = () =>{}                    var fnName = require('externalmodulename' OR './modulename1' OR '../modulename1') 
+module.exports = fnName
 
-                                    OFCNAME
-                                    objName/fnName/className          (For export type = default)  -->asign objName/fnName/className which can be only 1 and different Name from exports Name                          
-                                    {objName/fnName/className1,2,3  } (For export type = -)      -->asign objName/fnName/className  which can be multiple but same to exports Name
-
-
-                
-
-export type  ofcName     -->exports  objName/fnName/className   
-     |                       TYPE
-     |                      default  -->export only 1  objName/fnName/className   per module
-     |                       -        -->export multiple objName/fnName/className  per module
-     |
-     |
-     |                       OFCNAME
-     |                       objName/fnName/className   -     ->exports only 1  objName/fnName/className 
-     |                       {objName/fnName/className1,2} xx -->exports multiple  objName/fnName/className 
-     |                                                          (you cant do this so  for multiple export pass before defination )
-     |
-
-Export can be on last line OR before defination 
-Eg:
-function calculate(){}
-export calculate
-OR
-export function calculate(){return 22;}
-export default class calculate{ ...}                      
+//MULTIPLE
+module1.js                           module2.js
+exports.fnName1 = () =>{}           var {fnNanem1,fnName2} = require('externalmodulename' OR './modulename1' OR '../modulename1') 
+exports.fnName2 = () =>{}
 
 
+*/
+
+//IMPORT , EXPORT (ES6 - NODEJS)
+/*
+//SINGLE
+module1.js                             module2.js
+fnName = () =>{}                       import fnName from 'externalmodulename' OR './modulename1' OR '../modulename1''    
+export default fnName
+
+//MULTIPLE
+module1.js                            module2.js  
+export const fnName1 = () =>{}        import {fnName1,fnName2} from 'externalmodulename' OR './modulename1' OR '../modulename1'
+export const fnName1 = () =>{}
 
 
 
 
 */
-
-
-
 /* #endregion */
 
 
