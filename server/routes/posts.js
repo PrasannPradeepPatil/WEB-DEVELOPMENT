@@ -13,9 +13,6 @@ router.get('/endPoint/:param1/:param2',(req,res)=>{})    -->For endpoint ; apply
 router.put('/endPoint/:param1/:param2',(req,res)=>{})    -->For endpoint ; apply the function that performs update operation 
 router.delete('/endPoint/:param1/:param2',(req,res)=>{}) -->For endpoint ; apply the function that performs delete operation 
                                                             (req,res,next look in app.js ka custom middleware)
-                                             
-
-
 */
 router.get('/', getPosts);
 router.post('/', createPost);

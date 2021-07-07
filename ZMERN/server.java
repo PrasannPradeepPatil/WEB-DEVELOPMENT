@@ -183,7 +183,7 @@ Add "chrome postman" to  chrome extension
                             "start": "nodemon ./bin/www" -->npm start = nodemon ./bin/www   (provides hot reload so rename node to nodemon)
                     },
                     bin/www
-                    var port = normalizePort(process.env.PORT || '3000');->port = 3000  -->start at port 3000 (react runs at 3000 so change this port to 8000)
+                    var port = normalizePort(process.env.PORT || '3000');->port = 3000  -->start at port 3000 (react runs at 3000 so first run server and then client which will then run at 3001)
 
 //RUN MONGODB
 >sudo systemctl status mongodb.service   OR service mongodb status            -->check mongodb status
