@@ -102,7 +102,7 @@ app.use(function(err, req, res, next) {  // error handler
 /*
 //CONNECT  MONGODB TO SERVER(ATLAS)-->https://www.youtube.com/watch?v=ngc9gnGgUdA&t=522s  :10:30 TO 13:00
 const CONNECTION_URL = 'connection url received from atlas';
-const PORT = process.env.PORT|| 3001;(client runs at 3000, server runs at 3000 so 1st run server and then run client so client automatically runs at 3001;so server runs at 30002 )
+const PORT = process.env.PORT||5000;(client runs at 3000, server runs at 3000 so 1st run server and then run client so client automatically runs at 3001;so server runs at 30002 )
 mongoose.connect(CONNECTION_URL, { useNewUrlParser: true, useUnifiedTopology: true })            
   .then(() => app.listen(PORT, () => console.log(`Server Running on Port: http://localhost:${PORT}`)))
   .catch((error) => console.log(`${error} did not connect`));
@@ -114,7 +114,7 @@ Database is created in atlas itself in above step
 
 */
 const CONNECTION_URL = 'mongodb+srv://prasann:prasann123@cluster0.qb7ve.mongodb.net/myFirstDatabase?retryWrites=true&w=majority';
-const PORT = process.env.PORT|| 3002;  
+const PORT = process.env.PORT|| 5000;  
 mongoose.connect(CONNECTION_URL, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => app.listen(PORT, () => console.log(`Server Running on Port: http://localhost:${PORT}`)))
   .catch((error) => console.log(`${error} did not connect`));
