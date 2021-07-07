@@ -13,7 +13,7 @@ var postsRouter = require('./routes/posts');
 
 var app = express();
 
-//GLOBAL, ENV VARIABLES(APPLIED TO ALL ENDPOINTS)
+//GLOBAL VARIABLE, ENV VARIABLES(APPLIED TO ALL ENDPOINTS)
 /* #region Main */
 /*
 //GLOBAL VAR
@@ -94,12 +94,9 @@ app.use(function(err, req, res, next) {  // error handler
   res.render('error');
 });
 
-//MONGODB
+//CONNECT  MONGODB TO SERVER(ATLAS);CREATE DB
 /*
-//ATLAS
-ATLAS -->https://www.youtube.com/watch?v=ngc9gnGgUdA&t=522s  :10:30 TO 13:00
-
-//CONNECT  MONGODB TO SERVER(ATLAS)
+//CONNECT  MONGODB TO SERVER(ATLAS)-->https://www.youtube.com/watch?v=ngc9gnGgUdA&t=522s  :10:30 TO 13:00
 const CONNECTION_URL = 'connection url received from atlas';
 const PORT = process.env.PORT|| 5000;
 mongoose.connect(CONNECTION_URL, { useNewUrlParser: true, useUnifiedTopology: true })            
@@ -108,6 +105,8 @@ mongoose.connect(CONNECTION_URL, { useNewUrlParser: true, useUnifiedTopology: tr
 
 mongoose.set('useFindAndModify', false);
 
+//CREATE DB
+Database is created in atlas itself in above step
 
 */
 const CONNECTION_URL = 'mongodb+srv://prasann:prasann123@cluster0.qb7ve.mongodb.net/myFirstDatabase?retryWrites=true&w=majority';
@@ -120,3 +119,4 @@ mongoose.set('useFindAndModify', false);
 
 //EXPORT
 module.exports = app;    
+

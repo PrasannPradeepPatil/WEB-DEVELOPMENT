@@ -4,12 +4,10 @@ package.json
   "name": "server",                name of dir     
   "version": "0.0.0",              version of dir 
   "private": true,                 privacy of dir   
-  "type":"module",                 ALLIOWS ES6 IMPORTS,EXPORTS
-
                                   
   "scripts": {                      SCRIPTS: when you run npm key ;then we execute value of the key
-    "start": "node ./bin/www"       npm start = node ./bin/www
-    "start":nodemon ./bin/www       npm start = nodemon ./bin/www
+    "start":"node/nodemon ./bin/www"  npm start = node/nodemon ./bin/www
+
   },
 
   "dependencies": {                 DEPENDENCIES:  When you install a package it is added in dependency and deployed

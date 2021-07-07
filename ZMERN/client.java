@@ -4,11 +4,11 @@ REACTAPP
   |-node_modules            -->external modules                 
   |-package.json            -->external module dependency     
   |-package-lock.json       -->external module dependency  
-  |-PUBLIC
-    |-filename.png/.ico   -->images and icons of project
-    |-manifest.json       -->tells browser about app and how it should be installed on mobile or desktop   
+  |-public                  -->public acessories of client 
+    |-filename.png/.ico     -->images and icons of project
+    |-manifest.json         -->tells browser about app and how it should be installed on mobile or desktop   
     |-index.html            
-  |-SRC                                      
+  |-src                                      
     |-component(custom made folder)       
        |-component1.jsx            
        |-component2.jsx            

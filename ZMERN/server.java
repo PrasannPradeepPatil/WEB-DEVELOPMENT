@@ -59,28 +59,34 @@ server
      |-production.json
      |-custom-environment-variables.json  
   |-bin
-    |-www                            -->run on npm start 
+    |-www                            -->run on npm start as package.json has script:{start: nodemon ./bin/www}
   |-node_modules                     -->external modules                            
   |-package.json                     -->external module dependency 
   |-package-lock.json                --> external module dependency 
-  routes(custom made files)  
-    |-index.js                 
-    |-user.JS                       
-  |-app.js
-  |-views
-    |-error.jade
-    |-index.jade
-    |-layout.jade
-  |-public
+  |-public                           -->public acessories of server 
     |-images
     |-javascript
     |-stylesheet
+  |-views                            -->views of server
+    |-error.jade
+    |-index.jade
+    |-layout.jade
+  |-routes(custom made folder)       -->handles CRUD of each route          
+    |-post.JS              
+  |-models(custom made folder)       -->creates collection for db         
+    |-post.JS              
+  |-controllers(custom made folder)  -->handles CRUD of db                 
+    |-post.JS              
+  |-app.js                           -->handles different endpoints and connect mongodb to server  and create database
+
+
       |
       |
-      app.js                     --->routes
-      (Entry point of routes)      index.js
-                                   post.js
-                                   (Handling of each route)
+      app.js                         --->routes                    <-------models                
+      (handles different endpoints)     (handles CRUD of each route)      (creates collection for db)
+       and connect mongodb to server                                      contoller
+       and create database)                                                (handles CRUD of db) 
+                                  
        
 
 
@@ -194,7 +200,7 @@ Add "chrome postman" to  chrome extension
 //MONGODB
 /*
 Database
- |-Collections   -- Hold the collection of documents     (Collection in NoSQL is Similar to table in SQL)
+ |-Collections    -- Hold the collection of documents   (Collection in NoSQL is Similar to table in SQL)
     |-Doucuemnt1  -- Documents are objects {key:value} (Doucuemnt in NoSQL is Similar to row in SQL) 
 */
 
