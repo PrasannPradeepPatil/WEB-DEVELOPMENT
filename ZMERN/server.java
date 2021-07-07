@@ -53,56 +53,6 @@ CLIENT  ----------------------------------> API -------------> DATABASE---------
 
  */
 
-//STRUCTURE 
-/*
-server                            
-  |-config (custom made)                              
-     |-default.json
-     |-development.json
-     |-testing.json
-     |-production.json
-     |-custom-environment-variables.json  
-  |-bin
-    |-www                            -->run on npm start as package.json has script:{start: nodemon ./bin/www}
-  |-node_modules                     -->external modules                            
-  |-package.json                     -->external module dependency 
-  |-package-lock.json                --> external module dependency 
-  |-public                           -->public acessories of server 
-    |-images
-    |-javascript
-    |-stylesheet
-  |-views                            -->views of server
-    |-error.jade
-    |-index.jade
-    |-layout.jade
-  |-routes(custom made folder)       -->handles CRUD of each route          
-    |-post.JS              
-  |-models(custom made folder)       -->creates collection for db         
-    |-post.JS              
-  |-controllers(custom made folder)  -->handles CRUD of db                 
-    |-post.JS              
-  |-app.js                           -->handles different endpoints and connect mongodb to server  and create database
-
-
-      |
-      |
-    bin--> app.js                           --->routes                    <-------models                
-            (handles different endpoints)     (handles CRUD of each route)      (creates collection for db)
-            and connect mongodb to server                                      contoller
-            and create database)                                                (handles CRUD of db) 
-                                        
-       
-
-
-
-
-
-
-
-
-
-*/
-
 
 //INSTALL(WINDOWS , LINUX)
 /*
@@ -195,6 +145,51 @@ Add "chrome postman" to  chrome extension
 */
 
 
+//STRUCTURE 
+/*
+server                            
+  |-node_modules                     -->external modules                            
+  |-package.json                     -->external module dependency 
+  |-package-lock.json                --> external module dependency 
+  |-public                           -->public acessories of server 
+    |-images
+    |-javascript
+    |-stylesheet
+  |-views                            -->views of server
+    |-error.jade
+    |-index.jade
+    |-layout.jade
+ |-bin
+    |-www                             
+  |-routes(custom made folder)             
+    |-post.JS              
+  |-models(custom made folder)             
+    |-post.JS              
+  |-controllers(custom made folder)                
+    |-post.JS              
+  |-app.js                          
+      |
+      |    
+  www-----------------------> app.js                  -------->routes                  <-------models                
+  (run on npm start         (handles different endpoints)     (handles CRUD of each route)     (creates collection for db)
+  as package.json has       and connect mongodb to server                                      contoller
+  this file on start script  and create database)                                               (handles CRUD of db) 
+                                                                 
+                                        
+       
+
+
+
+
+
+
+
+
+*/
+
+
+
+
 ////////////////////////////////REMAINING////////////////////////////
 
 //controllers/posts.js
@@ -278,87 +273,5 @@ Compass UI
 
 
 /* #endregion */
-
-
-
-//CONFIG
-/*
-|-CONFIG                
-    |-default.json
-    |-development.json
-    |-testing.json
-    |-production.json
-    |-custom-environment-variables.json    
-
-default.json
-{ 
-    name:"MERNAPP"                      
-    mail:{                                
-        host:"mail-server"
-    }
-}
-
-development.json
-{ 
-    name:"MERNAPP-DEVELOPMENT"           
-    mail:{                               
-        host:"development-mail-server"
-    }
-}
-
-testing.json
-{
-    name:"MERNAPP-TESTING"                
-    mail:{                               
-        host:"test-mail-server"
-    }
-}
-
-production.json
-{                                         -
-    name:"MERNAPP-PRODUCTION"              
-    mail:{                                 
-        password:"prod-mail-server""
-    }
-}
-
-custom-environment-variables.json       
-{                                       
-    mail:{                              
-        password:'AppName_password'      
-                                       
-    }                                          
-}                                               
-                                              
-
-
-
-//CONFIGURATION --  https://www.npmjs.com/package/config; https://www.npmjs.com/package/rc   --Config  is less popular but better than RC 
-const config = require('config')  --> npm install config --save
-
-config.get('name')          -->if export NODE_ENV=not yet set  then return  name from default.json 
-                               if export NODE_ENV=development then return  name from development.json 
-                               if export NODE_ENV=testing     then return  name from testing.json 
-                               if export NODE_ENV=production  then return  name from production.json 
-config.get('mail.password') -->if export AppName_password='1234' then return password from custom-environment-variables.json 
-                               Note:password is not set any value in json file              (so the source code will not have password)
-                                    password holds env var which is passed value through cmd(so the user knowing password will pass to source code)
-                                      
-                                
-
-//DEBUGGING
-const debuga = require('debug')('worker:a')      -->npm install debug   
-const debugb = require('debug')('worker:b')                            
- 
-debuga("message")          -->if export DEBUG=worker:a then debuga will log
-debugb("message")             if export DEBUG=worker:b then debugb will log
-                              if export DEBUG=worker:a,worker:b then debuga,debugb will log
-                              if export DEBUG=worker:* then debuga,debugb will log
-                              if export DEBUG= then nothing will log
-
-
-
-
-*/
 
 
