@@ -176,14 +176,14 @@ Add "chrome postman" to  chrome extension
 
 //RUN SERVER  
 >cd server
->sudo npm start   -->run server at 127.0.0.1:3000 
+>sudo npm start   -->run server at http://127.0.0.1:3000(client runs at 3000, server runs at 3000 so 1st run server and then run client so client automatically runs at 3001)
                     package.json
                     "scripts": {
                             "start": "node ./bin/www"    -->npm start = node ./bin/www 
                             "start": "nodemon ./bin/www" -->npm start = nodemon ./bin/www   (provides hot reload so rename node to nodemon)
                     },
                     bin/www
-                    var port = normalizePort(process.env.PORT || '3000');->port = 3000  -->start at port 3000 (react runs at 3000 so first run server and then client which will then run at 3001)
+                    var port = normalizePort(process.env.PORT || '3000');->port = 3000  
 
 //RUN MONGODB
 >sudo systemctl status mongodb.service   OR service mongodb status            -->check mongodb status

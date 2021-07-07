@@ -63,7 +63,7 @@ In developer Tools you will see 1 more tab called "compoents"  where you can see
 
 //RUN CLIENT
 >cd client
->sudo npm start   -->run client at 127.0.0.1:3000 
+>sudo npm start   -->run client at http://127.0.0.1:3000 (client runs at 3000, server runs at 3000 so 1st run server and then run client so client automatically runs at 3001) 
                     package.json
                       "scripts": {                               
                         "start": "react-scripts start",  -->npm start = "react-scripts start"

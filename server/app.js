@@ -71,11 +71,12 @@ app.use('/posts',postsRouter)
 app.use(function(req, res, next) {   -->For all endpoints; apply the function
   next(createError(404));});          req.query                            -->returns {param1:value1,param2:Value2}  where params , values sent by URL query}
                                       req.body                             -->returns {body} where body is sent by url                    
-                                                     |--LOOK IN WEB ARCH                                                                                                                                                       
+                                                    
+                                      res.send("Message")                  -->send object to client
+                                      res.json(obj)                        -->send json equivalent of obj to client                                                                                                                                                       
                                       res.status(errcode).send("Message")  -->send status error code:message to client
                                       res.status(errcode).json(obj)        -->send status error code:json equivalent of obj to client
-                                      res.send(obj)                        -->send object to client
-                                      res.json(obj)                        -->send json equivalent of obj to client 
+                                                  |--LOOK IN WEB ARCH 
                                                       
                                       next()                               -->send response to next middleware 
 
@@ -94,11 +95,14 @@ app.use(function(err, req, res, next) {  // error handler
   res.render('error');
 });
 
+
+
+
 //CONNECT  MONGODB TO SERVER(ATLAS);CREATE DB
 /*
 //CONNECT  MONGODB TO SERVER(ATLAS)-->https://www.youtube.com/watch?v=ngc9gnGgUdA&t=522s  :10:30 TO 13:00
 const CONNECTION_URL = 'connection url received from atlas';
-const PORT = process.env.PORT|| 5000;
+const PORT = process.env.PORT|| 3001;(client runs at 3000, server runs at 3000 so 1st run server and then run client so client automatically runs at 3001;so server runs at 30002 )
 mongoose.connect(CONNECTION_URL, { useNewUrlParser: true, useUnifiedTopology: true })            
   .then(() => app.listen(PORT, () => console.log(`Server Running on Port: http://localhost:${PORT}`)))
   .catch((error) => console.log(`${error} did not connect`));
@@ -110,7 +114,7 @@ Database is created in atlas itself in above step
 
 */
 const CONNECTION_URL = 'mongodb+srv://prasann:prasann123@cluster0.qb7ve.mongodb.net/myFirstDatabase?retryWrites=true&w=majority';
-const PORT = process.env.PORT|| 5000;
+const PORT = process.env.PORT|| 3002;  
 mongoose.connect(CONNECTION_URL, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => app.listen(PORT, () => console.log(`Server Running on Port: http://localhost:${PORT}`)))
   .catch((error) => console.log(`${error} did not connect`));
