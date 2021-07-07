@@ -57,10 +57,9 @@ app.use(cors());
 /* #region Main */
 /*
 
-var indexRouter = require('./routes/index');  
+
 var postsRouter = require('./routes/posts');  
-app.use('/',indexRouter)                          -->For endpoint /    ;apply the functions inside routes/indexRouter  and inside index.js  / =  /  
-app.use('/posts', usersRouter);                   -->For endpoint /posts;apply the functions inside routes/usersRouter and inside posts.js  / =  /user  
+app.use('/posts', postsRouter);                   -->For endpoint /posts;apply the functions inside routes/posts.js  and inside posts.js  / =  /user  
 */
 /* #endregion */                              
 app.use('/posts',postsRouter)        
@@ -69,15 +68,16 @@ app.use('/posts',postsRouter)
 //CUSTOM MIDDLEWARE FNS(APPLIED ON  ALL ENDPOINTS) 
 /* #region Main */
 /*
-app.use(function(req, res, next) {      -->For all endpoints; apply the function
-  next(createError(404));                 req.query                            --> returns {param1:value1,param2:Value2 ;params , values sent by URL query}
-                                          req.body                             --> returns {body sent by url }                   
-                                                                                                                                                                                               
-                                          res.status(errcode).send("Message")  --> send status error code to client
-                                          res.send(object)                     --> send object to client
-
-                                          next()                                --> send response to next middleware 
-});
+app.use(function(req, res, next) {   -->For all endpoints; apply the function
+  next(createError(404));});          req.query                            -->returns {param1:value1,param2:Value2}  where params , values sent by URL query}
+                                      req.body                             -->returns {body} where body is sent by url                    
+                                                     |--LOOK IN WEB ARCH                                                                                                                                                       
+                                      res.status(errcode).send("Message")  -->send status error code:message to client
+                                      res.status(errcode).json(obj)        -->send status error code:json equivalent of obj to client
+                                      res.send(obj)                        -->send object to client
+                                      res.json(obj)                        -->send json equivalent of obj to client 
+                                                      
+                                      next()                               -->send response to next middleware 
 
 */
 /* #endregion */

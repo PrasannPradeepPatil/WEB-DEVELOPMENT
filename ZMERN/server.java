@@ -41,9 +41,13 @@ CLIENT  ----------------------------------> API -------------> DATABASE---------
                               PUT    --> client requests paramvalues and  body ;server gets  object with paramvalues and updates it with body 
                               POST   --> client sends body ;server adds  object with own paramvalues amd body  
                               DELETE  --> client requests paramValues; server deletes  object with paramValues and sends back object 
-            ERRORS           :200 -- SucessFul
-                             :400 -- Bad Request 
-                             :404 -- Object Not Found Error
+            ERRORS           https://www.restapitutorial.com/httpstatuscodes.html
+                             201 --created   
+                             409 --conflict
+                             200 -- OK         
+                             404 -- Not Found 
+                             400 -- Bad Request 
+                             
 
   
 
@@ -82,11 +86,11 @@ server
 
       |
       |
-      app.js                         --->routes                    <-------models                
-      (handles different endpoints)     (handles CRUD of each route)      (creates collection for db)
-       and connect mongodb to server                                      contoller
-       and create database)                                                (handles CRUD of db) 
-                                  
+    bin--> app.js                           --->routes                    <-------models                
+            (handles different endpoints)     (handles CRUD of each route)      (creates collection for db)
+            and connect mongodb to server                                      contoller
+            and create database)                                                (handles CRUD of db) 
+                                        
        
 
 
@@ -191,256 +195,19 @@ Add "chrome postman" to  chrome extension
 */
 
 
+////////////////////////////////REMAINING////////////////////////////
+
+//controllers/posts.js
+/*
+C,R,U,D -- var
+R,D -- try catch ? ; res.json()
+ */
+
+
 
 //MONGO DB
 /* #region Main */
 
-
-
-//MONGODB
-/*
-Database
- |-Collections    -- Hold the collection of documents   (Collection in NoSQL is Similar to table in SQL)
-    |-Doucuemnt1  -- Documents are objects {key:value} (Doucuemnt in NoSQL is Similar to row in SQL) 
-*/
-
-//PROGRAM
-//CONNECT DB TO SERVER  
-/*
-async function connectToDb(){
-    //CONNECT TO DB 
-    const mongoose = require('mongoose');                                      -->npm install express --save 
-
-
-    mongoose.connect('mongodb://serverURL/dbName')                             -->connection mongodb  to serverurl(localhost=  127.0.0.1:27107) and create a database(dbName)  
-            .then(() =>{console.log("Connected to MongoDB")})                     AND start  the code after the asyncFn ; complete the connection and return a promise       
-            .catch((err) => {console.log("Failed to connect due to err" + err)});     if promise sucessful execute then 
-                                                                                      if promise failed execute catch
-    try{                                                                         AND start  the code after the asyncFn ; complete the connection and return a promise       
-        await mongoose.connect('mongodb://serverURL/dbName')                         if promise sucessful execute try 
-    }                                                                                  if promise failed execute catch
-    catch{
-
-    }
-
-}
-*/
-//CREATE 
-/*
-async function createCourse(){
-    //CREATE DB
-    Already creaded in connection                                        -->create database "playground"
-
-
-    //CREATE   MODEL,COLLECTION
-    const courseSchema = new mongoose.Schema({                           -->create Model(Collection = "courses" ;  DocumentSchema ="courseSchema" )  
-        _id       :ObjectId  --every document in collection  is given      
-        id        :number,     a unique id  by mongodb                     
-        isEmployed:Boolean    (no need to write this )
-        name      :String,
-        tags      :[ String ],
-        type      :{courseName:String, courseId:number}
-        date      : Date
-       })
-       const Course = mongoose.model('course',courseSchema )    
-                                    (We must write singluar name of collection
-                                    ie courses ke liye course )
-    //CREATE DOCUMENT 
-    const course = new Course({                                       -->In model Course(collection="Courses",DocumentSchema="courseSchema") 
-        _id       :ObjectID("60ae40")  --every document in collection    create document  "course"
-        id        :1,                    is given a unique id            
-        isEmployed:true                  (done automatically)
-        name      :"pras",
-        tags      :[ "pras" ],
-        type      :{courseName:"node", courseId:1}
-
-    })
-
-
-
-
-    //SAVE DOCUMENT TO DB 
-    const coursesaved =  await course.save()                        -->In model Course(collection="Courses",DocumentSchema="courseSchema") 
-                                                                       Save document "course"  
-                                                                       and return saved document "coursesaved"  
-                                                                       AND pronmise same as above
-  
-}
-
-*/
-//READ
-/* 
-async function getCourses(){
-    //READ DOCUMENT 
-    const courses = await Course.find({filterObject}   -->From model Course(collection="Courses",DocumentSchema="courseSchema") 
-                                                         find array of document  filtered by methods and filterObject  
-                                                         and return array of documents "courses"
-                                                         AND same as above
-                                
-    const courses = await Course.findById(__id}       -->From model Course(collection="Courses",DocumentSchema="courseSchema") 
-                                                         find array of document  filtered by _id
-                                                         and return array of documents "courses"
-                                                         AND same as above
-
-                        CHAINING METHODS 
-                        .find()                   -->filter no documents 
-                        .find({id:1,name:'pras'}) -->filter document that have id as 1 and name as 'pras'
-                        .sort({name:1/-1})        -->sort documents by asc/dec order
-                        .select({name:1,id:1})    -->select only the name and  id property of each document 
-                        .count()                 -->return count of document
-                        .skip(10)                -->skip 1st 10 documents
-                        .limit(10)               -->limit 10 documents
-
-                        FILTER OBJECT AND FILTER OPERATORS
-                        //COMPARISION OPERATOR    
-                        .method(key:{$operator : value })
-                        eq  : equal to
-                        ne  : not equal to
-                        gt  : gteater that
-                        gte : greater than equal to
-                        lt  :less than
-                        lte :less than equal ti
-                        in  :in
-                        ni  : not in 
-
-                        EG
-                        .find({'price':10})-->filter document that have price as 10 
-                        .find({'price':{gt:10,lte:20}})--->filter document that have  10<price 10<= 20
-                        .find({'price':{in:[10,15,20]}})--->filter document that have  price=10 price =15 price=20 
-                        
-                        //LOGICAL OPERATOR:
-                        .method().operator(obj1,obj2)
-                        or -- or
-                        and -- and
-                        EG
-                        .find()
-                        .or({name:prass},{id:1})  -->filter document that have name 'pras' OR id 1
-                        .find()
-                        .and({name:prass},{id:1})  -->filter document that have name 'pras' AND id 1
-
-                        //REGULAR EXPRESSION
-                        .method(key:{/RE/i})
-                        RE : look in JAVA APPLICATIOP ;i:case insensitive
-                        ^ : startswith
-                        $ : endswith
-                        .  :anycharachet
-                        * :0 or more characters
-                        EG
-                        .find(name: '^pras')  -->filter document that have name starting with 'pras' 
-                        .find(name:'pras$')   -->filter document that have name ending with 'pras' 
-                        .find(name:'.*pras.*')-->filter document that have name containing  'pras' 
-}
-*/
-//UPDATE
-/*
-async function updateCourses(id){
-    //UPDATE DOCUMENT:READ FIRST APPROACH
-    const course = await Course.findById(__id)                --From model Course(collection="Courses",DocumentSchema="courseSchema") 
-                                                                find  a document  filtered by   _id   
-                                                                and return documents "course" 
-                                                                AND same as above
-                                                   
-    if(!course){return;}
-
-    course.name='patil'                                        -->update documents  "course"
-    course.id=22
-    OR
-    course.set({
-        name:'patil',
-        id:22
-    })
-
-
-    const courseSaved =  await courses.save()                 -->In model Course(collection="Courses",DocumentSchema="courseSchema") 
-                                                                  save  document "courses"
-                                                                  and return saved array of documents "courseSaved"
-
-
-    //UPDATE DOCUMENT :UPDATE FiRST APPROCH
-    counst result = await Course.update(                        -->From  model Course(collection="Courses",DocumentSchema="courseSchema") 
-                           {filterObject},                        get  array of document  filtered by  filterObject and 
-                           $updatePperator :{updatedObject})      update array of document  based on updateOperator  and updateObject 
-                                                                  and return result object "result" {n:no of documents updated,ok:1}
-                                                                  AND same as previous
-
-    counst courses = await Course.insertMany(                  -->In  model Course(collection="Courses",DocumentSchema="courseSchema") 
-                           {insertObj1},                         insert the documents
-                           {insertObj2}                          and return array of  documents "courses" after insertion  
-                           )                                      AND '' same as previous
-
-    counst courses = await Course.findByIdAndUpdate(            -->From  model Course(collection="Courses",DocumentSchema="courseSchema") 
-                        __id,                                  get   a  document filtered by  __id  and 
-                        $updatePperator :{updatedObject})      update the document  based on updateOperator  and updateObject 
-                        {new:True}                            and return array of documents "courses" after updation [original document(if new is not set)/updated document(if new is set)]
-                                                                AND '' same as previou
-                        )
-
-                            FILTER OBJECT AND FILTER OPERATORS
-                            Same as READ
-
-                            UPDATE OBJECT AND UPDATE OPERATOR--https://docs.mongodb.com/manual/reference/operator/update/
-                            //FEILDS
-                            $set: { field1: value1, field2:value2} -- replaces the value of a field with the specified value.
-                            $inc: { field1: amount1,field2:amount2}--increments a field by a specified value  
-                            $other: --look in link
-
-                            //ARRAYS
-                            Look in Link
-
-                            //MODIFIER
-                            Look In Link
-
-                            //BITWISE
-                            Look In Link
-
-                            EG
-                            Course.update(
-                                {_id:'aboefcc'}
-                                $set:{
-                                    name:'pras'
-                                    id:22
-                                })
-                            Course.update(
-                                {name:'pras',id:22}
-                                $inc:{
-                                    id:33
-                                    id:-22
-                                })
-                        
-}
-*/
-//DELETE
-/*
-    
-async funtion deleteCourses(){
-    //DELETE DOCUMENT
-    const result = await Course.deleteOne({filterObject})    -->From  model Course(collection="Courses",DocumentSchema="courseSchema") 
-                                                                find array of  document "course" filtered by filterObject
-                                                                and delete 1st occurence document "course"
-                                                                and return result object {n:no of documents deleted(1 always),ok:1} 
-                                                                AND same as above
-    OR                                                     
-    const result = await Course.deleteMany({filterObject})    -->From  model Course(collection="Courses",DocumentSchema="courseSchema")  
-                                                                find array of  document  filtered by filterObject
-                                                                and delete all occurence document 
-                                                                and return result object {n:no of documents deleted,ok:1} 
-                                                                AND same as above
-                                    
-    OR                                                     
-    const course = await Course.findByIdAndDelete(_id)       -->From  model Course(collection="Courses",DocumentSchema="courseSchema")  
-                                                                find array of  document "course" filtered by _id
-                                                                and delete all occurence document "course"
-                                                                and return array of documents "course" after deletion 
-                                                                AND same as above                                   
-                                    
-                                FILTER OBJECT AND FILTER OPERATORS
-                                Same as READ
-
-
-}                                                  
-
-*/
-   
 
 
 //MONGODB SHELL-https://gist.github.com/bradtraversy/f407d642bdc3b31681bc7e56d95485b6
