@@ -11,7 +11,7 @@ const router = express.Router();
 /*
 exports.createPost = async (req, res) => {
     const newPostMessage = new PostMessage({obj based on collection schema})              -->create collection PostMessage
-
+                                                                                       
     try {
         await newPostMessage.save();                                                       -->save collection PostMessage to database
         res.status(201).json(newPostMessage );

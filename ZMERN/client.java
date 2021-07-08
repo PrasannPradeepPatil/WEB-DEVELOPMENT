@@ -216,7 +216,6 @@ Component2.jsx
     */
     
  
-
     //USEDISPATCH() 
     /*
     
@@ -230,14 +229,32 @@ Component2.jsx
 
     //FNNAME()
     /*
-    const fnName = async (arg) => {}     -->create function
-    fnName(params) ; {fnName                       
-
-
+    const fnNmme = async (params) => {}            -->create arrow fn
+    fnName(arg)/fnName; {fnName(arg)/fnName}       -->use aarrow fn  inside fn , jsx                     
     */
 
 
-    //RETURN 
+    //RETURN : return the JSX 
+    /*
+    return(    
+        <Tagname                                        -->Tagname from materialUI ; Tagname can also be child Component
+                attr=value,                              -->attr   and their values
+                className = {classes.property},          -->classes are taken from styles.js of each filename.js
+                eventName={fnName(arg)/fnName},          -->events  are handled by fns
+                propvarname={fnName(arg)/fnName/varName} -->propvar are given fns or variables of the fn
+                                                            propvar are passed to childComponent and are caught function arguement of child component
+        </Tagname>
+        {fnName(arg)/fnName/varName}                      ->fns , variables called between tags    
+        <TagName>
+        <TagName>
+
+        EG:
+       <Form currentId={currentId} setCurrentId={setCurrentId} />                               -->Form is child Component ;currentId prop is given currentId state var ; setCurrentId prop is given  setCurrentId function
+                                                                                                   In components/Form/Form.js const Form = ({ currentId, setCurrentId }) currentId,setCurrentId are collected
+       <Typography className={classes.heading} variant="h2" align="center">Memories</Typography> -->Typography is a tag from material UI ; classNmae is given {classes.heading} ;variant align  attributes are given values
+       <Button variant="contained" color="secondary" size="small" onClick={clear}>Clear</Button> -->Button is a tag from material UI ;variant color size  attributes are given values; onclick event os given clear function
+    );
+    */
 
 
 
@@ -251,14 +268,7 @@ Component2.jsx
     */
     
     
-    //RETURN : return the JSX inside render directly
-    /*
-    return(                                 
-        <div>
 
-        </div>
-    );
-    */
 
 //} 
 /* #endregion */

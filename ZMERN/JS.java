@@ -2,6 +2,17 @@
 //REMAINING
 Date – Mosh Hemadani -->JavaScript Basics for Beginners-->5. Objects-->14.Date
 BABEL;WEBPACK -- MOSH HEMADANI ->JS ->2.OOP->06.ES6MODULES ->61;62
+
+//FACTORY FN;CONSTRUCTOR FN   -->DO NOT FIT INTO ANYTHNG
+function  circle(radius){ -->PASCAL CASE     function   Circlr(radius) {-->CAMEL CASE
+    return {                                      
+        radius ,                                 this.radius = radius
+        draw(){                                  this.draw = function(){
+            console.log(radius);                   console.log(radius)''
+        }                                         }
+    }                                         }
+
+let varname =fnName(arg)-->fn returns object     let varname = new FnName(arg)-->new creates empty obj {} and assigns this to {}     
 */
 
 //STRUCTURE 
@@ -441,30 +452,43 @@ function((exports , require , module, filename , __filename, __dirname)){   --> 
 
 //IMPORT , EXPORT (ES5 - NODEJS)
 /*
-//SINLE 
-module1.js                          module2.js
-fnName = () =>{}                    var fnName = require('externalmodulename' OR './modulename1' OR '../modulename1') 
-module.exports = fnName
+//SINLE(ANY  FN)                           
+module1.js                                module2.js
+async function(){}                        var fnName = require('externalmodulename' OR './modulename1' OR '../modulename1') 
+let fnName = async function() =>{}        fnName(args)/fnName if no args for expr,arrow fns             
+let fnName = async() =>{}
+module.exports = fnName            
 
-//MULTIPLE
-module1.js                           module2.js
-exports.fnName1 = () =>{}           var {fnNanem1,fnName2} = require('externalmodulename' OR './modulename1' OR '../modulename1') 
-exports.fnName2 = () =>{}
+
+
+//MULTIPLE(ARROW FN)
+module1.js                                module2.js                     
+exports.fnName1  = async() =>{}           var {fnName1,fnName2} = require('externalmodulename' OR './modulename1' OR '../modulename1') 
+exports.fnName2 = async() =>{}            fnName1(arg)/fnName1 if no params used for expr,arrow fns  
+
 
 
 */
 
 //IMPORT , EXPORT (ES6 - NODEJS)
 /*
-//SINGLE
-module1.js                             module2.js
-fnName = () =>{}                       import fnName from 'externalmodulename' OR './modulename1' OR '../modulename1''    
-export default fnName
 
-//MULTIPLE
-module1.js                            module2.js  
-export const fnName1 = () =>{}        import {fnName1,fnName2} from 'externalmodulename' OR './modulename1' OR '../modulename1'
-export const fnName1 = () =>{}
+//SINLE(ANY  FN)                           
+module1.js                                module2.js
+async function(){}                        import fnName from 'externalmodulename' OR './modulename1' OR '../modulename1''    
+let fnName = async function() =>{}        fnName(args)/fnName if no args for expr,arrow fns             
+let fnName = async() =>{}
+export default fnName              
+
+
+
+
+//MULTIPLE(ARROW FN)
+module1.js                                  module2.js                     
+export const fnName1  = async() =>{}        import {varname1,varname2} from 'externalmodulename' OR './modulename1' OR '../modulename1 
+export const fnName1  = async() =>{}        fnName1(arg)/fnName1 if no params used for expr,arrow fns 
+
+
 
 
 
@@ -477,25 +501,18 @@ export const fnName1 = () =>{}
 /* #region Main */
 
 
-//NAMED FUNCTION --> FNS WITH DECLARATION 
+//NAMED/SHORT/EXPRESSION/ARROW  FN
 /*
-//NAMED FN DECLARATIONS
-function fnname(params){}   OR  fnName = (params)  => {}   -->FNS ARE MOVED TO TOP OF MODULE(HOISTING) 
-async function fnname(){}   OR  fnName = async(params) =>{}         
+//DECLARING FN
+async function fnName(params){}                       -->nrmal fn (USED IN FN DECLARATION)  --HOISTED
+async fnName(){}                                      -->short fn (USED INSIDE OBJ/CLASS)   --HOISTED
+let fnName = async function fnNameOptional(params){}  -->exprn fn (USED INSIDE FN)          --NOT HOISTED
+let fnName = async(params) =>{}                        -->arrw fn (USED INSIDE FN)          --NOT HOISTED
+                                                                EG:Look in FN,CLASSES
+                                                                 MERNPROJECT1 KA SERVER,CLIENT 
+//CALLING FN
+fnName(arg)/fnName if no params used for exp or arrow fn
 
-
-//CALLING NAMED FN
-let varname = fnname(arg)       
-*/             
-
-//ANONYMOUS FN -->FNS WITHOUT DECLARATION BUT EXPRESSIONS
-/*
-//ANONYMOUS FN EXPRESSIONS
-let varname = function(){}     OR let varname = () =>{}         -->FNS ARE NOT MOVED TO TOP OF MODULE(NON HOISTING)
-let varname = async function() OR let varname = async() =>{}      
-
-//CALLING ANONYMOUS FN
-Already called
 
 */
 
@@ -507,7 +524,7 @@ function synchronousFnname(arg){
 }
 
 //USING SYNCHRONOUSFN
-let varname = synchronousFnname(par)       -->Start and complete  syncFn then execute code after syncFn 
+synchronousFnname(par)                                   -->Start and complete  syncFn then execute code after syncFn 
 Console.log(“code after calling the synchronous fn ”)
 */
 
@@ -587,20 +604,6 @@ Promise.resolve() --> replace new Promise(resolve,reject) ith Promise.resolve() 
 Promise.reject() --> replace  new Promise(resolve,reject) with Promise.reject()  and we can only use catch  and not then
 Promise.all(arr) --> collect all the fns that return promise in an array and all fn’s resolve arg will be collected in an array  and given  to then 
                         parameter/parameter in try  ; all fn’s reject  arg will be collected in an array  and given to catch  parameter/parameter in catch()
-*/
-
-
-//FACTORY FN;CONSTRUCTOR FN   
-/*
-function  circle(radius){ -->PASCAL CASE     function   Circlr(radius) {-->CAMEL CASE
-    return {                                      
-        radius ,                                 this.radius = radius
-        draw(){                                  this.draw = function(){
-            console.log(radius);                   console.log(radius)''
-        }                                         }
-    }                                         }
-
-let varname =fnName(arg)-->fn returns object     let varname = new FnName(arg)-->new creates empty obj {} and assigns this to {}     
 */
 
 
@@ -699,10 +702,10 @@ function Circle(radius,x,y){ -->CAMEL CASE
          */                     
          //GETTER , SETTER (USING THIS)-->you need to call method let c1 = new Circle() c1.getAngle() ; c1.setAngle() = 22
          /*
-         this.getAngle = function(){                   
+         this.getAngle = function(){        (declare a expression fn)           
             return angle;}
 
-         this.setAngle = function(value){
+         this.setAngle = function(value){   (declare a expression fn)             
             angle = value;}
          */
         //GETTER , SETTER(USING OBJECT.DEFINEPROPERTY) --> You can directly do  let c1 = new Circle() c1.angle ; c1.angle = 22 
@@ -720,11 +723,11 @@ function Circle(radius,x,y){ -->CAMEL CASE
         /*
         let area= function(){             --> private scope : they are available inside fn only  ie let c = new Circe() c.member cant
                 return radius*radius; }       closure :  member can be acesse as members  inside  this.methodname:fn() and  let methodname:fn())
-
+                                              (declare a expression fn )
 
         this.calculate = function(){     --> public scope : they are available outside fn only ie let c = new Circe() c.member cant
                 let ar = area();             closure : member can be acessed  as this.member inside this.methodname:fn() and not inside method:fn())
-                let ch = chord();
+                let ch = chord();            (declare a expression fn )
                 return ar;
         }    
         */    
@@ -840,23 +843,17 @@ ${const_obj.constructor}      -->function constructorFunction(a){our code} as th
 //CLASS  DECLARATION(CLASSES ARE  SUGARCOAT OVER  FUNCTION WHICH ARE OBJECT WHICH RETTURN OBJECT)
 /* #region Main */
 
-//NAMED CLASS --> CLASS WITH DECLARATION 
+//NORMAL/EXPRESSION CLASS --> CLASS WITH DECLARATION 
 /*
-//NAMED CLASS DECLARATIONS
-class classname{}               -->CLASSES ARE "NOT"  MOVED TO TOP OF MODULE(HOISTING) 
-       
-//CALLING NAMED CLASS
-let varname = new class(arg)       
-*/             
+//CLASS DECLARATION
+class classname{}                -->normal class     --NOT HOISTED
+var classNmae = class{}          ->expression class  --NOT HOISTED
 
-//ANONYMOUS CLASS -->CLASS WITHOUT DECLARATION BUT EXPRESSIONS
-/*
-//ANONYMOUS FN EXPRESSIONS
-let varname = class(){}       -->CLASSES ARE "NOT" MOVED TO TOP OF MODULE(NON HOISTING)
-  
+//CALLING CLASS
 
-//CALLING ANONYMOUS FN
-Already called
+class classname{}           
+let varname = new class(arg)         
+
 
 */
 
@@ -886,15 +883,16 @@ class Circle extends Shape{-->CAMEL CASING
 
         this.radius = radius;                          -->public scope: they ae available outside class
         this.draw = function(){}                          closure: members can be  acess ie inside any method as  this.radius  ; this.draw()                   
-    */ 
+                                                                 
+    */       
  
     ////PROTOTYPE MEMBER//// -->These members are added to the CirleBase 
     //GETTER SETTER(USING GET METHDNAME)--> We need to call method let c= new Circle() ; c.getradius() ; c.setradius()22
     /*
-    getRradius(){
+    getRradius(){                     (declare a short fn)
         return radius; }
 
-    setradius(value){
+    setradius(value){                 (declare a short fn)
         radius = value;}
     */
     //GETTER SETTER(USING GETMETHDNAME)--> We can directly do let c = new Circle(1,2) c.radius c.radius = 22 no need of methodcall
@@ -910,7 +908,9 @@ class Circle extends Shape{-->CAMEL CASING
                                                                         acess modifier: static members are not added to proto/nonstatic are added 
     acessmod draw2(){ }                                             -->  public  scope :  they are  available outside class
                                                                          acess modifier: static are not added to proto/nonstatic are added
-    */                        
+                                                                          (declare a short fn)
+                                                
+   */                                                                    
 
     ////INHERITED  MEMBERS////-->These Members inherited from Shape Object
     /*
@@ -944,6 +944,11 @@ Circle.apply({} , [1,2,3])--> return new Circle(1,2,3); and {} references to thi
 
 
 /* #endregion */
+
+
+
+
+
 
 
 
