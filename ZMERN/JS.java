@@ -481,7 +481,7 @@ export const fnName1 = () =>{}
 /*
 //NAMED FN DECLARATIONS
 function fnname(params){}   OR  fnName = (params)  => {}   -->FNS ARE MOVED TO TOP OF MODULE(HOISTING) 
-async function fnname(){}   OR  fnName = async() =>{}         
+async function fnname(){}   OR  fnName = async(params) =>{}         
 
 
 //CALLING NAMED FN

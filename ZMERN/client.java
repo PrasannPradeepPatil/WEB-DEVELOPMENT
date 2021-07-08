@@ -90,92 +90,19 @@ Component2.jsx
 //class Counter extends Component { 
     //STATE OBJECT :holds data of component 
     /*
-    state = {                    
-      count:0,ticks:0}
-  
-      CREATING STATE
-      state = {
-          key:value,
-          key:value
-      }
-
-
-      CALLING STATE IN CLASS , JSX
-      this.state.count                          
-      {this.state.count}
-
-      UPDATING STATE
-      this.setState({count:this.state.count+1}) not  this.state.count = this.state.count+1 
-                                          -->STATE IS CALLED ONLY ONCE IN MOUNT PHASE HENCE:
-                                          State of a component is  initialised when a component is initialised
-                                          and becomes local to that component and can be updated inside that component only 
-                                          Soln:Keep a single source of truth
-                                          
-                                          EG
-                                          ComponentMain.jsx
-                                          class ComponentMain extends Component{
-                                              state = {
-                                                  counters = [{id:1,value:10},{id:2,value:20}]}
-                                              render(){
-                                                  return({
-                                                      <div>
-                                                          {counters.map((counter) => <Component1 value = counter.value >   )}
-                                                      </div>
-                                                  })
-                                              }
-                                              }
-
-
-                                          Component1.jsx
-                                          class ComponentMain extends Component{
-                                              state = {
-                                                  value : this.props.value                    -->value is initialised to 10 whem Component1 is initialised 
-                                              }                                                 value is local to Component1.jsx anc can be updated here  but if value is updated in ComponentMain.jsx it wont be reflected here
-                                                                                                  Soln:Keep a single source of truth ie Remove state completely and use this.props.value everywhere where this.state.valye is used
-                                              incrementValue(){
-                                                  this.setState({value: this.state.value+1})   
-                                              }
-                                              }
-
-                                              Component1.jsx
-                                              class ComponentMain extends Component{
-                                                                              value is local to Component1.jsx anc can be updated here  but if value is updated in ComponentMain.jsx it wont be reflected here
-                                                                                                  
-                                              incrementValue(){
-                                                  this.props.value   
-                                              }
-                                              }
-
-
-      */
+    state = {count:0,ticks:0}                 -->create state with key:value    
+    this.state.count                          -->use state                     
+    this.setState({count:this.state.count+1}) -->update state   
+    this.state.count = this.state.count+1 X                                          
+    */
                                    
     //PROP OBJECT :holds data from other component
     /*
-    CREATING PROPS IN PARENT   
-    ComponentParent.jsx
-    from ./components/Component1 import Component1     
-    render(){
-        return({ 
-            <Component1 value1={this.state.id}/{this.methodname()/{this.eventHandlerMethodName}> 
-                <h1></h1>                        -->pass values and jsx exp                                                 
-            </Component1>})                          (NOTE:key="uniqueProperty" is not considered a value and not passed as it is used to uniquely identify values in dynamic for  
-                                                        Eg:<div>{this.state.names.map((name)=>{<Component1 key=name.id ,value={this.state.count}})  
-    
-    CALLING PROPS CHILD CLASS
-    Componentchild.jsx
-    this.props.value1 ; {this.props.value}        -->call values a                                              
-    render(){return({
-        <div>
-                {this.prop.children}                -->call jsx exp
-        </div>    
-
-
-    UPDATING PROPS
-    this.props.count = this.props.value+1 X    -->Props are passed from other component hence cannot be updated
-
-
-
-
+    <childComponentName count={this.state.count}> -->pass prop in parent component                                             
+    this.props.count                              -->use prop in child component                                             
+    this.props.count = this.props.value+1 X       -->update props in child component cant as props are passed from other component hence cannot be updated      
+                                                    (NOTE:key="uniqueProperty" is not considered a value and not passed from parent as it is used to uniquely identify values in dynamic for  
+                                                    Eg:<div>{this.state.names.map((name)=>{<Component1 key=name.id ,value={this.state.count}})  
     */
 
     //CONSTRUCTOR:Initialises properties of component
@@ -271,12 +198,59 @@ Component2.jsx
     
 
       
-//STATELESS FUNCTION COMPONENT :Function based component(Class with only render method can be converted to stateless funyion based component)
+//FUNCTION COMPONENT
 /* #region Main */
-//function  Counter(props){                    
+//fnName = (props) =>{   
     
-    //STATE OBJECT :State object not present
-    //PROP OBJECT  :Prop object are given as 1st arguement to function ;
+    //USESTATE() 
+    /*
+    const [count, setCount] = useState(0);        -->create state  where key is count value is 0 and setcount() is a fn to update count (imported from React)   
+    count ,{count}                                -->use state  in fn ,jsx                    
+    setCount(count+1),{setcount(count+1)}         -->update state in fn ,jsx 
+    */
+
+    //USESTYLES()
+    /*
+    const classes = useStyles();                -->create styles (imported from styles.js as each file has a corresponding styles.js)
+    classes.styleName ; {classes.styleName}     -->use styles in fn,jsx
+    */
+    
+ 
+
+    //USEDISPATCH() 
+    /*
+    
+    
+    */
+
+    //USEEFFECT()
+    /*
+     */
+
+
+    //FNNAME()
+    /*
+    const fnName = async (arg) => {}     -->create function
+    fnName(params) ; {fnName                       
+
+
+    */
+
+
+    //RETURN 
+
+
+
+    //PROP  :holds data from other component
+    /*
+    <childComponentName count={count}/>     -->pass prop in parent component                                             
+    props.count                             -->use prop in child component (props is an argyement to function)                                            
+    props.count = props.count+1 X           -->update props in child component cant as props are passed from other component hence cannot be updated      
+                                              (NOTE:key="uniqueProperty" is not considered a value and not passed from parent as it is used to uniquely identify values in dynamic for  
+                                               Eg:<div>{names.map((name)=>{<Component1 key=name.id ,value={count}})  
+    */
+    
+    
     //RETURN : return the JSX inside render directly
     /*
     return(                                 

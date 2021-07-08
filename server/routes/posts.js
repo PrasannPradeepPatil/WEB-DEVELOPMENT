@@ -10,7 +10,8 @@ const router = express.Router();
 /*
 router.post('/endPoint/:param1/:param2',(req,res)=>{})   -->For endpoint ; apply the function that performs create operation 
 router.get('/endPoint/:param1/:param2',(req,res)=>{})    -->For endpoint ; apply the function that performs get operation 
-router.put('/endPoint/:param1/:param2',(req,res)=>{})    -->For endpoint ; apply the function that performs update operation 
+router.put('/endPoint/:param1/:param2',(req,res)=>{})    -->For endpoint ; apply the function that performs update operation on enture resource 
+router.patch('/endPoint/:param1/:param2',(req,res)=>{})  -->For endpoint ; apply the function that performs update operation on required part
 router.delete('/endPoint/:param1/:param2',(req,res)=>{}) -->For endpoint ; apply the function that performs delete operation 
                                                             (req,res,next look in app.js ka custom middleware)
 */
