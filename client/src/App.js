@@ -51,7 +51,6 @@ import memories from './images/memories.png';
     */
 
 
-
     //RENDER METHOD :Converts JSX into REACT ELEMENT(VIRTUAL DOM)
     /*
     render() {               
@@ -144,8 +143,24 @@ import memories from './images/memories.png';
     }
     */
    
+    //   |
+    //   |
+    //LIFECYCLE PHASE
+    /*
+    MOUNT PHASE :When component is initialised and put in actuat DOM it enters "mount phase" it calls methods called as "lifecycle hooks" in order
+    1.constructor()       --initialise properties of component  
+    2.render()            --Converts Components and all its childrens "JSX EXPRESSION" into "React ELEMENT(Virtelement DOM)"  using React.createElement('div/h1 etc') 
+    3.componentDidMount() --Called after rendering  component to DOM
+     
+    UPDATE PHASE :When component is updated due to state or props change it enters "update  phase" it calls  methods called as "lifecycle hooks"in order
+    1.render()            --Converts Components and all its childrens "JSX EXPRESSION" into "React ELEMENT(Virtelement DOM)"  using React.createElement('div/h1 etc') 
+    2.componentDidUpdate()--Called after rendering  updated component to DOM
+  
 
+    UNMOUNT  PHASE :When component is deleted from ctuat DOM it enters "unmount phase" it calls methods called as  "lifecycle hooks" in order
+    componentWiiUnMount() --Called before deleting component from DOM
 
+     */
 
 
 

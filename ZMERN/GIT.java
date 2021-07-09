@@ -133,8 +133,8 @@ configure ssh keys(only if you use ssh keys)
 
 
 b.Pull from github
-git clone https://gitlab.com/FlairLabs/Clients/idfy/live-desk/live-desk-listener.git
-cd live-desk-listener
+git clone https://gitlab.com/FlairLabs/Clients/idfy/live-desk/live-desk-listener.git OR git clone https://prasann.flairlabs:rJXEUpzjCG6-FAN4xuXF@gitlab.idfy.com/code/profiles-gateway/pg-api.git
+cd live-desk-listener                                                                                     <username>:<acess token>(when you open to pull you see generate acess token you can easily tick all boxes and generate it)                                         
 git checkout -b branchName  (-b for creating a new branch 1st time)   
 git remote add origin httplink  (only once)
 git pull origin branchName
