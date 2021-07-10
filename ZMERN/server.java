@@ -133,7 +133,7 @@ Add "chrome postman" to  chrome extension
                             "start": "nodemon ./bin/www" -->npm start = nodemon ./bin/www   (provides hot reload so rename node to nodemon)
                     },
                     bin/www
-                    var port = normalizePort(process.env.PORT || '3000');->port = 3000  
+                    runs app.js file with all error checks
 
 //RUN MONGODB
 >sudo systemctl status mongodb.service   OR service mongodb status            -->check mongodb status
@@ -159,22 +159,19 @@ server
     |-error.jade
     |-index.jade
     |-layout.jade
- |-bin
+ |-bin                             -->run on npm start as package.json has this file on start script ; and this file runs app.js with error checks
     |-www                             
-  |-routes(custom made folder)             
+  |-routes(custom made folder)     -->performs CRUD of each route        
+    |-post.js              
+  |-models(custom made folder)     -->creates collection for db       
     |-post.JS              
-  |-models(custom made folder)             
+  |-controllers(custom made folder) -->performs CRUD of db               
     |-post.JS              
-  |-controllers(custom made folder)                
-    |-post.JS              
-  |-app.js                          
+  |-app.js                          -->performs handling of each route; connect mongodb to server and create database           
       |
       |    
-  www-----------------------> app.js                  -------->routes                  <-------models                
-  (run on npm start         (handles different endpoints)     (handles CRUD of each route)     (creates collection for db)
-  as package.json has       and connect mongodb to server                                      contoller
-  this file on start script  and create database)                                               (handles CRUD of db) 
-                                                                 
+     app.js  -------->routes <-------models, controller                
+
                                         
        
 

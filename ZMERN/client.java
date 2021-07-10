@@ -26,7 +26,7 @@ In developer Tools you will see 1 more tab called "compoents"  where you can see
 >sudo npm start   -->run client at http://127.0.0.1:3000 (client runs at 3000, server runs at 3000 so 1st run server and then run client so client automatically runs at 3001) 
                     package.json
                       "scripts": {                               
-                        "start": "react-scripts start",  -->npm start = "react-scripts start"
+                        "start": "react-scripts start",  -->npm start = "react-scripts start" 
                         "build": "react-scripts build",
                         "test": "react-scripts test",
                         "eject": "react-scripts eject"
@@ -46,56 +46,42 @@ REACTAPP
     |-filename.png/.ico     -->images and icons of project
     |-manifest.json         -->tells browser about app and how it should be installed on mobile or desktop   
     |-index.html            
-  |-src                                      
+  |-src      
+    |-api(custom made folder)        -->get  CRUD operation from backend on the  URL where backend db is connected
+      |-posts.js
+    |-actions(custom made folder)    -->get CRUD operation from api and as per action type put them in payload
+      |-posts.js
+    |-reducers(custom made folder)   -->get CRUD operation from actions and as per action type reduce them
+      |-posts.js                        index.js combines all reducers and puts them in redux store 
+      |-index.js                               
     |-component(custom made folder)       
-       |-component1.jsx            
-       |-component2.jsx 
-    |--           
-    |-app.js                       
-    |-app.css
-    |-index.js
-    |index.css
-       |
-       | 
-    app.js,app.css(Main Component) -->index.js, index.css ,public/index.html                                                    
-      |                               Render App Component ka REACT ELEMENT(Virtual DOM)
- _____|________________               inside public/index.html ka root element(Actual DOM)  
- |                    |             
-Component1.jsx     Component3.jsx(Children Component) 
+       |-FORM                        -->FORM component has form.js file and styles.js file for its styles
+          |-form.js,styles.js
+       |-POSTS                       -->POSTS component has posts.js file and styles.js file for its styles
+         |-POST                         POST component(child of POSTS) has post.js file and styles.js file for its styles ;
+           |-post.js,styles.js
+         |-posts.js,styles.js                
+    |-app.js, styles.js,app.css      -->MAIN Component is app.js , styles.js for its styles , app.css for its css                   
+    |-index.js,index.css           
+         |
+         |
+    api -->actions-->reducers-------------------------------\
+                                                             \
+    MAIN COMPONENT (app.js,styles.js,app.css)                -->index.js, index.css ,public/index.html                                                    
+      |                                                        Provide Main Component(app.js) with redux store Render app.js 
+ _____|______________________________                          Provide Main Component(app.js) ka REACT ELEMENT(Virtual DOM) inside public/index.html ka root element(Actual DOM)  
+ |                                   |                          
+POSTS COMP(popsts.js,styles.js)     FORM COMPONENT(form.js,styles.js)
  |
-Component2.jsx
+ POST COMPONENT(post.js,styles.js) 
+
+
+       
+
 
    
 
 */ 
-
-
-
-///////////////////REMAINING///////////////
-
-//USEEFFECT();
-
-//Backend -- api --- action -- reducers -- useDispatch()
-
-
-//INDEX.JS
-//RENDER()
-/* #region Main */
-/*
-ReactDOM.render(                  -->Render App Component ka REACT ELEMENT(Virtual DOM)
-  <React.StrictMode>                   inside public/index.html ka root element(Actual DOM)
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
-);
-
-
- */
-/* #endregion */
-
-
-
-
 
 
 
