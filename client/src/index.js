@@ -24,8 +24,7 @@ ReactDOM.render(
 reportWebVitals();
 
 
-//CREATE
-//app.js -- actions type payload -- reducers --- api  -- app.js -- controller/.js --response bheja 
+
 
 
 

@@ -109,7 +109,7 @@ Add "chrome postman" to  chrome extension
 */
 
 
-//CREATE PROJECT AND RUN(WINDOWS(WITHOUT SUDO) , LINUX(WITH SUDO))
+//CREATE  SERVER AND RUN(WINDOWS(WITHOUT SUDO) , LINUX(WITH SUDO))
 /*
 //CREATE SERVER
 >sudo npm install -g jshint         --> install compiler for node glbally
@@ -143,10 +143,69 @@ Add "chrome postman" to  chrome extension
 
 **WINDOWS HAVE ONLY MONGOD AND MONGO COMMAND SYSTEMCTL ARE FOR LINUX
 */
+//CREATE CLIENT AND RUN(WINDOWS(WITHOUT SUDO) , LINUX(WITH SUDO))
+/*
+//CREATE CLIENT
+>sudo npm -g uninstall create-react-app    -->uninstall global package  "create-react-app" as global package no longer supported  
+>sudo npx create-react-app client          -->installs package "create-react-app version latest" and create a templat called "client"(Node >= 10.16 and npm >= 5.6 )
+>sudo chmod -R 777 client                  -->allows all privelages to client folder(linux)
+>cd client
+>sudo npm install                     -->install package.json dependencies  locally
+>sudo npm install axios               -->install react dependancies locally
+>sudo npm install moment 
+>sudo npm install react-file-base64 
+>sudo npm install redux-thunk
+>sudo npm install react-redux
+>sudo npm install @material-ui/core
+>sudo npm install @material-ui/icons
+
+
+//RUN CLIENT
+>cd client
+>sudo npm start   -->run client at http://127.0.0.1:3000 (client runs at 3000, server runs at 3000 so 1st run server and then run client so client automatically runs at 3001) 
+                    package.json
+                      "scripts": {                               
+                        "start": "react-scripts start",  -->npm start = "react-scripts start" 
+                        "build": "react-scripts build",
+                        "test": "react-scripts test",
+                        "eject": "react-scripts eject"
+                      },
+
+
+
+*/
+
+
 
 
 //STRUCTURE 
 /*
+client 
+  |-node_modules            -->external modules                 
+  |-package.json            -->external module dependency     
+  |-package-lock.json       -->external module dependency  
+  |-public                  -->public acessories of client 
+    |-filename.png/.ico     -->images and icons of project
+    |-manifest.json         -->tells browser about app and how it should be installed on mobile or desktop   
+    |-index.html            
+  |-src      
+    |-api(custom made folder)        -->pass data between backend and frontend
+      |-posts.js
+    |-actions(custom made folder)    -->await api to perform  
+      |-posts.js
+    |-reducers(custom made folder)   -->get CRUD operation from actions and as per action type reduce them
+      |-posts.js                        index.js combines all reducers and puts them in redux store 
+      |-index.js                               
+    |-component(custom made folder)       
+       |-FORM                        -->FORM component has form.js file and styles.js file for its styles
+          |-form.js,styles.js
+       |-POSTS                       -->POSTS component has posts.js file and styles.js file for its styles
+         |-POST                         POST component(child of POSTS) has post.js file and styles.js file for its styles ;
+           |-post.js,styles.js
+         |-posts.js,styles.js                
+    |-app.js, styles.js,app.css      -->MAIN Component is app.js , styles.js for its styles , app.css for its css                   
+    |-index.js,index.css           
+
 server                            
   |-node_modules                     -->external modules                            
   |-package.json                     -->external module dependency 
@@ -168,32 +227,33 @@ server
   |-controllers(custom made folder) -->performs CRUD of db               
     |-post.JS              
   |-app.js                          -->performs handling of each route; connect mongodb to server and create database           
-      |
-      |    
-     app.js  -------->routes <-------models, controller                
+     
 
-                                        
-       
-
-
-
-
-
-
-
-
-*/
-
-
+  
+  
+  app.js,styles.js,app.css(MAIN COMPONENT )    -->actions               -------> api            ------>  app.js  ----------------->routes                       ----> controller;model                                      
+      |                                            (calls fnName(arg) from api  (sends arg on route)      (sends route              (calls methods from controller)  (performs CRUD
+ _____|______________________________              and awaits for respons)                                on routes)                on route)                          on db )
+ |                                   |                                                                                                                                 |
+ posts.js,styles.js(POSTS COMP)     form.js,styles.js(FORM COMPONENT)                                                                                                  |
+  |                                                                                                                                                                    |
+ post.js,styles.js(POST COMPONENT)                                                                                                                                     |
+ (dispatch fnName(arg) into  redux store which will trigger                                                                                                            |
+  actions)                                                                                                                                                             |
+                                                                                                                                                                       |
+  app.js,"" same as above <--------------------------------------------------reducers<------------------------------actions<---------------------- api<---------------controller;model
+  (receive data from redux store                                          (receive res from action               (receive res from api         (receives response)    (return response)
+   and update the state_                                                   and reduce based on actionType         and dispatch response 
+                                                                          combine all reducers and put           with actionType on redux store) 
+                                                                          on redux store             
+     
+//CREATE POST(press submit button)
+components/Form/form.js calls handleaSubmit method which  dispatches cretePost() method in redux store ; 
+this triggers actions/posts.js ka createPost(Post) method which awaits api/index.js ka createPost() method to return something
+api/index.js send newPost on the url                  
 
 
 ////////////////////////////////REMAINING////////////////////////////
-
-//controllers/posts.js
-/*
-C,R,U,D -- var
-R,D -- try catch ? ; res.json()
- */
 
 
 
