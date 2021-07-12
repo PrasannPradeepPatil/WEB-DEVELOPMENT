@@ -269,10 +269,8 @@ server
   index.js renders app.js ka react element(virtual dom) inside public index.html ka html element(real DOM); and provodes app.js with redux store
   
 
-
-REMAINING
-USEEFFET;USEDISPATCH;LIFECYCLE PHASE 
-components logic                                                                                                                   
+*/
+                                                                                                               
 
               
 
