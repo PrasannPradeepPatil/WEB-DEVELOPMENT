@@ -63,7 +63,7 @@ app.use('/posts', postsRouter);                   -->For endpoint /posts;apply t
 */
 /* #endregion */                              
 app.use('/posts',postsRouter)        
-
+app.get('/',(req,res)=>{res.send('Hello, Welcome to Memories')})
 
 //CUSTOM MIDDLEWARE FNS(APPLIED ON  ALL ENDPOINTS) 
 /* #region Main */
