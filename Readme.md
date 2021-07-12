@@ -1,7 +1,7 @@
 ## Introduction
 "Memories" and it is a simple social media app that allows users to post interesting events that happened in their lives.
-I have created a simple  CRUD operation using  React, Node.js, Express & MongoDB.
-This project was an attempt to learn web development using MERN stack.
+I have created a simple  CRUD operation using  React, Node.js, Express & MongoDB.  
+This project was an attempt to learn web development using MERN stack.  
 
 
 ## Project Setup
