@@ -4,7 +4,7 @@ import axios from 'axios';   //sudo npm install axios
 
 //API FN SEND; API FN RECEIVE
 /*
-const url = 'http://localhost:portNoWhereMongoDBIsConnexted/routeWhereCridOperationsTakePlace'
+const url = 'http://localhost:PortNoWhereMongoDbIsConnectedToSever/routeWhereCrudOperationsTakePlace'
 export const createPost = (arg)     => axios.post(url, arg);                -->For endpoint ;send and receive data for create operation 
 export const getPosts   = ()         => axios.get(url);                     -->For endpoint ;send and receive data for get operation 
 export const updatePost = (id,arg)   => axios.patch(`${url}/${id}`,arg);    -->For endpoint ;send and receive data for update operation

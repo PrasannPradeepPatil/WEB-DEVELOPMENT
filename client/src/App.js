@@ -159,7 +159,7 @@ import memories from './images/memories.png';
     
     //USESTATE() :data of component
     /*
-    const [count, setCount] = useState(0);        -->create state  where key is count value is 0 and setcount() is a fn to update count (import from 'react')
+    const [count, setCount] = useState(0);        -->create state  where key is count value with defaultvalue 0 and setcount() is a fn to update count (import from 'react')
     count ,{count}                                -->use state  in fn ,jsx                    
     setCount(count+1),{setcount(count+1)}         -->update state in fn ,jsx 
     */
@@ -177,6 +177,15 @@ import memories from './images/memories.png';
     dispatch(getPosts()); {dispatch(getPosts())}     -->use dispatch which dispatches an action to redux store
 
     */
+
+    //USESELECTOR() :get action from the redux store
+    /*
+    const post = useSelector((state) => console.log(state.posts)); -->useSelector gets action from redux store
+                                                                      state = variable used for combinin reducers in reducers/index.js
+                                                                      state.posts = array returned by reducers  in reducers/posts.js
+     */
+
+
 
     //USEEFFECT()
     /*  

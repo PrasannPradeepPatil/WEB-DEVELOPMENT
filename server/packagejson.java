@@ -1,26 +1,29 @@
 /*
+ADDITIONS/CHANGES TO PACKAGE.JSON ARE SHOWN WITH **
+
 package.json                   
-{                                  PROPERTIES:When you run  express --view=pug  dirname  then these properties are created for the directory 
+{                                  PROPERTIES:When you create server these properties are set 
   "name": "server",                name of dir     
   "version": "0.0.0",              version of dir 
   "private": true,                 privacy of dir   
                                   
   "scripts": {                      SCRIPTS: when you run npm key ;then we execute value of the key
-    "start":"node/nodemon ./bin/www"  npm start = node/nodemon ./bin/www
-
+    "start":"node/nodemon ./bin/www"  sudo npm start = node/nodemon ./bin/www
+                                      **CHANGE NODE TO NODEMON(rerun terminal on changes to package.json)*
   },
 
   "dependencies": {                 DEPENDENCIES:  When you install a package it is added in dependency and deployed
-    "cookie-parser": "~1.4.4",      package used for?(already included on creating project)
-    "debug": "~2.6.9",              package used for ?(already included on creating project)
-    "express": "~4.16.1",           package used for api(already included on creating project template) 
-    "http-errors": "~1.6.3",        package used for ? (already included on creating project template)  
-    "jade": "~1.11.0",              package used for ? (already included on creating project template)  
-    "mongoose": "^5.12.14",         package used for db(ypu include this after creating project template)  
-    "morgan": "~1.9.1"              package used for ? (already included on creating project template)  
+    "cookie-parser": "~1.4.4",      package used for?            (installed while creating project)
+    "debug": "~2.6.9",              package used for debugging   (installed while creating project)
+    "express": "~4.16.1",           package used for express     (installed while creating project)
+    "http-errors": "~1.6.3",        package used for http errors (installed while creating project)
+    "jade": "~1.11.0",              package used for ?           (installed while creating project) 
+    "mongoose": "^5.12.14",         package used for mongo db    (installed while creating project)
+    "morgan": "~1.9.1"              package used for ?           (installed while creating project)
   } 
   "dev-dependencies": {              DEVELOPMENT DEPENDENCIES:When you install a package using -dev it is added in dev-dependency and is not  deployed           
   }                                   |
+                                      |
                                       |
                                     //DEPENDENCY STRUCTIRE
                                     “packageName: ^/~ majorVersion.minorVersion.patchVersion”

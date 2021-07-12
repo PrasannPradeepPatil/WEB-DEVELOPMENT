@@ -240,8 +240,8 @@ server
   App.js,"" same as above <------------------ -reducers<------------------------actions<----------------------api<----------------------------------------------------------------------------------------------------|         
   (COMPONENTS)                                 (REDUCERS:                       (API FN RESPONSE:                (API FN RECEIVE:           
     |                                           based on action type            receive response from api and    receive data on route      
-    |                                           reduce list using               dispatch res on payload with     for CRUD operation)       
-    |                                           action payload                  action type on redux store)
+    |                                           reduce action(action            dispatch res on payload with     for CRUD operation)       
+    |                                           payload) and put it on list     action type on redux store)
     |                                           COMBINERS:
     |                                           combine all the reducers and
     |                                           put the on redux store)

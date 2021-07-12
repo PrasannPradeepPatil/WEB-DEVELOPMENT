@@ -9,7 +9,7 @@ const LIKE = 'LIKE';
 /*
 export default (posts = [], action) => {
   switch (action.type) {
-    case FETCH_ALL:                          --> based on action type   ;reduce action payload and put it on a list
+    case FETCH_ALL:                          --> based on action type   ;reduce action(action paylload) payload and put it on a list
       return action.payload;
     case LIKE:
       return posts.map((post) => (post._id === action.payload._id ? action.payload : post));
