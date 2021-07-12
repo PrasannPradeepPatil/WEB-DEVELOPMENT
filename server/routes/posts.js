@@ -7,6 +7,7 @@ const router = express.Router();
 
 
 //ROUTE FN
+/* #region Main */
 /*
 router.post('/endPoint/:param1/:param2',(req,res)=>{})   -->For endpoint ; apply the function that performs create operation 
 router.get('/endPoint/:param1/:param2',(req,res)=>{})    -->For endpoint ; apply the function that performs get operation 
@@ -15,6 +16,8 @@ router.patch('/endPoint/:param1/:param2',(req,res)=>{})  -->For endpoint ; apply
 router.delete('/endPoint/:param1/:param2',(req,res)=>{}) -->For endpoint ; apply the function that performs delete operation 
                                                             (req,res,next look in app.js ka custom middleware)
 */
+/* #endregion */
+
 router.post('/', createPost);
 router.get('/', getPosts);
 router.get('/:id', getPost);
@@ -25,3 +28,5 @@ router.patch('/:id/likePost', likePost);
 
 //EXPORT
 module.exports = router;
+
+

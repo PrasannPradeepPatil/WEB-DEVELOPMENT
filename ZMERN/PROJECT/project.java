@@ -246,9 +246,12 @@ server
     |                                           combine all the reducers and
     |                                           put the on redux store)
     |
-  index.js,index.css,public/index.html(RENDER)
+  index.js,index.css,public/index.html(RENDER,REDUX STORE)
+  RENDER:
   converts REACT ELEMENT(VIRTUAL DOM) returned by app.js
-  into HTML ELEMENT(ACTUAL DOM) of public/index.html                                             
+  into HTML ELEMENT(ACTUAL DOM) of public/index.html     
+  REDUX STORE:
+  provide app.js with redux store                                        
 
 
   EG: Consider creating post on prwssing sub,it button
@@ -263,13 +266,14 @@ server
   reducers/posts.js reduces based on action type CREATE reduce the list by concatenating action payload
   reducers/index.js combines all reducers and puts them on redux store
   component/Forms/Forms.js ka  useEffect() changes the state 
-
+  index.js renders app.js ka react element(virtual dom) inside public index.html ka html element(real DOM); and provodes app.js with redux store
+  
 
 
 REMAINING
 USEEFFET;USEDISPATCH;LIFECYCLE PHASE 
 components logic                                                                                                                   
-INDEX.JS     
+
               
 
 

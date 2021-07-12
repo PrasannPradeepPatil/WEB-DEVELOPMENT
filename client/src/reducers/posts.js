@@ -5,6 +5,7 @@ const FETCH_ALL = 'FETCH_ALL';
 const LIKE = 'LIKE';
 
 //REDUCERS
+/* #region Main */
 /*
 export default (posts = [], action) => {
   switch (action.type) {
@@ -22,9 +23,11 @@ export default (posts = [], action) => {
       return posts;
   }
 };
-
-
 */
+/* #endregion */
+
+
+
 export default (posts = [], action) => {
   switch (action.type) {
     case FETCH_ALL:
