@@ -1,9 +1,8 @@
 ## Introduction
-This is a code repository for the corresponding video tutorial - https://youtube.com/playlist?list=PL6QREj8te1P7VSwhrMf3D3Xt4V6_SRkhu.
+"Memories" and it is a simple social media app that allows users to post interesting events that happened in their lives.
+I have created a simple  CRUD operation using  React, Node.js, Express & MongoDB.
+This project was an attempt to learn web development using MERN stack.
 
-Using React, Node.js, Express & MongoDB you'll learn how to build a Full Stack MERN Application - from start to finish. The App is called "Memories" and it is a simple social media app that allows users to post interesting events that happened in their lives.
-
-By the end of this video, you will have a strong understanding of how the MERN Stack works.
 
 ## Project Setup
 * Clone project into local environment
