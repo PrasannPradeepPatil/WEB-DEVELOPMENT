@@ -98,19 +98,72 @@ app.use(function(err, req, res, next) {  // error handler
 
 
 
-//CONNECT  MONGODB TO SERVER(ATLAS);CREATE DB
+//CONNECT  MONGODB TO SERVER(ATLAS/COMPASS)
+/* #region Main */ 
+//CONNECT  MONGODB TO SERVER(ATLAS)
 /*
-//CONNECT  MONGODB TO SERVER(ATLAS)-->https://www.youtube.com/watch?v=ngc9gnGgUdA&t=522s  :10:30 TO 13:00
-const CONNECTION_URL = 'connection url received from atlas';
+const CONNECTION_URL = 'connection url received from atlas'; (connect to atlas using the link given in ATLAS below)
 const PORT = process.env.PORT||5000;(client runs at 3000, server runs at 3000 so 1st run server and then run client so client automatically runs at 3001;so server runs at 30002 )
 mongoose.connect(CONNECTION_URL, { useNewUrlParser: true, useUnifiedTopology: true })            
   .then(() => app.listen(PORT, () => console.log(`Server Running on Port: http://localhost:${PORT}`)))
   .catch((error) => console.log(`${error} did not connect`));
 
 mongoose.set('useFindAndModify', false);
+*/
 
+//ATLAS :visual view of DB
+/*
+connectmongodb to server  --> https://www.youtube.com/watch?v=ngc9gnGgUdA&t=522s  :10:30 TO 13:00
+*/
+//COMPASS :visual view of DB
+/*
+connect compass to mongodb  -->  >mongod -->start mongodb server at 127.0.0.1:27107
+                                  In Compass Connect ->ConnectTo ->Connection string = mongodb://127.0.0.1:27107 --> connect compass to mongoDB
+*/
+
+//MONGODB SHELL:Shell view of DB:-https://gist.github.com/bradtraversy/f407d642bdc3b31681bc7e56d95485b6
+/*
+//CONNECT
+>mongod -->start mongodb server at 127.0.0.1:27107 -->CONNECT TO DATABASE
+>mongo  --> enter mongo shell
+
+//CREATE  
+                                                    ___filename.json--> [{_id:1234,name:'pras'},{_id:1235,name:'patil'}]
+                                                     /
+>mongoimport --db dbName -collection collName  --filename filename.json --json jsonArray  -->create a database ; create a collection ; add documents from filename.json   documents are stored in array in filename.json
+>use dbName                                                                               -->create database "database" or use preexisting "database" (db = databaseName)
+>db.createCollection('collectionName')                                                    -->create in database "db" , collection "createCollection"
+
+//READ
+>use db
+>db.collectionName.methodsUsedInProgramming()
+     +
+    >show database  --> shows all databases
+    >use dbName      -->shows collection in db
+    >show collection 
+
+//UPDATE
+>use db
+>db.collectionName.methodsUsedInProgramming()
+
+
+//DELETE
+>use db
+>db.collectionName.methodsUsedInProgramming()
+        + 
+        >use db                       --> drop database db
+        >db.dropDatabase()  
+        >db.collectionName.remove({}) -->remove document from collection
 
 */
+
+
+
+
+
+
+
+/* #endregion */  
 const CONNECTION_URL = 'mongodb+srv://prasann:prasann123@cluster0.qb7ve.mongodb.net/myFirstDatabase?retryWrites=true&w=majority';
 const PORT = process.env.PORT|| 5000;  
 mongoose.connect(CONNECTION_URL, { useNewUrlParser: true, useUnifiedTopology: true })
