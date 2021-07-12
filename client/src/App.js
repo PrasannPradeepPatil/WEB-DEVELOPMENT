@@ -42,7 +42,7 @@ import memories from './images/memories.png';
     */                                      
     
     
-    //FNNAME()
+    //METHOD()
     /*
     async fnName(){}                                                          -->create short fn(For other fns)
     fnNmme = async (params) => {}                                             -->create arrow fn(For evenTHandler fns )
@@ -121,13 +121,15 @@ import memories from './images/memories.png';
     */                                       
          
     
-    //COMPONENTDIDMOUNT METHOD:Called after rendering  component to DOM
+    //COMPONENTDIDMOUNT METHOD: Called after mounting component  and  rendering REACT ELEMENT(VIRTUAL DOM) in HTML ELEMENT(ACTUAL DOM)
+    //                      
     /*      
     componentDidMount(){      
     }
     */
 
-    //COMPONENTDIDUPDATE METHOD:Called after rendering updated component to DOM
+    //COMPONENTDIDUPDATE METHOD:Called after updating component and rendering REACT ELEMENT(VIRTUAL DOM) in HTML ELEMENT(ACTUAL DOM)
+    //                       
     /*
     componentDidUpdate(previousProps,previousState){ 
          previousProps -- holds previous props before updating
@@ -136,30 +138,13 @@ import memories from './images/memories.png';
     */
     
     
-    //COMPONENTDIDMOUNT METHOD:Called before deleting component from DOM
+    //COMPONENTDIDMOUNT METHOD:Called before  deleting component  and  rendering REACT ELEMENT(VIRTUAL DOM) in HTML ELEMENT(ACTUAL DOM)
+    //                        
     /*
     componentWillUnMount(){   
     }
     */
    
-    //   |
-    //   |
-    //LIFECYCLE PHASE
-    /*
-    MOUNT PHASE :When component is initialised and put in actuat DOM it enters "mount phase" it calls methods called as "lifecycle hooks" in order
-    1.constructor()       --initialise properties of component  
-    2.render()            --Converts Components and all its childrens "JSX EXPRESSION" into "React ELEMENT(Virtelement DOM)"  using React.createElement('div/h1 etc') 
-    3.componentDidMount() --Called after rendering  component to DOM
-     
-    UPDATE PHASE :When component is updated due to state or props change it enters "update  phase" it calls  methods called as "lifecycle hooks"in order
-    1.render()            --Converts Components and all its childrens "JSX EXPRESSION" into "React ELEMENT(Virtelement DOM)"  using React.createElement('div/h1 etc') 
-    2.componentDidUpdate()--Called after rendering  updated component to DOM
-  
-
-    UNMOUNT  PHASE :When component is deleted from ctuat DOM it enters "unmount phase" it calls methods called as  "lifecycle hooks" in order
-    componentWiiUnMount() --Called before deleting component from DOM
-
-     */
 
 
 
@@ -170,32 +155,42 @@ import memories from './images/memories.png';
 /* #region Main */
 //fnName = (props) =>{   
     
-    //USESTATE() :data of component 
+   
+    
+    //USESTATE() :data of component
     /*
-    const [count, setCount] = useState(0);        -->create state  where key is count value is 0 and setcount() is a fn to update count (imported from React)   
+    const [count, setCount] = useState(0);        -->create state  where key is count value is 0 and setcount() is a fn to update count (import from 'react')
     count ,{count}                                -->use state  in fn ,jsx                    
     setCount(count+1),{setcount(count+1)}         -->update state in fn ,jsx 
     */
 
     //USESTYLES():styles of component
     /*
-    const classes = useStyles();                -->create styles (imported from styles.js as each file has a corresponding styles.js)
+    const classes = useStyles();                -->create styles (import from module 'styles.js' )
     classes.styleName ; {classes.styleName}     -->use styles in fn,jsx
     */
     
  
-    //USEDISPATCH() 
+    //USEDISPATCH() :dispatches action to redux store
     /*
-    
-    
+    const dispatch = useDispatch();                  -->create dispatch(import fro module 'react-redux')
+    dispatch(getPosts()); {dispatch(getPosts())}     -->use dispatch which dispatches an action to redux store
+
     */
 
     //USEEFFECT()
-    /*
+    /*  
+                                                                   -->create dispatch(import fro module 'react')
+    useEffect(() => {code}}, [varName1/fnName1, varName2/fnName2]); -->use useEffect() for performing lifecycle hooks
+                                                                     useEffect(fn)                        =fn called on componentDidMount() + componentWillUmmount() 
+                                                                     useEffect(fn,[statevar1,statevar2])  =fn called on componentDidMount() + componentWIllUmmount() + componentDidUpdate() for any 1 of the variable in dependency array
+
+                                                                        
+
      */
 
 
-    //FNNAME()
+    //METHOD()
     /*
     const fnNmme = async (params) => {}            -->create arrow fn
     fnName(arg)/fnName; {fnName(arg)/fnName}       -->use aarrow fn  inside fn , jsx                     
