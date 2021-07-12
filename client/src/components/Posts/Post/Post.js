@@ -1,14 +1,20 @@
-import React from 'react';
-import { Card, CardActions, CardContent, CardMedia, Button, Typography } from '@material-ui/core/';
-import ThumbUpAltIcon from '@material-ui/icons/ThumbUpAlt';
-import DeleteIcon from '@material-ui/icons/Delete';
-import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
-import moment from 'moment';
-import { useDispatch } from 'react-redux';
 
+//IMPORT EXTERNAL MODULE
+import React from 'react';                                                                            //sudo npx create-react-app client
+import { useDispatch } from 'react-redux';                                                           //sudo npm install react-redux
+import { Card, CardActions, CardContent, CardMedia, Button, Typography } from '@material-ui/core/'; //sudo npm install @material-ui/core
+import ThumbUpAltIcon from '@material-ui/icons/ThumbUpAlt';                                        //sudo npm install @material-ui/icons
+import DeleteIcon from '@material-ui/icons/Delete';       
+import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
+import moment from 'moment';                                                                       //sudo npm install moment 
+//IMPORT MODULES
 import { likePost, deletePost } from '../../../actions/posts';
 import useStyles from './styles';
 
+//FUNCTION COMPONENT
+/*
+same as app.js
+ */
 const Post = ({ post, setCurrentId }) => {
   const dispatch = useDispatch();
   const classes = useStyles();
@@ -38,4 +44,6 @@ const Post = ({ post, setCurrentId }) => {
   );
 };
 
+
+//EXPORT
 export default Post;

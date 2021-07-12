@@ -1,10 +1,15 @@
-import React from 'react';
-import { Grid, CircularProgress } from '@material-ui/core';
-import { useSelector } from 'react-redux';
-
+//IMPORT EXTERNAL MODULE
+import React from 'react';                                       //sudo npx create-react-app client
+import { useSelector } from 'react-redux';                      //sudo npm install react-redux
+import { Grid, CircularProgress } from '@material-ui/core';    //sudo npm install @material-ui/core
+//IMPORT MODULES
 import Post from './Post/Post';
 import useStyles from './styles';
 
+//FUNCTION COMPONENT
+/*
+same as app.js
+ */
 const Posts = ({ setCurrentId }) => {
   const posts = useSelector((state) => state.posts);
   const classes = useStyles();
@@ -22,4 +27,5 @@ const Posts = ({ setCurrentId }) => {
   );
 };
 
+//EXPORT
 export default Posts;

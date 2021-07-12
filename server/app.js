@@ -109,8 +109,6 @@ mongoose.connect(CONNECTION_URL, { useNewUrlParser: true, useUnifiedTopology: tr
 
 mongoose.set('useFindAndModify', false);
 
-//CREATE DB
-Database is created in atlas itself in above step
 
 */
 const CONNECTION_URL = 'mongodb+srv://prasann:prasann123@cluster0.qb7ve.mongodb.net/myFirstDatabase?retryWrites=true&w=majority';

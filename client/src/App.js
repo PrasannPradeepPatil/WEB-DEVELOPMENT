@@ -1,10 +1,10 @@
 
 //IMPORT EXTERNAL MODULE
+import React, { useState, useEffect } from 'react';                              //sudo npx create-react-app client
+import { useDispatch } from 'react-redux';                                       //sudo npm install react-redux
+import { Container, AppBar, Typography, Grow, Grid } from '@material-ui/core';   //sudo npm install @material-ui/core
 
-import React, { useState, useEffect } from 'react';
-import { Container, AppBar, Typography, Grow, Grid } from '@material-ui/core';
-import { useDispatch } from 'react-redux';
-
+//IMPORT MODULES
 import Posts from './components/Posts/Posts';
 import Form from './components/Form/Form';
 import { getPosts } from './actions/posts';
@@ -254,8 +254,8 @@ import memories from './images/memories.png';
 /* #endregion */
 const App = () => {
   const [currentId, setCurrentId] = useState(0);
-  const dispatch = useDispatch();
   const classes = useStyles();
+  const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(getPosts());

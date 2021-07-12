@@ -1,11 +1,18 @@
-import React, { useState, useEffect } from 'react';
-import { TextField, Button, Typography, Paper } from '@material-ui/core';
-import { useDispatch, useSelector } from 'react-redux';
-import FileBase from 'react-file-base64';
+//IMPORT EXTERNAL MODULE
+import React, { useState, useEffect } from 'react';                          //sudo npx create-react-app client
+import { useDispatch, useSelector } from 'react-redux';                     //sudo npm install react-redux
+import FileBase from 'react-file-base64';                                   //sudo npm install react-file-base64 
+import { TextField, Button, Typography, Paper } from '@material-ui/core';   //sudo npm install @material-ui/core
 
-import useStyles from './styles';
+//IMPORT MODULES
 import { createPost, updatePost } from '../../actions/posts';
+import useStyles from './styles';
 
+
+//FUNCTION COMPONENT
+/*
+same as app.js
+ */
 const Form = ({ currentId, setCurrentId }) => {
   const [postData, setPostData] = useState({ creator: '', title: '', message: '', tags: '', selectedFile: '' });
   const post = useSelector((state) => (currentId ? state.posts.find((message) => message._id === currentId) : null));
@@ -49,4 +56,5 @@ const Form = ({ currentId, setCurrentId }) => {
   );
 };
 
+//EXPORT
 export default Form;

@@ -108,7 +108,6 @@ Add "chrome postman" to  chrome extension
 
 */
 
-
 //CREATE  SERVER AND RUN(WINDOWS(WITHOUT SUDO) , LINUX(WITH SUDO))
 /*
 //CREATE SERVER
@@ -189,21 +188,21 @@ client
     |-manifest.json         -->tells browser about app and how it should be installed on mobile or desktop   
     |-index.html            
   |-src      
-    |-api(custom made folder)        -->pass data between backend and frontend
+    |-api(custom made folder)        
       |-posts.js
-    |-actions(custom made folder)    -->await api to perform  
+    |-actions(custom made folder)    
       |-posts.js
-    |-reducers(custom made folder)   -->get CRUD operation from actions and as per action type reduce them
-      |-posts.js                        index.js combines all reducers and puts them in redux store 
+    |-reducers(custom made folder)   
+      |-posts.js                         
       |-index.js                               
     |-component(custom made folder)       
-       |-FORM                        -->FORM component has form.js file and styles.js file for its styles
+       |-FORM                        
           |-form.js,styles.js
-       |-POSTS                       -->POSTS component has posts.js file and styles.js file for its styles
-         |-POST                         POST component(child of POSTS) has post.js file and styles.js file for its styles ;
+       |-POSTS                      
+         |-POST                         
            |-post.js,styles.js
          |-posts.js,styles.js                
-    |-app.js, styles.js,app.css      -->MAIN Component is app.js , styles.js for its styles , app.css for its css                   
+    |-app.js, styles.js,app.css                        
     |-index.js,index.css           
 
 server                            
@@ -220,37 +219,58 @@ server
     |-layout.jade
  |-bin                             -->run on npm start as package.json has this file on start script ; and this file runs app.js with error checks
     |-www                             
-  |-routes(custom made folder)     -->performs CRUD of each route        
+  |-routes(custom made folder)        
     |-post.js              
-  |-models(custom made folder)     -->creates collection for db       
+  |-models(custom made folder)          
     |-post.JS              
-  |-controllers(custom made folder) -->performs CRUD of db               
+  |-controllers(custom made folder)             
     |-post.JS              
-  |-app.js                          -->performs handling of each route; connect mongodb to server and create database           
+  |-app.js                              
      
+                                                                                                          
+  App.js,styles.js,App.css(MAIN COMPONENT )    -------------------------------->actions --------------------->api---------------------->  app.js of server  ----------->routes   ----------------> controller;     <----------model                                      
+      |                                                                         (API FN CALL:                 (API FN SEND:             (MIDDLEWARE FN:                 (ROUTE FN:                 CONTROLLER FN:             (CREATE COLLECTION:
+ _____|______________________________                                            calls api fns                send data on route        handles all routes               handles specific route     perform crud on mongodb)   create collection for controller fn)                            
+ |                                   |                                           and awaits for response)     for CRUD operations)      CONNECT  MONGODB:                using CRUD operations      and return a response                                                                                                 
+ Posts.js,styles.js(POSTS COMP)     Form.js,styles.js(FORM COMPONENT)                                                                   connect mongodb to server        from collection)                             |
+  |                                                                                                                                                                                                                   |
+ Post.js,styles.js(POST COMPONENT)                                                                                                                                                                                    |
+ (COMPONENTS)                                                                                                                                                                                                         |
+                                                                                                                                                                                                                      |
+  App.js,"" same as above <------------------ -reducers<------------------------actions<----------------------api<----------------------------------------------------------------------------------------------------|         
+  (COMPONENTS)                                 (REDUCERS:                       (API FN RESPONSE:                (API FN RECEIVE:           
+    |                                           based on action type            receive response from api and    receive data on route      
+    |                                           reduce list using               dispatch res on payload with     for CRUD operation)       
+    |                                           action payload                  action type on redux store)
+    |                                           COMBINERS:
+    |                                           combine all the reducers and
+    |                                           put the on redux store)
+    |
+  index.js,index.css,public/index.html(RENDER)
+  converts REACT ELEMENT(VIRTUAL DOM) returned by app.js
+  into HTML ELEMENT(ACTUAL DOM) of public/index.html                                             
 
-  
-  
-  app.js,styles.js,app.css(MAIN COMPONENT )    -->actions               -------> api            ------>  app.js  ----------------->routes                       ----> controller;model                                      
-      |                                            (calls fnName(arg) from api  (sends arg on route)      (sends route              (calls methods from controller)  (performs CRUD
- _____|______________________________              and awaits for respons)                                on routes)                on route)                          on db )
- |                                   |                                                                                                                                 |
- posts.js,styles.js(POSTS COMP)     form.js,styles.js(FORM COMPONENT)                                                                                                  |
-  |                                                                                                                                                                    |
- post.js,styles.js(POST COMPONENT)                                                                                                                                     |
- (dispatch fnName(arg) into  redux store which will trigger                                                                                                            |
-  actions)                                                                                                                                                             |
-                                                                                                                                                                       |
-  app.js,"" same as above <--------------------------------------------------reducers<------------------------------actions<---------------------- api<---------------controller;model
-  (receive data from redux store                                          (receive res from action               (receive res from api         (receives response)    (return response)
-   and update the state_                                                   and reduce based on actionType         and dispatch response 
-                                                                          combine all reducers and put           with actionType on redux store) 
-                                                                          on redux store             
-     
-//CREATE POST(press submit button)
-components/Form/form.js calls handleaSubmit method which  dispatches cretePost() method in redux store ; 
-this triggers actions/posts.js ka createPost(Post) method which awaits api/index.js ka createPost() method to return something
-api/index.js send newPost on the url                  
+
+  EG: Consider creating post on prwssing sub,it button
+  component/Forms/Forms.js ka handlesubmit dispatch() createPost(postData)   in redux store;
+  actions/posts.js ka createPost() calls api ka createPost() and awaits for reaponse
+  api/index.js ka createpos() passes post on url
+  app.js sends the url to route and connects to mongodb
+  routes/posts.js ka post() calls controller ka createPost() method on the url
+  controller/posts.js ka createPost() method creates post in mongodb and returns new post
+  api/index.js returns the  post
+  actions/posts.js receives the  post and and dispatch the  post on payload with action type CREATE on redux store
+  reducers/posts.js reduces based on action type CREATE reduce the list by concatenating action payload
+  reducers/index.js combines all reducers and puts them on redux store
+  component/Forms/Forms.js ka  useEffect() changes the state 
+
+
+
+REMAINING
+USEEFFET;USEDISPATCH;LIFECYCLE PHASE 
+components logic                                                                                                                   
+INDEX.JS     
+              
 
 
 ////////////////////////////////REMAINING////////////////////////////

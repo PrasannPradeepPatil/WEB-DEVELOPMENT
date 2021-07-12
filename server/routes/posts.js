@@ -6,7 +6,7 @@ var {getPosts,getPost, createPost, updatePost, likePost, deletePost } = require(
 const router = express.Router();
 
 
-//CREATE , READ , UPDATE , DELETE 
+//ROUTE FN
 /*
 router.post('/endPoint/:param1/:param2',(req,res)=>{})   -->For endpoint ; apply the function that performs create operation 
 router.get('/endPoint/:param1/:param2',(req,res)=>{})    -->For endpoint ; apply the function that performs get operation 
@@ -15,9 +15,8 @@ router.patch('/endPoint/:param1/:param2',(req,res)=>{})  -->For endpoint ; apply
 router.delete('/endPoint/:param1/:param2',(req,res)=>{}) -->For endpoint ; apply the function that performs delete operation 
                                                             (req,res,next look in app.js ka custom middleware)
 */
-
-router.get('/', getPosts);
 router.post('/', createPost);
+router.get('/', getPosts);
 router.get('/:id', getPost);
 router.patch('/:id', updatePost);
 router.delete('/:id', deletePost);

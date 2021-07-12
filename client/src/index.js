@@ -1,3 +1,4 @@
+//IMPORT EXTERNAL MODULES
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
@@ -10,7 +11,6 @@ import reportWebVitals from './reportWebVitals';
 
 
 const store = createStore(reducers, compose(applyMiddleware(thunk)));
-
 ReactDOM.render(
   <Provider store={store}>
     <App />
