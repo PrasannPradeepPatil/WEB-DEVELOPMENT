@@ -8,21 +8,22 @@ var debug = require('debug');                //sudo npm install (while project c
 var createError = require('http-errors');    //sudo npm install (while project creation)
 var jade = require('jade');                  //sudo npm install (while project creation)
 var path = require('path');                  //sudo npm install (while project creation)
+var dotenv = require('dotenv');              //sudo npm install (while project creation)
 //IMPORTS MODULES
 var postsRouter = require('./routes/posts');
 
 var app = express();
+dotenv.config();
 
-//GLOBAL VARIABLE, ENV VARIABLES(APPLIED TO ALL ENDPOINTS)
+//GLOBAL VARIABLE(APPLIED TO ALL ENDPOINTS)
 /* #region Main */
 /*
-//GLOBAL VAR
-app.set('varName',value);
-app.get('varName');
+//SET GLOBAL VAR
+app.set('varName',value);   
 
-//ENV VAR
->export/set VAR_NAME=value  //linux/windows
->process.env.VAR_NAME
+//USE GLOBAL VAR
+app.get('varName');         
+
 
 
 
@@ -63,7 +64,7 @@ app.use('/posts', postsRouter);                   -->For endpoint /posts;apply t
 */
 /* #endregion */                              
 app.use('/posts',postsRouter)        
-app.get('/',(req,res)=>{res.send('Hello, Welcome to Memories')})
+
 
 //CUSTOM MIDDLEWARE FNS(APPLIED ON  ALL ENDPOINTS) 
 /* #region Main */
@@ -164,10 +165,10 @@ connect compass to mongodb  -->  >mongod -->start mongodb server at 127.0.0.1:27
 
 
 /* #endregion */  
-const CONNECTION_URL = 'mongodb+srv://prasann:prasann123@cluster0.qb7ve.mongodb.net/myFirstDatabase?retryWrites=true&w=majority';
-const PORT = process.env.PORT|| 5000;  
-mongoose.connect(CONNECTION_URL, { useNewUrlParser: true, useUnifiedTopology: true })
-  .then(() => app.listen(PORT, () => console.log(`Server Running on Port: http://localhost:${PORT}`)))
+const MONGODB_CONNECTION_PORT = process.env.MONGODB_CONNECTION_PORT|| 5000;  
+const MONGODB_CONNECTION_URL = process.env.MONGODB_CONNECTION_URL;
+mongoose.connect(MONGODB_CONNECTION_URL, { useNewUrlParser: true, useUnifiedTopology: true })
+  .then(() => app.listen(MONGODB_CONNECTION_PORT, () => console.log(`Server Running on Port: http://localhost:${MONGODB_CONNECTION_PORT}`)))
   .catch((error) => console.log(`${error} did not connect`));
 
 mongoose.set('useFindAndModify', false);

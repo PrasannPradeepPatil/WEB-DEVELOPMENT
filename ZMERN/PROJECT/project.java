@@ -120,11 +120,13 @@ Add "chrome postman" to  chrome extension
 >sudo npm install                    -->install package.json dependencies which include "express","cookie-parser","morgan","debug","http-errors","jade"
 >sudo npm install express --save     -->install express locally(already installed in npm install)
 >sudo npm install mongoose --save    -->install mongoose locally
-
+>sudo npm install dotenv              -->install env var dependency locally 
 
 //RUN SERVER  
 >cd server
->sudo npm start   -->run server at http://127.0.0.1:3000(client runs at 3000, server runs at 3000 so 1st run server and then run client so client automatically runs at 3001)
+>sudo npx kill-port 3000 5000 -->kill the port if already in use for server, mongodb connection to server
+>sudo npm start   -->run server at http://127.0.0.1:3000( server runs at 3000,client runs at 3000 so 1st run server and then run client so client ;because asks to run at other server and  runs at 3001)
+                  -->connects mongodb to server at  http://127.0.0.1:5000
                     package.json
                     "scripts": {
                             "start": "node ./bin/www"    -->npm start = node ./bin/www 
@@ -156,11 +158,13 @@ Add "chrome postman" to  chrome extension
 >sudo npm install react-redux
 >sudo npm install @material-ui/core
 >sudo npm install @material-ui/icons
+>sudo npm install dotenv                -->install env var dependency locally 
 
 
 //RUN CLIENT
 >cd client
->sudo npm start   -->run client at http://127.0.0.1:3000 (client runs at 3000, server runs at 3000 so 1st run server and then run client so client automatically runs at 3001) 
+>>sudo npx kill-port 3001 -->kill the port if already in use for client
+>sudo npm start   -->run client at http://127.0.0.1:3001 ( server runs at 3000,client runs at 3000 so 1st run server and then run client ;because client  asks to run at other server and  runs at 3001)
                     package.json
                       "scripts": {                               
                         "start": "react-scripts start",  -->npm start = "react-scripts start" 
@@ -202,7 +206,11 @@ client
            |-post.js,styles.js
          |-posts.js,styles.js                
     |-app.js, styles.js,app.css                        
-    |-index.js,index.css           
+    |-index.js,index.css         
+    |- .env                        -->environment variable file
+    |- .git                        --> github file
+    |- .gitignore                  --> github file
+
 
 server                            
   |-node_modules                     -->external modules                            
@@ -224,7 +232,11 @@ server
     |-post.JS              
   |-controllers(custom made folder)             
     |-post.JS              
-  |-app.js                              
+  |-app.js     
+  |- .env                        -->environment variable file
+  |- .git                        --> github file
+  |- .gitignore                  --> github file
+  |- Profile                     -->Heroku file                      
      
                                                                                                           
   App.js,styles.js,App.css(MAIN COMPONENT )    -------------------------------->actions --------------------->api---------------------->  app.js of server  ----------->routes   ----------------> controller;     <----------model                                      
