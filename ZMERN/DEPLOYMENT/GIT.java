@@ -31,19 +31,15 @@ EG:LOOK IN JAVA,PYTHON
 
 //#########################################################################################################################################################//
 //#########################################################################################################################################################//
-//CREDENTIALS GITHUB
-/*
-GMAIL:prasannpatil98@gmail.com
-PASS:prasann2788
-*/
-//CONFIGURE GIT ,CONFIGURE SSH KEYS 
+
+//CONFIGURE GIT ,CONFIGURE SSH KEYS ,CONFIGURE HTTP KEYS
 /*
 //CONFIGURE GIT
 git config --global user.name "Prasann Patil"                    -> configure your git name  and email
 git config --global user.email “prasannpatil98@gmai.com”         so your commits will be visible by this username and gmail
 
 
-//CONFIGURE SSH KEYS
+//CONFIGURE SSH KEYS --> CONFIGURE SSH KEY REQUIRED AND UN, PASS NOT REQUIRED
 ssh-keygen -t ed25519 -C prasannpatil98@gmail.com keep pon pressing enter -->this  will save your key on a path ; in op search “yourr public 
                                                                              key saves ap path”  copy this path
 cat path                                                                  --> create a file on this path which will generate ssh key copy this 
@@ -53,6 +49,17 @@ OR repo  level  only  for that repo but the repo must be private (setting gear s
 go to settings -->SSH and GPC keys --> new ssh key -->
 Title: PrasannPatil Desktop
 Key:paste the key and press generate key
+
+UN:not required
+PASS:Not required
+
+//CONFIGURE HTTP KEY  -->CONFIGURE HTTP KEY IS  REQUIRED;REQUIRE USERNAME/EMAIL AND PASSWORD  FOR LOGING INTO GITHUB AND UN/EMAIL AND PERSONAL ACESS TOKEN FOR CLONE,PULL PUSH
+USERNAME:PrasannPradeepPatil                                     
+EMAILID:prasannpatil98@gmail.com
+PASS:prasann2788                                                  -->password is used for loging in to github                               
+PERSONAL ACESS TOKEN : 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   -->personal acess token is used for clone ,pull , push etc instead of password from AUGUST 13 2021 onwards
+                                                                   -->generate personal acess token : https://www.theserverside.com/blog/Coffee-Talk-Java-News-Stories-and-Opinions/Fix-GitHubs-support-for-password-authentication-was-removed-error
+
 */
 
 //LOCAL REPOSITORY COMMANDS
@@ -123,9 +130,9 @@ git commit –m “commit3”         0 ----------->O --------->0               
 
 //GITHUB REPOSITORY COMMAND
 /*
-git remote add origin httpURL(config key not needed)/sshUrl(configure ssh key)  --> In .git file set origin= ssh
+git remote add origin httpURL/sshURL                                            -->add url to origin variable (http = configuation not req but un/email and pass req for github login and un ; ssh = email and personal acess token required for clone pull push/configuration req but un/email pass not req
 git push origin branchName                                                      -->Push the  localRepo branchName  to githubRepo  same branchName(CREATE BRANCH ON GITHUB --GUI)
-git clone  httpURL(config key not needed)/sshUrl(configure ssh key)             --> Pull  from githubRepo master branch   to localRepo master branch
+git clone  httpURL/sshUrl                                                       --> Pull  from githubRepo master branch   to localRepo master branch(http  same as abobe ; ssh = same as above)
 git pull origin branchName                                                      --> Pull  from githubRepo brancName  to localRepo  same branchName (CREATE BRANCH ON LOCAL --git branch bn) 
 */
 
@@ -133,23 +140,23 @@ git pull origin branchName                                                      
 /*
 a.Configure git, configure ssh keys
 configure git (only once)
-configure ssh keys(only if you use ssh keys)
+configure http/ssh keys(only once)
 
 
 b.Pull from github
-git clone https://gitlab.com/FlairLabs/Clients/idfy/live-desk/live-desk-listener.git OR git clone https://prasann.flairlabs:rJXEUpzjCG6-FAN4xuXF@gitlab.idfy.com/code/profiles-gateway/pg-api.git
-cd live-desk-listener                                                                                     <username>:<acess token>(when you open to pull you see generate acess token you can easily tick all boxes and generate it)                                         
-git checkout -b branchName  (-b for creating a new branch 1st time)   
-git remote add origin httplink  (only once)
+git clone httpURL/SsshURL        (http  same as abobe ; ssh = same as above)                                           
+cd live-desk-listener                                                                                                                    
+git checkout -b branchName       (-b for creating a new branch 1st time)   
+git remote add origin httplink   (only once)
 git pull origin branchName
 
 c.Push on github
-git init         (only once)
-touch gitignore  (only once)   
-git checkout -b branchName  (-b for creating a new branch 1st time)             
+git init                        (only once)
+touch gitignore                 (only once)   
+git checkout -b branchName      (-b for creating a new branch 1st time)             
 git add  .
 git commit -m "Initial commit" 
-git remote add origin sshLink  (only once)
+git remote add origin http/ssh (http  same as abobe ; ssh = same as above)  (only once)
 git push origin branchName
 
 
