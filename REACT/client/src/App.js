@@ -155,8 +155,6 @@ import memories from './images/memories.png';
 /* #region Main */
 //fnName = (props) =>{   
     
-   
-    
     //USESTATE() :data of component
     /*
     const [count, setCount] = useState(0);        -->create state  where key is count value with defaultvalue 0 and setcount() is a fn to update count (import from 'react')
@@ -167,14 +165,14 @@ import memories from './images/memories.png';
     //USESTYLES():styles of component
     /*
     const classes = useStyles();                -->create styles (import from module 'styles.js' )
-    classes.styleName ; {classes.styleName}     -->use styles in fn,jsx
+    classes.styleName ;                          -->use styles 
     */
     
  
     //USEDISPATCH() :dispatches action to redux store
     /*
     const dispatch = useDispatch();                  -->create dispatch(import fro module 'react-redux')
-    dispatch(getPosts()); {dispatch(getPosts())}     -->use dispatch which dispatches an action to redux store
+    dispatch(getPosts());                             -->use dispatch which dispatches an action to redux store
 
     */
 
@@ -186,73 +184,62 @@ import memories from './images/memories.png';
      */
 
 
-
     //USEEFFECT()
     /*  
                                                                    -->create dispatch(import fro module 'react')
     useEffect(() => {code}}, [varName1/fnName1, varName2/fnName2]); -->use useEffect() for performing lifecycle hooks
                                                                      useEffect(fn)                        =fn called on componentDidMount() + componentWillUmmount() 
                                                                      useEffect(fn,[statevar1,statevar2])  =fn called on componentDidMount() + componentWIllUmmount() + componentDidUpdate() for any 1 of the variable in dependency array
-
-                                                                        
-
+                                                                      
      */
-
 
     //METHOD()
     /*
     const fnNmme = async (params) => {}            -->create arrow fn
-    fnName(arg)/fnName; {fnName(arg)/fnName}       -->use aarrow fn  inside fn , jsx                     
+    fnName(arg)/fnName;                             -->use aarrow fn                   
     */
 
 
     //RETURN : Converts JSX into REACT ELEMENT(VIRTUAL DOM)
     /*
     return(    
-        <Tagname                                        -->Tagname from materialUI ; Tagname can also be child Component
-                attr=value,                              -->attr   and their values
-                style = {{"key1":"val1","key2":"val2"}}  -->styles keys and values                                (style={{"key1":"value1","key2":"value2"}} instead of style="key1":"value1";"key2":"value2")
-                className = {classes.styleName},        -->classes are taken from styles.js of each filename.js  (className instead class)
-                eventName={fnName(arg)/fnName},          -->events  are handled by fns
-                propvarname={fnName(arg)/fnName/varName} -->propvar are given fns or variables of the fn
-         </Tagname>                                         propvar are passed to childComponent and are caught function arguement of child component
-                                                           (NOTE:key="uniqueProperty" is not considered a value and not passed from parent as it is used to uniquely identify values in dynamic for  
-                                                            Eg:<div>{count.map((name)=>{<Component1 key=name.id ,value={this.state.count}})  
+          JSX
+    );                           
+    */
+
+    //JSX
+    /*
+    <Tagname                                     -->Tagname from materialUI ; Tagname can also be child Component
+        attr=value,                              -->attr   and their values
+        style = {{"key1":"val1","key2":"val2"}}  -->styles keys and values                                (style={{"key1":"value1","key2":"value2"}} instead of style="key1":"value1";"key2":"value2")
+        className = {classes.styleName},         -->classes are taken from styles.js of each filename.js  (className instead class)
+        eventName={fnName(arg)/fnName},          -->events  are handled by fns
+        propvarname={fnName(arg)/fnName/varName} -->propvar are given fns or variables of the fn
+    </Tagname>                                         propvar are passed to childComponent and are caught function arguement of child component
+                                                      (NOTE:key="uniqueProperty" is not considered a value and not passed from parent as it is used to uniquely identify values in dynamic for  
+                                                      Eg:<div>{count.map((name)=>{<Component1 key=name.id ,value={this.state.count}})  
 
 
-        {varName/fnName(arg)/fnName}                              -->using varname, fnName dynamically in JSX
-        <ul>{names.map(name =><li key=name>{name}</li> )}<ul>     -->using for loop dynamically(JSX is not a template hence we dont have syntax for "for loop" hence we have to use array)
-                                                                    <ul>{names}</ul> :<ul></ul> is a jsx exp insode which you use names array dynamically
-                                                                    <li>{name}</li>  :<li></li> is a jsx exp insode which you use name element of array dynamically
-                                                                    key =name        :the elements of array taken here must be unique so you must provide unique property to key
-                                                                                    EG : in our case all the name in names arr are unique hence key=name
-                                                                                        if names arr was like [{id:1,}{id:2,}] then you would do key=name.id
-        {name.length === 0 && "This is empty"}                     -->using if dynamically(JSX is not a template hence we dont have syntax for if hence we use && || )  
-                                                                      if condition used as a first operand  if condition op used as a second operand 
-                                                                      so both must be truthy  
+    {varName/fnName(arg)/fnName}                              -->using varname, fnName dynamically in JSX
+    <ul>{names.map(name =><li key=name>{name}</li> )}<ul>     -->using for loop dynamically(JSX is not a template hence we dont have syntax for "for loop" hence we have to use array)
+                                                                <ul>{names}</ul> :<ul></ul> is a jsx exp insode which you use names array dynamically
+                                                                <li>{name}</li>  :<li></li> is a jsx exp insode which you use name element of array dynamically
+                                                                key =name        :the elements of array taken here must be unique so you must provide unique property to key
+                                                                                EG : in our case all the name in names arr are unique hence key=name
+                                                                                    if names arr was like [{id:1,}{id:2,}] then you would do key=name.id
+    {name.length === 0 && "This is empty"}                     -->using if dynamically(JSX is not a template hence we dont have syntax for if hence we use && || )  
+                                                                  if condition used as a first operand  if condition op used as a second operand 
+                                                                  so both must be truthy  
 
         
-    );
+
     EG:
     <Form currentId={currentId} setCurrentId={setCurrentId} />                               -->Form is child Component ;currentId prop is given currentId state var ; setCurrentId prop is given  setCurrentId function
                                                                                                 In components/Form/Form.js const Form = ({ currentId, setCurrentId }) currentId,setCurrentId are collected
     <Typography className={classes.heading} variant="h2" align="center">Memories</Typography> -->Typography is a tag from material UI ; classNmae is given {classes.heading} ;variant align  attributes are given values
     <Button variant="contained" color="secondary" size="small" onClick={clear}>Clear</Button> -->Button is a tag from material UI ;variant color size  attributes are given values; onclick event os given clear function
 
-
-
-
-
-                                        
-
-
     */
-
-
-
-
-    
-
 
 //} 
 /* #endregion */

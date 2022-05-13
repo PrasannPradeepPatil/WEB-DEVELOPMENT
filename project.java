@@ -89,39 +89,7 @@ Add "chrome postman" to  chrome extension
 **WINDOWS HAVE ONLY MONGOD AND MONGO COMMAND SYSTEMCTL ARE FOR LINUX
 */
 
-//CREATE CLIENT AND RUN(WINDOWS(WITHOUT SUDO) , LINUX(WITH SUDO))
-/*
-//CREATE CLIENT
->sudo npm -g uninstall create-react-app    -->uninstall global package  "create-react-app" as global package no longer supported  
->sudo npx create-react-app client          -->installs package "create-react-app version latest" and create a templat called "client"(Node >= 10.16 and npm >= 5.6 )
->sudo chmod -R 777 client                  -->allows all privelages to client folder(linux)
->cd client
->sudo npm install                     -->install package.json dependencies  locally
->sudo npm install axios               -->install react dependancies locally
->sudo npm install moment 
->sudo npm install react-file-base64 
->sudo npm install redux-thunk
->sudo npm install react-redux
->sudo npm install @material-ui/core
->sudo npm install @material-ui/icons
->sudo npm install dotenv                -->install env var dependency locally 
 
-
-//RUN CLIENT
->cd client
->>sudo npx kill-port 3001 -->kill the port if already in use for client
->sudo npm start   -->run client at http://127.0.0.1:3001 ( server runs at 3000,client runs at 3000 so 1st run server and then run client ;because client  asks to run at other server and  runs at 3001)
-                    package.json
-                      "scripts": {                               
-                        "start": "react-scripts start",  -->npm start = "react-scripts start" 
-                        "build": "react-scripts build",
-                        "test": "react-scripts test",
-                        "eject": "react-scripts eject"
-                      },
-
-
-
-*/
 
 
 
