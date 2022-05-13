@@ -101,6 +101,23 @@ app.use(function(err, req, res, next) {  // error handler
 
 //CONNECT  MONGODB TO SERVER(ATLAS/COMPASS)
 /* #region Main */ 
+//CONNECT MONGODB TO SERVER(ATLAS AND COMPASS)
+/*
+connectmongodb to server  --> https://www.youtube.com/watch?v=ngc9gnGgUdA&t=522s  :10:30 TO 13:00
+1.Gp tp mongoDB atlas
+2.Click on create a cluster/database and choose shared cluster(Free version)
+3.Give username(prasann) and pass(prasann123)
+  In Ip adress add your current IP adress
+4.Go back to home page , click connect to application cluster and take the URL
+
+(184.188.101.162/32)
+
+
+
+connect compass to mongodb  -->mongod -->start mongodb server at 127.0.0.1:27107
+                              In Compass Connect ->ConnectTo ->Connection string = mongodb://127.0.0.1:27107 --> connect compass to mongoDB
+
+*/
 //CONNECT  MONGODB TO SERVER(ATLAS)
 /*
 const CONNECTION_URL = 'connection url received from atlas'; (connect to atlas using the link given in ATLAS below)
@@ -112,15 +129,8 @@ mongoose.connect(CONNECTION_URL, { useNewUrlParser: true, useUnifiedTopology: tr
 mongoose.set('useFindAndModify', false);
 */
 
-//ATLAS :visual view of DB
-/*
-connectmongodb to server  --> https://www.youtube.com/watch?v=ngc9gnGgUdA&t=522s  :10:30 TO 13:00
-*/
-//COMPASS :visual view of DB
-/*
-connect compass to mongodb  -->  >mongod -->start mongodb server at 127.0.0.1:27107
-                                  In Compass Connect ->ConnectTo ->Connection string = mongodb://127.0.0.1:27107 --> connect compass to mongoDB
-*/
+
+
 
 //MONGODB SHELL:Shell view of DB:-https://gist.github.com/bradtraversy/f407d642bdc3b31681bc7e56d95485b6
 /*
