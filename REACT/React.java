@@ -50,7 +50,7 @@ SET ENV VAR -->No Need
 */
 
 
-//STRUCTURE 
+//STRUCTURE-I(client-I)
 /*
 client 
   |-node_modules            -->external modules                 
@@ -108,33 +108,20 @@ client
   provide app.js with redux store                                        
 
 
-  EG: Consider creating post on prwssing sub,it button
-  component/Forms/Forms.js ka handlesubmit dispatch() createPost(postData)   in redux store;
-  actions/posts.js ka createPost() calls api ka createPost() and awaits for reaponse
-  api/index.js ka createpos() passes post on url
-  app.js sends the url to route and connects to mongodb
-  routes/posts.js ka post() calls controller ka createPost() method on the url
-  controller/posts.js ka createPost() method creates post in mongodb and returns new post
-  api/index.js returns the  post
-  actions/posts.js receives the  post and and dispatch the  post on payload with action type CREATE on redux store
-  reducers/posts.js reduces based on action type CREATE reduce the list by concatenating action payload
-  reducers/index.js combines all reducers and puts them on redux store
-  component/Forms/Forms.js ka  useEffect() changes the state 
-  index.js renders app.js ka react element(virtual dom) inside public index.html ka html element(real DOM); and provodes app.js with redux store
-  
-
-*/
-                                                                                                               
-
-
-//package.json
-/*
- "scripts": {                               
+  package.json
+   "scripts": {                               
     "start": "react-scripts start",  -->npm start = "react-scripts start" 
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
-    },
+  },
+
+  
+*/
+                                                                                                               
+//STRUCTIRE-II(client-II)
+/*
 
 
 */
+
