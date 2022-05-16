@@ -7,8 +7,8 @@ import * as api from '../api/index.js';
 /*
 export const fnName = (arg) => async (dispatch) => {
   try {
-    const { data } = await api.fnNme(arg);            -->calls  api fns  and await for response
-    dispatch({ type: actionTypeVar, payload: data }); -->receive res from api fns and  and dispatch response with actionType on redux store) 
+    const { data } = await api.fnNme(arg);            -->awaits api respones 
+    dispatch({ type: actionTypeVar, payload: data }); -->dispatches data with actionType  to reduxStore  
   } 
   catch (error) {
     console.log(error.message);

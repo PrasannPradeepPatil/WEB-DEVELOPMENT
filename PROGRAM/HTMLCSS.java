@@ -1,3 +1,16 @@
+//INSTALL AND RUN
+/*
+//WINDOWS
+INSTALL:Install extension Live server 
+RUN: Right click on .html file and open with live server
+
+//LINIX
+INSTALL:Install extension Live server 
+RUN: Right click on .html file and open with live server
+*/
+
+
+
 //STRUCTURE
 /*
 FILENAME.CSS
@@ -13,10 +26,10 @@ FILENAME.HTML(Create Boilerplace code in VSCode by ! + enter )
             <headsubtag attr = value> </headsubtag>   	                     
     </head>                                                                                                                                                                                                                                     
     <body>                                              
-               <script src = “./filename.js”>  </script>            --> Link JS   
-               <tagname id="idName", class="className" >            -->LINK CSS(particular css selctor will be applied to this tag)   
-              OR <tagname style = "key1:val1";key2 :val2”>  
-              OR <style>CSS-CODE</style>      
+               <script src = “./filename.js”>  </script>            --> Link JS
+                <tagname style = "key1:val1";key2 :val2”>            -->InLine styling 
+               <tagname id="idName", class="className" >               External styling(CSS fILE OR BootStrap)
+
               <bodysubtag attr = value> </bodysubtag>                     
      </body>                                                                                                                
 </html>
@@ -67,17 +80,6 @@ render(){
 
 
 
-*/
-
-//INSTALL AND RUN
-/*
-//WINDOWS
-INSTALL:Install extension Live server 
-RUN: Right click on .html file and open with live server
-
-//LINIX
-INSTALL:Install extension Live server 
-RUN: Right click on .html file and open with live server
 */
 
 

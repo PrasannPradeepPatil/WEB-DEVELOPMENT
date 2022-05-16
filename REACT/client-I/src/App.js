@@ -163,65 +163,66 @@ import memories from './images/memories.png';
     setCount(count+1)                             -->update state
     */
 
-    //USESTYLES():styles of component
+ 
+    //USEDISPATCH();USESELECTOR() :Sending and Receiving data for component
     /*
-    const classes = useStyles();                -->create styles (import from module 'styles.js' )
-    classes.styleName ;                          -->use styles 
+    const dispatch = useDispatch();                 -->calls action fn with  UIKaData 
+    dispatch(fnName(UIKaData)); 
+    
+    const post = useSelector((state) => console.log(state.posts)); -->calls state in reduxStore  
     */
     
- 
-    //USEDISPATCH() :dispatches action to redux store
-    /*
-    const dispatch = useDispatch();                  -->create dispatch(import fro module 'react-redux')
-    dispatch(fnName());                             -->use dispatch dispatches an actionObject
 
-    */
-
-    //USESELECTOR() :get action from the redux store
-    /*
-    const post = useSelector((state) => console.log(state.posts)); -->useSelector gets action from redux store
-                                                                      state = variable used for combinin reducers in reducers/index.js
-                                                                      state.posts = array returned by reducers  in reducers/posts.js
-     */
-
-
-    //USEEFFECT()
+    //USEEFFECT():Hooks For Component
     /*  
-                                                                   -->create dispatch(import fro module 'react')
+
     useEffect(() => {code}}, [varName1/fnName1, varName2/fnName2]); -->use useEffect() for performing lifecycle hooks
-                                                                     useEffect(fn)                        =fn called on componentDidMount() + componentWillUmmount() 
-                                                                     useEffect(fn,[statevar1,statevar2])  =fn called on componentDidMount() + componentWIllUmmount() + componentDidUpdate() for any 1 of the variable in dependency array
+                                                                     useEffect(fn)                        =fn called on when component mounts and unmounts 
+                                                                     useEffect(fn,[statevar1,statevar2])  =fn called on mounts and unmounts and when componnet updates due to updation of any 1 state in dependency array
                                                                       
      */
 
-    //METHOD()
+
+    //METHOD():Method for components used in JSX,
     /*
     const fnNmme = async (params) => {}            -->create arrow fn
     fnName(arg)/fnName;                             -->use aarrow fn                   
     */
 
 
-    //RETURN : Converts JSX into REACT ELEMENT(VIRTUAL DOM)
+    //USESTYLES():styles of component
+    /*
+    const classes = useStyles();                -->create styles (import from module 'styles.js' )
+    classes.styleName ;                          -->use styles 
+    */
+    
+    //RETURN JSX: Converts JSX into REACT ELEMENT(VIRTUAL DOM)
     /*
     return(    
-          JSX
-    );                           
-    */
+      JSX
+    ); 
 
-    //JSX
-    /*
-    <Tagname                                     -->Tagname from materialUI ; Tagname can also be child Component
-        attr=value,                              -->attr   and their values
-        style = {{"key1":"val1","key2":"val2"}}  -->styles keys and values                                (style={{"key1":"value1","key2":"value2"}} instead of style="key1":"value1";"key2":"value2")
-        className = {classes.styleName},         -->classes are taken from styles.js of each filename.js  (className instead class)
-        eventName={fnName(arg)/fnName},          -->events  are handled by fns
+    TAG IN JSX
+    <Tagname                                     -->TagName is HTML tag OR MaterialUI tag
+        attr=value,                              -->attributes for tagname
+        style/sx ={{"key1":"val1","key2":"val2"}}-->inline styling  (using your own styles)                    
+        className = {classes.styleName},         -->External styling(using filename.css OR styles.js OR BootStrap styles)
+        eventName={()=>fnName(arg)/fnName},      -->events  are handled by fns(Eg onclick)
         propvarname={fnName(arg)/fnName/varName} -->propvar are given fns or variables of the fn
     </Tagname>                                         propvar are passed to childComponent and are caught function arguement of child component
                                                       (NOTE:key="uniqueProperty" is not considered a value and not passed from parent as it is used to uniquely identify values in dynamic for  
                                                       Eg:<div>{count.map((name)=>{<Component1 key=name.id ,value={this.state.count}})  
 
-
+    VARIABLES IN JSX
     {varName/fnName(arg)/fnName}                              -->using varname, fnName dynamically in JSX
+
+    IF IN JSX
+
+    FOR IN JSX
+
+
+
+
     <ul>{names.map(name =><li key=name>{name}</li> )}<ul>     -->using for loop dynamically(JSX is not a template hence we dont have syntax for "for loop" hence we have to use array)
                                                                 <ul>{names}</ul> :<ul></ul> is a jsx exp insode which you use names array dynamically
                                                                 <li>{name}</li>  :<li></li> is a jsx exp insode which you use name element of array dynamically

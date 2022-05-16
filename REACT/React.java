@@ -61,14 +61,14 @@ client
     |-manifest.json         -->tells browser about app and how it should be installed on mobile or desktop   
     |-index.html            
   |-src      
-    |-api(custom made folder)        
+    |-api(custom made folder)       -->explainde below     
       |-posts.js
-    |-actions(custom made folder)    
+    |-actions(custom made folder)   -->explainde below    
       |-posts.js
-    |-reducers(custom made folder)   
+    |-reducers(custom made folder)  -->explainde below    
       |-posts.js                         
       |-index.js                               
-    |-component(custom made folder)  
+    |-component(custom made folder) -->explainde below  
        |-index.js                  -->Holds the componentName for different routes      
        |-FORM                        
           |-form.js,styles.js
@@ -82,7 +82,9 @@ client
     |- .git                        --> github file
     |- .gitignore                  --> github file
 
-                                                                                                          
+  index.js,index,css
+  hold app.js(virtual dom) in index.js(actual dom)  
+  and provide app.js wit redix store                                                                                                  
   App.js,styles.js,App.css(MAIN COMPONENT )    -------------------->actions,reducer           ------------------------------------->api
       |                                        <-------------------                           <------------------------------------       
  _____|______________________________                              ACTIONS:                                                         send UIKaData on URL                                               
@@ -97,7 +99,7 @@ client
                                                                       return newState       
                                                                   
                                                                    export const reducers = combineReducers({
-                                                                     state1:newState1,                          :update the state to newState in reduxStore
+                                                                     state1:newState1,                          :update the state in reduxStore to newState returned by action
                                                                      state2:newState2,                            |
                                                                    }                                              |
                                                                   );                                              |
@@ -108,11 +110,8 @@ client
                                                                                                                     {sorce:,dest:}]        which is an array of objects
                                                                                                           }                                 formed by search box
 
-    |
-  index.js,index.css,public/index.html(RENDER,REDUX STORE)
-  Render:converts REACT ELEMENT(VIRTUAL DOM) returned by app.js
-        into HTML ELEMENT(ACTUAL DOM) of public/index.html     
-  Redux Store:Provide app.js with redux store
+    
+
   
 
 
@@ -124,13 +123,10 @@ useparams() to get ID
 
 
 //JSX 
-{{}} in JSX
-
 If , for
 
-Styling
-style/sx = {}
-useStyle();
+PROPS
+
 */
                                                                                                                
 

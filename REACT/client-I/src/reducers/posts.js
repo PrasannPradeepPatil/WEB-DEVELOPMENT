@@ -7,8 +7,8 @@ const LIKE = 'LIKE';
 //REDUCERS
 /* #region Main */
 /*
-const reducer = (posts = [], action) => {   --> Change the state(posts) to newState(newPosts) 
-  let newPosts = []                             Based on actionType
+const reducer = (posts = [], action) => {   --> Based on actionType create newState(newPosts) 
+  let newPosts = []                             
   switch (action.type) {                       
     case FETCH_ALL:
       newPosts =  action.payload;
@@ -33,7 +33,7 @@ export default reducer;
 /* #endregion */
 
 
-const reducer = (posts = [], action) => {
+export default (posts = [], action) => {
   let newPosts = []
   switch (action.type) {
     case FETCH_ALL:
@@ -53,4 +53,4 @@ const reducer = (posts = [], action) => {
   }
 };
 
-export default reducer;
+
