@@ -9,4 +9,4 @@ import posts from './posts';
 /*
 export const reducers = combineReducers({ posts });-- combine all the reducers and put them in redux store
  */
-export const reducers = combineReducers({ posts });
+export const reducers = combineReducers({ posts:posts });

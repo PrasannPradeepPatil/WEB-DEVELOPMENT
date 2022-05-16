@@ -68,14 +68,14 @@ client
     |-reducers(custom made folder)   
       |-posts.js                         
       |-index.js                               
-    |-component(custom made folder)       
+    |-component(custom made folder)  
+       |-index.js                  -->Holds the componentName for different routes      
        |-FORM                        
           |-form.js,styles.js
        |-POSTS                      
          |-POST                         
            |-post.js,styles.js
-         |-posts.js,styles.js 
-       |-index.js                  -->Holds the componentName for different routes                               
+         |-posts.js,styles.js                               
     |-app.js, styles.js,app.css                        
     |-index.js,index.css         
     |- .env                        -->environment variable file
@@ -83,30 +83,54 @@ client
     |- .gitignore                  --> github file
 
                                                                                                           
-  App.js,styles.js,App.css(MAIN COMPONENT )    -------------------------------->actions --------------------->api---------------------->  
-      |                                                                         (API FN CALL:                 (API FN SEND:                         
- _____|______________________________                                            calls api fns                send data on route                                               
- |                                   |                                           and awaits for response)     for CRUD operations)                                                                                                          
- Posts.js,styles.js(POSTS COMP)     Form.js,styles.js(FORM COMPONENT)                                                                                               
-  |                                                                                                                                                                                                                   
- Post.js,styles.js(POST COMPONENT)                                                                                                                                                                                    
- (COMPONENTS)                                                                                                                                                                                                         
-                                                                                                                                                                                                                      
-  App.js,"" same as above <------------------ -reducers<------------------------actions<----------------------api<------------------------         
-  (COMPONENTS)                                 (REDUCERS:                       (API FN RESPONSE:                (API FN RECEIVE:           
-    |                                           based on action type            receive response from api and    receive data on route      
-    |                                           reduce action(action            dispatch res on payload with     for CRUD operation)       
-    |                                           payload) and put it on list     action type on redux store)
-    |                                           COMBINERS:
-    |                                           combine all the reducers and
-    |                                           put the on redux store)
+  App.js,styles.js,App.css(MAIN COMPONENT )    -------------------->actions,reducer           ------------------------------------->api
+      |                                        <-------------------                           <------------------------------------       
+ _____|______________________________                              ACTIONS:                                                         send UIKaData on URL                                               
+ |                                   |                             fnAction(UIKaData){                                              receive data on URL                                                                
+ Posts.js,styles.js Form.js,styles.js                                const data = await api.fn(UIKaData)     :awaits api respones 
+  (POSTS COMP)      (FORM COMPONENT)                                 dispatch({type:'acttype',payload:data}) :dispatches data with actionType  to reduxStore                                                                                                                                                                              
+                                                                                                                                                                                                               
+ useDispatch(fnAction(UIKaData)):calls action fn with  UIKaData    REDUCERS                                                                                                                                                 
+ useSelector((state)=>{state.state1}):calls state in reduxStore    fnReducer(state,actionType){              :based on actionType   
+                                                                      if(actionType.type = ''){newState =}    create a  newState
+                                                                      elseif(actionType.type = ''){newState =}
+                                                                      return newState       
+                                                                  
+                                                                   export const reducers = combineReducers({
+                                                                     state1:newState1,                          :update the state to newState in reduxStore
+                                                                     state2:newState2,                            |
+                                                                   }                                              |
+                                                                  );                                              |
+
+                                                                                                        reduxStore stores all states as follows 
+                                                                                                        {count:1,                        --count is a state
+                                                                                                         search:[{source:"",dest:""},       searchBox is a state
+                                                                                                                    {sorce:,dest:}]        which is an array of objects
+                                                                                                          }                                 formed by search box
+
     |
   index.js,index.css,public/index.html(RENDER,REDUX STORE)
-  RENDER:
-  converts REACT ELEMENT(VIRTUAL DOM) returned by app.js
-  into HTML ELEMENT(ACTUAL DOM) of public/index.html     
-  REDUX STORE:
-  provide app.js with redux store                                          
+  Render:converts REACT ELEMENT(VIRTUAL DOM) returned by app.js
+        into HTML ELEMENT(ACTUAL DOM) of public/index.html     
+  Redux Store:Provide app.js with redux store
+  
+
+
+
+//ROUTING ;
+index.js for routes,
+window = ''  OR     <Link to={"/post/" + item.PostsUId} --to go to a route in component 
+useparams() to get ID
+
+
+//JSX 
+{{}} in JSX
+
+If , for
+
+Styling
+style/sx = {}
+useStyle();
 */
                                                                                                                
 

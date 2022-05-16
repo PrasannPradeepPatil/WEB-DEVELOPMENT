@@ -7,41 +7,50 @@ const LIKE = 'LIKE';
 //REDUCERS
 /* #region Main */
 /*
-export default (posts = [], action) => {
-  switch (action.type) {
-    case FETCH_ALL:                          --> based on action type   ;reduce action(action paylload) payload and put it on a list
-      return action.payload;
+const reducer = (posts = [], action) => {   --> Change the state(posts) to newState(newPosts) 
+  let newPosts = []                             Based on actionType
+  switch (action.type) {                       
+    case FETCH_ALL:
+      newPosts =  action.payload;
     case LIKE:
-      return posts.map((post) => (post._id === action.payload._id ? action.payload : post));
+      newPosts =  posts.map((post) => (post._id === action.payload._id ? action.payload : post));
     case CREATE:
-      return [...posts, action.payload];
+      newPosts =  [...posts, action.payload];
     case UPDATE:
-      return posts.map((post) => (post._id === action.payload._id ? action.payload : post));
+      newPosts =  posts.map((post) => (post._id === action.payload._id ? action.payload : post));
     case DELETE:
-      return posts.filter((post) => post._id !== action.payload);
+      newPosts =  posts.filter((post) => post._id !== action.payload);
     default:
-      return posts;
+      return newPosts;
+
+    return newPosts;
   }
 };
+
+export default reducer;
+
 */
 /* #endregion */
 
 
-
-export default (posts = [], action) => {
+const reducer = (posts = [], action) => {
+  let newPosts = []
   switch (action.type) {
     case FETCH_ALL:
-      return action.payload;
+      newPosts =  action.payload;
     case LIKE:
-      return posts.map((post) => (post._id === action.payload._id ? action.payload : post));
+      newPosts =  posts.map((post) => (post._id === action.payload._id ? action.payload : post));
     case CREATE:
-      return [...posts, action.payload];
+      newPosts =  [...posts, action.payload];
     case UPDATE:
-      return posts.map((post) => (post._id === action.payload._id ? action.payload : post));
+      newPosts =  posts.map((post) => (post._id === action.payload._id ? action.payload : post));
     case DELETE:
-      return posts.filter((post) => post._id !== action.payload);
+      newPosts =  posts.filter((post) => post._id !== action.payload);
     default:
-      return posts;
+      newPosts =  newPosts;
+
+    return newPosts;
   }
 };
 
+export default reducer;

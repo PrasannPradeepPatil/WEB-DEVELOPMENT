@@ -315,8 +315,6 @@ this in method  -->this = Object_In_Which_Method_Declared {}
                                         } );
                                     }
 */
-
-
 //CHANGING THIS
 /*
 1.fnname(arg1 , arg2)                                                           --> In fn this = whatever it is 
@@ -451,7 +449,7 @@ function((exports , require , module, filename , __filename, __dirname)){   --> 
 //IMPORT EXPORT
 /* #region Main */
 
-//IMPORT , EXPORT (ES5 - NODEJS)
+//IMPORT , EXPORT (ES5 - BROWSER)
 /*
 //SINLE(ANY  FN)                           
 module1.js                                module2.js

@@ -151,6 +151,7 @@ import memories from './images/memories.png';
     //}            
 
 /* #endregion */
+
 //FUNCTION COMPONENT
 /* #region Main */
 //fnName = (props) =>{   
@@ -158,8 +159,8 @@ import memories from './images/memories.png';
     //USESTATE() :data of component
     /*
     const [count, setCount] = useState(0);        -->create state  where key is count value with defaultvalue 0 and setcount() is a fn to update count (import from 'react')
-    count ,{count}                                -->use state  in fn ,jsx                    
-    setCount(count+1),{setcount(count+1)}         -->update state in fn ,jsx 
+    count ,{count}                                -->use state                 
+    setCount(count+1)                             -->update state
     */
 
     //USESTYLES():styles of component
@@ -172,7 +173,7 @@ import memories from './images/memories.png';
     //USEDISPATCH() :dispatches action to redux store
     /*
     const dispatch = useDispatch();                  -->create dispatch(import fro module 'react-redux')
-    dispatch(getPosts());                             -->use dispatch which dispatches an action to redux store
+    dispatch(fnName());                             -->use dispatch dispatches an actionObject
 
     */
 
@@ -278,18 +279,3 @@ const App = () => {
 
 //EXPORT  
 export default App;
-
-//ROUTING ;
-/*index.js for routes,
-window = ''  OR     <Link to={"/post/" + item.PostsUId} --to go to a route in component 
-useparams() to get ID
-*/
-
-//JSX 
-/*
-If , for
-
-Styling
-style/sx = {}
-useStyle();
-*/
