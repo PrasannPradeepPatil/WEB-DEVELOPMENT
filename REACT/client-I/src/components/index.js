@@ -21,7 +21,7 @@ const Components = () => {
 };
 
 */
-const Components = () => {
+export const  Components = () => {
     return (
         <Router>
             <Routes>
@@ -32,4 +32,3 @@ const Components = () => {
     );
 };
 
-export default Components;

@@ -82,9 +82,3 @@ for baseURL/endpt perform fn,custom fn,send to routes                    for bas
   
                                
 */
-
-//REMAINING
-/*
-Connect DB to server and to BE
-
-*/

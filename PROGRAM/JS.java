@@ -499,21 +499,81 @@ export const fnName1  = async() =>{}        fnName1(arg)/fnName1 if no params us
 //FUNCTION DECLARATION(FUNCTION IS A OBJECT WHICH RETURNS A OBJECT)
 /* #region Main */
 
-
-//NAMED/SHORT/EXPRESSION/ARROW  FN
+//DECLARING AND CALLING FN
 /*
-//DECLARING FN
-async function fnName(params){}                       -->nrmal fn (USED IN FN DECLARATION)  --HOISTED
-async fnName(){}                                      -->short fn (USED INSIDE OBJ/CLASS)   --HOISTED
-let fnName = async function fnNameOptional(params){}  -->exprn fn (USED INSIDE FN)          --NOT HOISTED
-let fnName = async(params) =>{}                        -->arrw fn (USED INSIDE FN)          --NOT HOISTED
-                                                                EG:Look in FN,CLASSES
-                                                                 MERNPROJECT1 KA SERVER,CLIENT 
-//CALLING FN
-fnName(arg)/fnName if no params used for exp or arrow fn
+//NORMAL FN(HOISTED TO TOP)
+async function fnName(param){}                      -->Declare fn ; call fn
+fnName(arg);
+
+//AFRROW FN(NOT HOISTED TO TOP)
+let fnName = async(params) =>{}                     -->Declare fn which returns a fn stored in a variable; call variable
+fnName(arg)
+
+//EXPRESSION FN(NOT HOISTED TO TOP)
+let fnName = async function fnNameOptional(param){} -->Declare fn which returns a fn stored in a variable; call variable
+fnName(arg)
+
+
+
+
+EG 1(NORMAL FN):
+function sum1(a,b){       -->Declare Fn
+    return a+ b;
+}
+const obj = {
+  name:"pras",
+  sum : sum1(1,2),      -->Call Fn
+};
+console.log(obj.sum);
+
+
+
+EG 2(ARROW FN):
+a.
+let  sum1 = (a,b) =>{return a+b;}    -->Declare fn which returns a fn stored in variable(sum1)
+const obj = {
+  name:"pras",
+  sum : sum1(1,2),                  -->Call variable(sum1(1,2))
+};
+console.log(obj.sum)
+
+b.
+const obj = {
+  name:"pras",
+  sum : (a,b) =>{return a+b;},        -->Declare fn which returns a fn stored in variable(sum)
+};
+console.log(obj.sum(1,2));            -->Call variable(sum(1,2))
+                                         
+
+c.
+function sum(data, sum) {         -->Declare Fn   
+  console.log("get data ", data, "From Database");
+  let a = sum(1, 2);              -->Call variable(sum(1,2))
+  console.log("Sum is ",a);
+
+}
+sum("1",                          -->Call Fn
+     (a, b) => { return a + b;}  -->Declare Fn which returns a fn stored in variable(sum)
+    )                              EG:Look in ASYNCHRONOUS FN (CALLBACK)
+
+d.
+
+
+
+EG 3(EXPRESSION FN):
+a,b,c, -->Same as arrow fn just replace arrow fn with expression fn
+
+
+
+//REMAINING
+1.React JS code
+2.Node JS Code
+3.THEN , PROMISE JS CODE
+4.THIS vagere
 
 
 */
+
 
 //SYNCHRONOUS FN
 /* 
@@ -530,29 +590,28 @@ Console.log(“code after calling the synchronous fn ”)
 //ASYNCHRONOUS FN (CALLBACK)
 /*
 //ASYNCHRONOUS FUNCTION THAT TAKES CALLBACK 
-function asyncFnName (id,"callback") {
-          anotherAsyncFn (() => {
-            "callback(arg)" ;  -->calls the callback fn and passes it arguements
-            });
+function asyncFnName (fnArg,callBackFn) {
+    code
+    callBackFn(callBackParam) ;                         -->calls the callback fn and callbackParam = callBackArg 
 }
 
 //USING CALLBACK 
-asyncFnName (1 , ("param")=>{           -->start asyncFN and the code after the asyncFn ; complete asyncFn task  
-            console.log(paramater);        after completion of asyncFn task execute callback fn whose param= arg 
-                });
+asyncFnName (fnArg , (callBackArg)=>{                -->start asyncFN and the code after the asyncFn ; complete asyncFn task  
+            console.log();                              after completion of asyncFn task execute callback fn 
+            });
 
 Console.log(“code after calling the asynchronous fn ”)
-)
 */
+
 
 //ASYNCHRONOUS FN (PROMISET USING THEN-CATCH: THEN/CATCH AND ASYNC/AWAIT DO SAME THING BUT ASYNC/AWAIT MAKES ASYNC CODE LOOK SYNCHRONOUS)
 /*
 //ASYNCHRONOUS FUNCTION THAT RETURNS ROMISE 
 function asyncFnName (id) {
-    return new Promise (("resolve","reject")=>{
+    return new Promise ((resolve,reject)=>{
              anotherAsyncFn (() => {
-                      "resolve"(arg1 ) --> calls the fn inside and passes it parameter
-                      "reject"(arg2)         calls the fn inside catch and passes it parameter 
+                       resolve(arg1 )  --> calls the fn inside then and arg1 = param1
+                       reject(arg2)    -->calls the fn inside catch and arg1 = param2
                       });
       
     });
@@ -943,12 +1002,6 @@ Circle.apply({} , [1,2,3])--> return new Circle(1,2,3); and {} references to thi
 
 
 /* #endregion */
-
-
-
-
-
-
 
 
 //OBJECTS
