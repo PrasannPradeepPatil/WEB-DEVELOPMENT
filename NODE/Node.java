@@ -80,9 +80,11 @@ for baseURL/endpt perform fn,custom fn,send to routes                    for bas
                                                                                                                   perform operation on DB and and send response  
    
   
-
-
                                
 */
 
+//REMAINING
+/*
+Connect DB to server and to BE
 
+*/
