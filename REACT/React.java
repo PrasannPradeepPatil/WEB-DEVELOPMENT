@@ -116,17 +116,6 @@ client
 
 
 
-//ROUTING ;
-index.js for routes,
-window = ''  OR     <Link to={"/post/" + item.PostsUId} --to go to a route in component 
-useparams() to get ID
-
-
-//JSX 
-If , for
-
-PROPS
-
 */
                                                                                                                
 

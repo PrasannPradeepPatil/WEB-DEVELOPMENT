@@ -154,26 +154,8 @@ import memories from './images/memories.png';
 
 //FUNCTION COMPONENT
 /* #region Main */
-//fnName = (props) =>{   
-    
-    //USESTATE() :data of component
-    /*
-    const [count, setCount] = useState(0);        -->create state  where key is count value with defaultvalue 0 and setcount() is a fn to update count (import from 'react')
-    count ,{count}                                -->use state                 
-    setCount(count+1)                             -->update state
-    */
-
- 
-    //USEDISPATCH();USESELECTOR() :Sending and Receiving data for component
-    /*
-    const dispatch = useDispatch();                 -->calls action fn with  UIKaData 
-    dispatch(fnName(UIKaData)); 
-    
-    const post = useSelector((state) => console.log(state.posts)); -->calls state in reduxStore  
-    */
-    
-
-    //USEEFFECT():Hooks For Component
+//fnName = ({dataFromParentComponent}) =>{   
+    //COMPONENT HOOKS
     /*  
 
     useEffect(() => {code}}, [varName1/fnName1, varName2/fnName2]); -->use useEffect() for performing lifecycle hooks
@@ -182,31 +164,105 @@ import memories from './images/memories.png';
                                                                       
      */
 
+    //COMPONENT DATA 
+    /*
+    const [count, setCount] = useState(0);        -->create state  where key is count value with defaultvalue 0 and setcount() is a fn to update count (import from 'react')
+    count ,{count}                                -->use state                 
+    setCount(count+1)                             -->update state
+    */
 
-    //METHOD():Method for components used in JSX,
+    //COMPONENT DATA SENDING RECEIVING TO BACKEND
+    /*
+    const dispatch = useDispatch();                 -->calls action fn with  UIKaData 
+    dispatch(fnName(UIKaData)); 
+    
+    const post = useSelector((state) => console.log(state.posts)); -->calls state in reduxStore  
+    */
+    
+    //COMPONENT DATA SENDING RECEIVING BETWEEN COMPONENTS
+    /*
+    //PARENT TO CHILD
+    const  ParentComponent =()=> {
+      const [name, setName] = useState('Prasann');
+      const [surName, setSurName] = useState('Patil');
+        return (
+          <childComponent name = {name},surName ={surName} >    -->pass data to child component
+        )
+    }
+
+    const childComponent = ({name,surName})=>{      -->receive data in childComponent as props 
+      return (
+          <div>{name}</div>;                       -->Use data in child component 
+        )
+    }
+    export default childComponent;
+
+
+    //CHILD TO PARENT
+    const  ParentComponent =()=> {
+    const [name, setName] = useState('Prasann');
+    return (
+      <childComponent name = {name},setName ={setName} >    -->pass data and setDataFn to child
+      )
+    }
+
+    const childComponent = ({name,surName})=>{              -->receive  data and setDataFn in childComponent as props
+      const [rollNo, setName] = useState('32'); 
+      return (
+        <div onClick={() => setName(rollNo)}></div>;     -->set data using setData fn which can be triggered only inside onClick event 
+        )
+    }
+    export default childComponent;
+
+
+    //BETWEEN COMPONENTS
+    Use Redux store to store states
+
+
+    */
+
+    //COMPONENT ROUTING
+    /*
+    Component.js
+    const handleButtonClick = () => {       --on clicking button go to baseURL/posts ;for baseURL/posts go to component mentioned in index.js inside the components folder
+      window.location = '/posts';             EG:Look in clientii ka Header.js file 
+    };
+
+    return(
+      <button onClick = {()=>{handleButtonClick}>  
+    )
+
+    Component.js
+      return (
+          <CardContent>                       --create a Link for the tag which goes to  baseURL/id ;  baseURL/id  go to component mentioned in index.js inside the components folder    
+            <Link to={"/user/" + item.UserId}>  EG:Look in clientii ka Drafts.js file 
+          <>
+
+    
+
+    */
+    
+
+    //COMPONENT METHODS
     /*
     const fnNmme = async (params) => {}            -->create arrow fn
     fnName(arg)/fnName;                             -->use aarrow fn                   
     */
 
 
-    //USESTYLES():styles of component
-    /*
-    const classes = useStyles();                -->create styles (import from module 'styles.js' )
-    classes.styleName ;                          -->use styles 
-    */
+
     
     //RETURN JSX: Converts JSX into REACT ELEMENT(VIRTUAL DOM)
     /*
     return(    
       JSX
-    ); 
-
-    TAG IN JSX
+    ); |
+       |
+    JSX
     <Tagname                                     -->TagName is HTML tag OR MaterialUI tag
         attr=value,                              -->attributes for tagname
         style/sx ={{"key1":"val1","key2":"val2"}}-->inline styling  (using your own styles)                    
-        className = {classes.styleName},         -->External styling(using filename.css OR styles.js OR BootStrap styles)
+        className = {classes.styleName},         -->External styling(using filename.css/styles.js by importing files OR BootStrap styles by importing bootstrap)
         eventName={()=>fnName(arg)/fnName},      -->events  are handled by fns(Eg onclick)
         propvarname={fnName(arg)/fnName/varName} -->propvar are given fns or variables of the fn
     </Tagname>                                         propvar are passed to childComponent and are caught function arguement of child component
@@ -216,30 +272,22 @@ import memories from './images/memories.png';
     VARIABLES IN JSX
     {varName/fnName(arg)/fnName}                              -->using varname, fnName dynamically in JSX
 
+  
     IF IN JSX
+    {name.length == 0 ?                                    -->if name ka length is 0 then button with colour black
+      <Button color = 'black'></Button>                       else button with colour blue
+      :
+      <Button color = 'blue'></Button>
+    }
+    OR
+    {name.length == 0 && <Button><Button>}             -->if name ka length is 0 is true then only move forward and show button
 
     FOR IN JSX
-
-
-
-
-    <ul>{names.map(name =><li key=name>{name}</li> )}<ul>     -->using for loop dynamically(JSX is not a template hence we dont have syntax for "for loop" hence we have to use array)
-                                                                <ul>{names}</ul> :<ul></ul> is a jsx exp insode which you use names array dynamically
-                                                                <li>{name}</li>  :<li></li> is a jsx exp insode which you use name element of array dynamically
-                                                                key =name        :the elements of array taken here must be unique so you must provide unique property to key
-                                                                                EG : in our case all the name in names arr are unique hence key=name
-                                                                                    if names arr was like [{id:1,}{id:2,}] then you would do key=name.id
-    {name.length === 0 && "This is empty"}                     -->using if dynamically(JSX is not a template hence we dont have syntax for if hence we use && || )  
-                                                                  if condition used as a first operand  if condition op used as a second operand 
-                                                                  so both must be truthy  
-
-        
-
-    EG:
-    <Form currentId={currentId} setCurrentId={setCurrentId} />                               -->Form is child Component ;currentId prop is given currentId state var ; setCurrentId prop is given  setCurrentId function
-                                                                                                In components/Form/Form.js const Form = ({ currentId, setCurrentId }) currentId,setCurrentId are collected
-    <Typography className={classes.heading} variant="h2" align="center">Memories</Typography> -->Typography is a tag from material UI ; classNmae is given {classes.heading} ;variant align  attributes are given values
-    <Button variant="contained" color="secondary" size="small" onClick={clear}>Clear</Button> -->Button is a tag from material UI ;variant color size  attributes are given values; onclick event os given clear function
+    names.map(                                     -->for every name in names show buttons with name 
+      name =>(
+        <Button>name<Button>
+      )
+    )
 
     */
 
