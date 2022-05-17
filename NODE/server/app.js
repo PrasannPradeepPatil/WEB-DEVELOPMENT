@@ -23,11 +23,6 @@ app.set('varName',value);
 
 //USE GLOBAL VAR
 app.get('varName');         
-
-
-
-
-
   
 */
 /* #endregion */
@@ -42,10 +37,7 @@ var express = require('express');           //sudo npm install express --save
 var path = require('path'); 
 var logger = require('morgan');
 
-app.use(logger('dev'));         -->For every endpoint,apply logger() fn
-app.use(express.json());        -->For every endpoint,apply json() fn
-*/
-/* #endregion */
+app.use(logger('dev'));                                     -->For baseURL/everyEndpoint,apply logger() fn
 app.use(express.json({limit:"30mb",extended:true}));         //express.json()     fn parses req body(raw body) into json populates req.body with json ;returns a middleware fn  ; limit sets the limit of req body ;extended allows to choose between parsing req body with the querystring library (when false) or the qs library (when true). 
 app.use(express.urlencoded({limit:"30mb",extended: true }));//express.urlencoded()fn parses req body(encoded)  into json populates req.body with json ;returns a middleware fn  ; limit sets the limit of req body ;extended allows to choose between parsing req body with the querystring library (when false) or the qs library (when true). 
 app.use(express.static(path.join(__dirname, 'public')));   //express.static()     fn serves static file in public folder
@@ -53,14 +45,21 @@ app.use(cookieParser());                                   //cookieParser()     
 app.use(logger('dev'));
 app.use(cors());
 
+*/
+/* #endregion */
+app.use(express.json({limit:"30mb",extended:true}));         
+app.use(express.urlencoded({limit:"30mb",extended: true }));
+app.use(express.static(path.join(__dirname, 'public')));  
+app.use(cookieParser());                                
+app.use(logger('dev'));
+app.use(cors());
+
 
 //ROUTES MIDDLEWARE FNS(APPLIED ON GIVEN END POINTS)
 /* #region Main */
 /*
-
-
-var postsRouter = require('./routes/posts');  
-app.use('/posts', postsRouter);                   -->For endpoint /posts;apply the functions inside routes/posts.js  and inside posts.js  / =  /user  
+var postsRouter = require('./routes/posts');     -->For baseURL/posts call routes/posts.js
+app.use('/posts', postsRouter);                    
 */
 /* #endregion */                              
 app.use('/posts',postsRouter)        
@@ -69,8 +68,12 @@ app.use('/posts',postsRouter)
 //CUSTOM MIDDLEWARE FNS(APPLIED ON  ALL ENDPOINTS) 
 /* #region Main */
 /*
-app.use(function(req, res, next) {   -->For all endpoints; apply the function
-  next(createError(404));});          req.query                            -->returns {param1:value1,param2:Value2}  where params , values sent by URL query}
+app.use(function(req, res, next) {   -->For baseURL/endpoints apply the function
+  next(createError(404));});          req -->Data receivd on URL
+                                      res -->Data to be send on URL  
+                                      next()--> send response to next middleware 
+
+                                      req.query                            -->returns {param1:value1,param2:Value2}  where params , values sent by URL query}
                                       req.body                             -->returns {body} where body is sent by url                    
                                                     
                                       res.send("Message")                  -->send object to client
@@ -79,7 +82,7 @@ app.use(function(req, res, next) {   -->For all endpoints; apply the function
                                       res.status(errcode).json(obj)        -->send status error code:json equivalent of obj to client
                                                   |--LOOK IN WEB ARCH 
                                                       
-                                      next()                               -->send response to next middleware 
+                                     
 
 */
 /* #endregion */
@@ -99,18 +102,15 @@ app.use(function(err, req, res, next) {  // error handler
 
 
 
-//CONNECT  MONGODB TO SERVER(ATLAS/COMPASS)
+//CONNECT DB TO SERVER(MONGODB TO SERVER)
 /* #region Main */ 
+
 //CONNECT MONGODB TO SERVER(ATLAS AND COMPASS)
 /*
-connectmongodb to server  --> https://www.youtube.com/watch?v=ngc9gnGgUdA&t=522s  :10:30 TO 13:00
-
-connect compass to mongodb  -->mongod -->start mongodb server at 127.0.0.1:27107
+connec tmongodb to ATLAS server  --> https://www.youtube.com/watch?v=ngc9gnGgUdA&t=522s  :10:30 TO 13:00
+connect COMPASS to mongodb  -->mongod -->start mongodb server at 127.0.0.1:27107
                               In Compass Connect ->ConnectTo ->Connection string = mongodb://127.0.0.1:27107 --> connect compass to mongoDB
 
-*/
-//CONNECT  MONGODB TO SERVER(ATLAS)
-/*
 const CONNECTION_URL = 'connection url received from atlas'; (connect to atlas using the link given in ATLAS below)
 const PORT = process.env.PORT||5000;(client runs at 3000, server runs at 3000 so 1st run server and then run client so client automatically runs at 3001;so server runs at 30002 )
 mongoose.connect(CONNECTION_URL, { useNewUrlParser: true, useUnifiedTopology: true })            
@@ -119,9 +119,6 @@ mongoose.connect(CONNECTION_URL, { useNewUrlParser: true, useUnifiedTopology: tr
 
 mongoose.set('useFindAndModify', false);
 */
-
-
-
 
 //MONGODB SHELL:Shell view of DB:-https://gist.github.com/bradtraversy/f407d642bdc3b31681bc7e56d95485b6
 /*
@@ -158,11 +155,6 @@ mongoose.set('useFindAndModify', false);
         >db.collectionName.remove({}) -->remove document from collection
 
 */
-
-
-
-
-
 
 
 /* #endregion */  

@@ -1,19 +1,5 @@
-//INSTALL(WINDOWS , LINUX)
+//INSTALL MONGODB(WINDOWS , LINUX)
 /*
-//INSTALL NODE(WINDOWS)
-INSTALL     -- >Install using link -- https://nodejs.org/en/   
-SET ENV VAR -- >C:\Program Files\nodejs\                         
-                >node -version   
-   
-//INSTALL NODE(LINUX) 
-INSTALL      -->sudo apt update              -->update installation
-               >sudo apt install nodejs      -->install nodejs
-               >sudo apt install npm         -->install npm
-               >node --version               -->gives npde version
-               >whereis node                  --> gives node: /usr/bin/node /usr/share/man/man1/node.1.gz
-               >curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.37.2/install.sh | bash -->update node
-               >nvm install v14.17.0
-SET ENV VAR -->No Need
 
 
 //INSTALL  MONDODB(WINDOWS)    
@@ -44,42 +30,11 @@ INSTALL   -->Install Compass using link --https://www.mongodb.com/try/download/c
             >dpkg -i DownloadedFilename.deb
     
 
-//INSTALL POSTMAN(WINDOWS)
-Add "chrome postman" to  chrome extension 
-
-//INSTALL POSTMAN(LINUX)
-Add "chrome postman" to  chrome extension 
 
 */
 
-//CREATE  SERVER AND RUN(WINDOWS(WITHOUT SUDO) , LINUX(WITH SUDO))
+//CREATE  AND RUN MONGODB(WINDOWS(WITHOUT SUDO) , LINUX(WITH SUDO))
 /*
-//CREATE SERVER
->sudo npm install -g jshint         --> install compiler for node glbally
->sudo npm install -g nodemon        --> install nodemon globally 
->sudo npm install -g express        -->install express globally
->express --view=pug  server         -->create a templat called "server"
->https://www.freecodecamp.org/news/how-to-enable-es6-and-beyond-syntax-with-node-and-express-68d3e11fe1ab/-->Convert Express template to ES6 if requires
-
->cd server
->sudo npm install                    -->install package.json dependencies which include "express","cookie-parser","morgan","debug","http-errors","jade"
->sudo npm install express --save     -->install express locally(already installed in npm install)
->sudo npm install mongoose --save    -->install mongoose locally
->sudo npm install dotenv              -->install env var dependency locally 
-
-//RUN SERVER  
->cd server
->sudo npx kill-port 3000 5000 -->kill the port if already in use for server, mongodb connection to server
->sudo npm start   -->run server at http://127.0.0.1:3000( server runs at 3000,client runs at 3000 so 1st run server and then run client so client ;because asks to run at other server and  runs at 3001)
-                  -->connects mongodb to server at  http://127.0.0.1:5000
-                    package.json
-                    "scripts": {
-                            "start": "node ./bin/www"    -->npm start = node ./bin/www 
-                            "start": "nodemon ./bin/www" -->npm start = nodemon ./bin/www   (provides hot reload so rename node to nodemon)
-                    },
-                    bin/www
-                    runs app.js file with all error checks
-
 //RUN MONGODB
 >sudo systemctl status mongodb.service   OR service mongodb status            -->check mongodb status
 >sudo systemctl start  mongod.service    OR service mongodb start  OR mongod  -->start mongodb server at 127.0.0.1:27107
@@ -94,108 +49,7 @@ Add "chrome postman" to  chrome extension
 
 
 
-//STRUCTURE 
-/*
-client 
-  |-node_modules            -->external modules                 
-  |-package.json            -->external module dependency     
-  |-package-lock.json       -->external module dependency  
-  |-public                  -->public acessories of client 
-    |-filename.png/.ico     -->images and icons of project
-    |-manifest.json         -->tells browser about app and how it should be installed on mobile or desktop   
-    |-index.html            
-  |-src      
-    |-api(custom made folder)        
-      |-posts.js
-    |-actions(custom made folder)    
-      |-posts.js
-    |-reducers(custom made folder)   
-      |-posts.js                         
-      |-index.js                               
-    |-component(custom made folder)       
-       |-FORM                        
-          |-form.js,styles.js
-       |-POSTS                      
-         |-POST                         
-           |-post.js,styles.js
-         |-posts.js,styles.js                
-    |-app.js, styles.js,app.css                        
-    |-index.js,index.css         
-    |- .env                        -->environment variable file
-    |- .git                        --> github file
-    |- .gitignore                  --> github file
-
-
-server                            
-  |-node_modules                     -->external modules                            
-  |-package.json                     -->external module dependency 
-  |-package-lock.json                --> external module dependency 
-  |-public                           -->public acessories of server 
-    |-images
-    |-javascript
-    |-stylesheet
-  |-views                            -->views of server
-    |-error.jade
-    |-index.jade
-    |-layout.jade
- |-bin                             -->run on npm start as package.json has this file on start script ; and this file runs app.js with error checks
-    |-www                             
-  |-routes(custom made folder)        
-    |-post.js              
-  |-models(custom made folder)          
-    |-post.JS              
-  |-controllers(custom made folder)             
-    |-post.JS              
-  |-app.js     
-  |- .env                        -->environment variable file
-  |- .git                        --> github file
-  |- .gitignore                  --> github file
-  |- Profile                     -->Heroku file                      
-     
-                                                                                                          
-  App.js,styles.js,App.css(MAIN COMPONENT )    -------------------------------->actions --------------------->api---------------------->  app.js of server  ----------->routes   ----------------> controller;     <----------model                                      
-      |                                                                         (API FN CALL:                 (API FN SEND:             (MIDDLEWARE FN:                 (ROUTE FN:                 CONTROLLER FN:             (CREATE COLLECTION:
- _____|______________________________                                            calls api fns                send data on route        handles all routes               handles specific route     perform crud on mongodb)   create collection for controller fn)                            
- |                                   |                                           and awaits for response)     for CRUD operations)      CONNECT  MONGODB:                using CRUD operations      and return a response                                                                                                 
- Posts.js,styles.js(POSTS COMP)     Form.js,styles.js(FORM COMPONENT)                                                                   connect mongodb to server        from collection)                             |
-  |                                                                                                                                                                                                                   |
- Post.js,styles.js(POST COMPONENT)                                                                                                                                                                                    |
- (COMPONENTS)                                                                                                                                                                                                         |
-                                                                                                                                                                                                                      |
-  App.js,"" same as above <------------------ -reducers<------------------------actions<----------------------api<----------------------------------------------------------------------------------------------------|         
-  (COMPONENTS)                                 (REDUCERS:                       (API FN RESPONSE:                (API FN RECEIVE:           
-    |                                           based on action type            receive response from api and    receive data on route      
-    |                                           reduce action(action            dispatch res on payload with     for CRUD operation)       
-    |                                           payload) and put it on list     action type on redux store)
-    |                                           COMBINERS:
-    |                                           combine all the reducers and
-    |                                           put the on redux store)
-    |
-  index.js,index.css,public/index.html(RENDER,REDUX STORE)
-  RENDER:
-  converts REACT ELEMENT(VIRTUAL DOM) returned by app.js
-  into HTML ELEMENT(ACTUAL DOM) of public/index.html     
-  REDUX STORE:
-  provide app.js with redux store                                        
-
-
-  EG: Consider creating post on prwssing sub,it button
-  component/Forms/Forms.js ka handlesubmit dispatch() createPost(postData)   in redux store;
-  actions/posts.js ka createPost() calls api ka createPost() and awaits for reaponse
-  api/index.js ka createpos() passes post on url
-  app.js sends the url to route and connects to mongodb
-  routes/posts.js ka post() calls controller ka createPost() method on the url
-  controller/posts.js ka createPost() method creates post in mongodb and returns new post
-  api/index.js returns the  post
-  actions/posts.js receives the  post and and dispatch the  post on payload with action type CREATE on redux store
-  reducers/posts.js reduces based on action type CREATE reduce the list by concatenating action payload
-  reducers/index.js combines all reducers and puts them on redux store
-  component/Forms/Forms.js ka  useEffect() changes the state 
-  index.js renders app.js ka react element(virtual dom) inside public index.html ka html element(real DOM); and provodes app.js with redux store
-  
-
-*/
-                                                                                                               
+                                                                                                            
 
               
 

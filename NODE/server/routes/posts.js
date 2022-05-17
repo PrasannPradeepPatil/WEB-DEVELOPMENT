@@ -9,12 +9,16 @@ const router = express.Router();
 //ROUTE FN
 /* #region Main */
 /*
-router.post('/endPoint/:param1/:param2',(req,res)=>{})   -->For endpoint ; apply the function that performs create operation 
-router.get('/endPoint/:param1/:param2',(req,res)=>{})    -->For endpoint ; apply the function that performs get operation 
-router.put('/endPoint/:param1/:param2',(req,res)=>{})    -->For endpoint ; apply the function that performs update operation on enture resource 
-router.patch('/endPoint/:param1/:param2',(req,res)=>{})  -->For endpoint ; apply the function that performs update operation on required part
-router.delete('/endPoint/:param1/:param2',(req,res)=>{}) -->For endpoint ; apply the function that performs delete operation 
-                                                            (req,res,next look in app.js ka custom middleware)
+
+
+              
+router.post('/', createPost);            -->For baseURL/endpoint ;send and receive data for create operation 
+router.get('/', getPosts);                 get()   --send id ;add id to DB; and receive body
+router.get('/:id', getPost);               put()   --send body and id;update body acc to ID in DB; receive body(Entire resource)
+router.patch('/:id', updatePost);          patch() --send body and id;update body acc to ID in DB; receive body(Required part)
+router.delete('/:id', deletePost);         post()  --send body ;add body to DB; and receive body
+router.patch('/:id/likePost', likePost);   delete()--send body and id;delete body acc to ID in DB; receive body
+
 */
 /* #endregion */
 

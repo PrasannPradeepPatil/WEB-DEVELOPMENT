@@ -4,11 +4,33 @@ var express = require('express');
 var mongoose = require('mongoose');
 //IMPORT MODULES
 var PostMessage = require('../models/postMessages');
-
 const router = express.Router();
 
-//CREATE
+//CONTROLLERS
 /*
+exports.fnName = async (req, res) => {  req -->Data receivd on URL
+                                        res -->Data to be send on URL  
+                                        next()--> send response to next middleware 
+
+                                        req.query                            -->returns {param1:value1,param2:Value2}  where params , values sent by URL query}
+                                        req.body                             -->returns {body} where body is sent by url                    
+                                                        
+                                        res.send("Message")                  -->send object to client
+                                        res.json(obj)                        -->send json equivalent of obj to client                                                                                                                                                       
+                                        res.status(errcode).send("Message")  -->send status error code:message to client
+                                        res.status(errcode).json(obj)        -->send status error code:json equivalent of obj to client
+
+}
+
+}
+
+
+*/
+
+
+//CONTROLLERS(CONTROLLERS FOR MONGODB)
+/*
+//CREATE
 exports.createPost = async (req, res) => {
     const newPostMessage = new PostMessage({obj based on collection schema})              -->create collection PostMessage
                                                                                        
@@ -20,22 +42,7 @@ exports.createPost = async (req, res) => {
     }
 }
 
-*/
-exports.createPost = async (req, res) => {
-    const { title, message, selectedFile, creator, tags } = req.body;
-    const newPostMessage = new PostMessage({ title, message, selectedFile, creator, tags })
-
-    try {
-        await newPostMessage.save();
-        res.status(201).json(newPostMessage );
-    } 
-    catch (error) {
-        res.status(409).json({ message: error.message });
-    }
-}
-
 //READ
-/*
 exports.getPosts = async (req, res) => { 
     try {
         const postMessages = await PostMessage.methood();              -->return array of documents from collection postMessages based on method 
@@ -90,29 +97,8 @@ exports.getPosts = async (req, res) => {
     
  
 }
-*/
-exports.getPosts = async (req, res) => { 
-    try {
-        const postMessages = await PostMessage.find();
-        res.status(200).json(postMessages);
-    } 
-    catch (error) {
-        res.status(404).json({ message: error.message });
-    }
-}
-exports.getPost = async (req, res) => { 
-    const { id } = req.params;
-    try {
-        const post = await PostMessage.findById(id);
-        res.status(200).json(post);
-    } catch (error) {
-        res.status(404).json({ message: error.message });
-    }
-}
-
 
 //UPDATE
-/*
 exports.updatePost = async (req, res) => {
     await PostMessage.method();  -->return array of updated documents from collection PostMessage based on method
                                     METHODS
@@ -163,31 +149,6 @@ exports.updatePost = async (req, res) => {
 
 
 
-
-
-
-*/
-exports.updatePost = async (req, res) => {
-    const { id } = req.params;if (!mongoose.Types.ObjectId.isValid(id)) return res.status(404).send(`No post with id: ${id}`);
-    const { title, message, creator, selectedFile, tags } = req.body;
-    const updatedPost = { creator, title, message, tags, selectedFile, _id: id };
-    await PostMessage.findByIdAndUpdate(id, updatedPost, { new: true });
-    
-
-
-    res.json(updatedPost);
-}
-exports.likePost = async (req, res) => {
-    const { id } = req.params;if (!mongoose.Types.ObjectId.isValid(id)) return res.status(404).send(`No post with id: ${id}`);
-    const post = await PostMessage.findById(id);
-    const updatedPost = await PostMessage.findByIdAndUpdate(id, { likeCount: post.likeCount + 1 }, { new: true });
-    
-    res.json(updatedPost);
-}
-
-
-//DELETE
-/*
 exports.deletePost = async (req, res) => {
     await PostMessage.method();             -->return array of updated documents from collection PostMessage based on method
                                              METHHOD 
@@ -208,7 +169,61 @@ exports.deletePost = async (req, res) => {
 
 }
 
+
 */
+exports.createPost = async (req, res) => {
+    const { title, message, selectedFile, creator, tags } = req.body;
+    const newPostMessage = new PostMessage({ title, message, selectedFile, creator, tags })
+
+    try {
+        await newPostMessage.save();
+        res.status(201).json(newPostMessage );
+    } 
+    catch (error) {
+        res.status(409).json({ message: error.message });
+    }
+}
+
+exports.getPosts = async (req, res) => { 
+    try {
+        const postMessages = await PostMessage.find();
+        res.status(200).json(postMessages);
+    } 
+    catch (error) {
+        res.status(404).json({ message: error.message });
+    }
+}
+exports.getPost = async (req, res) => { 
+    const { id } = req.params;
+    try {
+        const post = await PostMessage.findById(id);
+        res.status(200).json(post);
+    } catch (error) {
+        res.status(404).json({ message: error.message });
+    }
+}
+
+
+
+exports.updatePost = async (req, res) => {
+    const { id } = req.params;if (!mongoose.Types.ObjectId.isValid(id)) return res.status(404).send(`No post with id: ${id}`);
+    const { title, message, creator, selectedFile, tags } = req.body;
+    const updatedPost = { creator, title, message, tags, selectedFile, _id: id };
+    await PostMessage.findByIdAndUpdate(id, updatedPost, { new: true });
+    
+
+
+    res.json(updatedPost);
+}
+exports.likePost = async (req, res) => {
+    const { id } = req.params;if (!mongoose.Types.ObjectId.isValid(id)) return res.status(404).send(`No post with id: ${id}`);
+    const post = await PostMessage.findById(id);
+    const updatedPost = await PostMessage.findByIdAndUpdate(id, { likeCount: post.likeCount + 1 }, { new: true });
+    
+    res.json(updatedPost);
+}
+
+
 exports.deletePost = async (req, res) => {
     const { id } = req.params;if (!mongoose.Types.ObjectId.isValid(id)) return res.status(404).send(`No post with id: ${id}`);
     await PostMessage.findByIdAndRemove(id);

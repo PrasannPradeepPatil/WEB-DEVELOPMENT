@@ -3,7 +3,7 @@ var express = require('express');
 var mongoose = require('mongoose');
 
 
-//CREATE COLLECTION
+//MODEL(MODEL FOR MONGODB)
 /*
 database
  |-collections    -- Hold the collection of documents  (Collection in NoSQL is Similar to table in SQL)
