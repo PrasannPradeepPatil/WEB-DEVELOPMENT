@@ -1,10 +1,24 @@
-
-/*
 //REMAINING
+/*
 Date – Mosh Hemadani -->JavaScript Basics for Beginners-->5. Objects-->14.Date
-BABEL;WEBPACK -- MOSH HEMADANI ->JS ->2.OOP->06.ES6MODULES ->61;62
+BABEL;WEBPACK -- MOSH HEMADANI ->JS ->2.OOP->06.ES6MODULES ->61;62   
+*/
 
-//FACTORY FN;CONSTRUCTOR FN   -->DO NOT FIT INTO ANYTHNG
+
+//REMAINING
+/*
+1.STRUCTURE 
+2.THIS
+3.GLOBAL OBJECT , WRAPPER FN ,WINDOW OBJECT
+4.IMPORT EXPORT
+6.FN
+7.CLASS  DECLARATION
+8.CLASS
+9.OBJECTS'
+10.EXCEPTION
+12.JS NODE MODULES
+
+
 function  circle(radius){ -->PASCAL CASE     function   Circlr(radius) {-->CAMEL CASE
     return {                                      
         radius ,                                 this.radius = radius
@@ -13,36 +27,20 @@ function  circle(radius){ -->PASCAL CASE     function   Circlr(radius) {-->CAMEL
         }                                         }
     }                                         }
 
-let varname =fnName(arg)-->fn returns object     let varname = new FnName(arg)-->new creates empty obj {} and assigns this to {}     
-*/
-
-
-//REMAINING
-/*
-1.STRUCTURE 
-2.THOS
-3.GLOBAL OBJECT , WRAPPER FN ,WINDOW OBJECT
-4.IMPORT EXPORT
-6.FN
-7.CLASS  DECLARATION
-8.CLASS
-9.OBJECTS'
-10.EXCEPTION
-11.CONDITIONAL
-12.JS NODE MODULES
+let varname =fnName(arg)-->fn returns object     let varname = new FnName(arg)-->new creates empty obj {} and assigns this to {}  
 */
 
 
 //STRUCTURE 
 /*
-(MEMBER , THIS)
+const var = require('')                  -->IMPORT , EXPORT(ES5) , IMPORT EXPORT(ES6)
+exports.fnname = fnname(){} 
 
+this                                      -->MEMBER,THIS
 global{}                                 -->GLOBAL OBJECT,WRAPPER FN(ES5), WINDOW OBJECT(ES6)
 function(exports,require...){//OUR CODE}     
 
 
-const var = require('')                  -->IMPORT , EXPORT(ES5) , IMPORT EXPORT(ES6)
-exports.fnname = fnname(){} 
 
 function circle(radius,x,y){ }           -->NAMED FN,ANONYMOUS FN ,                                 
                                            SYNC FN ,ASYNC FN(CALLBACK),ASYNC FN(PROMISET USING THEN-CATCH),ASYNC FN (PROMISET USING ASYNC AWAIT)PROMISE
@@ -83,7 +81,120 @@ const readXlsxFile = require('read-excel-file/node');
 */
 
 
-//**MEMBER,THIS**
+
+//IMPORT EXPORT
+/* #region Main */
+
+//IMPORT , EXPORT (ES5 - BROWSER)
+/*
+//SINLE(ANY  FN)                           
+module1.js                                module2.js
+async function(){}                        var fnName = require('externalmodulename' OR './modulename1' OR '../modulename1') 
+let fnName = async function() =>{}        fnName(args)/fnName if no args for expr,arrow fns             
+let fnName = async() =>{}
+module.exports = fnName            
+
+
+
+//MULTIPLE(ARROW FN)
+module1.js                                module2.js                     
+exports.fnName1  = async() =>{}           var {fnName1,fnName2} = require('externalmodulename' OR './modulename1' OR '../modulename1') 
+exports.fnName2 = async() =>{}            fnName1(arg)/fnName1 if no params used for expr,arrow fns  
+
+
+
+*/
+
+//IMPORT , EXPORT (ES6 - NODEJS)
+/*
+
+//SINLE(ANY  FN)                           
+module1.js                                             module2.js
+async function(){}                        import fnName from 'externalmodulename' OR './modulename1' OR '../modulename1''    
+let fnName = async function() =>{}        fnName(args)/fnName if no args for expr,arrow fns             
+let fnName = async() =>{}
+export default fnName              
+
+
+
+
+//MULTIPLE(ARROW FN)
+module1.js                                  module2.js                     
+export const fnName1  = async() =>{}        import {varname1,varname2} from 'externalmodulename' OR './modulename1' OR '../modulename1 
+export const fnName1  = async() =>{}        fnName1(arg)/fnName1 if no params used for expr,arrow fns 
+
+
+Note: Check in react client
+* as React
+
+
+
+
+
+
+*/
+/* #endregion */
+
+
+//GLOBAL OBJECT , WRAPPER FN ,WINDOW OBJECT
+/* #region Main */
+
+
+//GLOBAL OBJECT(ES5 - NODE)
+/*
+global {                                         --> Global Object has properties and  functions  which can be called by 
+                                                      global.member OR member(node will by default put global ahead of it)
+       
+setTimeout(time in  ms); --> global object’s  fn which delay the fn by t ms;
+clearTimeout();-->global object’s  fn which  stop the elay
+setInterval() --> global object’s   fn which  call a fnrepetitively after delay
+clearInterval() --> global object’s   fn which  stop calling a fn repetitively after a delay
+console.log(“msg”)-> global object’s   fn which  logs the msg
+console.error(“msg”)--> global object’s   fn which  logs the msg as red
+console.warn(“msg”)--> global object’s   fn which  logs the message as warning 
+}
+*/
+
+//WRAPPER FN(ES5 - NODE)
+/*
+function((exports , require , module, filename , __filename, __dirname)){   --> Every File is a module  and everything defined inside a module is 
+                                                                                wrapped inside a fn and is  private to that module
+     
+
+        module-->wrapper  fns parameter which is a object 
+        {
+        id: '.',
+        path: 'C:\\Users\\DELL\\Desktop\\JavaScript\\NodeVsCode\\VSCode\\audio-transcoder\\mitron',
+        exports: {},
+        parent: null,
+        filename: 'C:\\Users\\DELL\\Desktop\\JavaScript\\NodeVsCode\\VSCode\\audio-transcoder\\mitron\\ztest.js',
+        loaded: false,
+        children: [],
+        paths: [    'C:\\Users\\DE………]
+        }
+        module.exports.key = value; --> wrapper  fns parameter “module”  is a object ; in “module” object we set the “exports ” oject
+        exports.key = value ;       --> wrapper fns parameter  “exports” is a object which we set with key value pair
+        require(‘filepath’)         --> wrapper fns parameter “require”  is a fn() which retuens the “module object” ka “exportobject”
+                                        OR “export” object itself depending on which obj you used to export
+        __filename                  --> wrapper fns parameter “__filename”  is a string which returns the filename 
+         __diename                  --> wrapper fns parameter __diename”  is a string which returns the directory in which  the file is 
+
+  
+         ///OUR CODE  
+        }       
+         
+ */     
+
+
+ //WINDOW OBJECT(ES6 - BROWSER)
+ /*
+ window { }                                        --> Windoe Object has properties and  functions  which can be called by 
+                                                      window.member OR member( browser will by default put window ahead of it)
+ */
+
+/* #endregion */
+
+//MEMBER,THIS
 /* #region Main */
 
 
@@ -103,7 +214,7 @@ Console.log(obj)--> //INSTANCE MEMBERS
                     constructor: ƒ Object()  as Object ; 
                     hasOwnProperty: ƒ hasOwnProperty()
 */
-//FUNCTION(Object Base Prototype --> FunctionBasePrototype -->  Function)
+//FUNCTION(ObjectBase Prototype --> FunctionBasePrototype -->  Function)
 /*
 function Circle(radius){
     this.radius = radius;
@@ -142,7 +253,7 @@ console.log(circle);--> //INSTANCE MEMBERS
                                 constructor: ƒ Object()  as Object ; 
                                 hasOwnProperty: ƒ hasOwnProperty()
 */
-//ARRAY(Object Base Prototype --> ArrayBasePrototype -->  Array)
+//ARRAY(ObjectBase Prototype --> ArrayBasePrototype -->  Array)
 /*
 let x = [1,2]
 console.log(x)--> //INSTANCE MEMBERS
@@ -404,131 +515,26 @@ EG 2
 /* #endregion */
 
 
-//GLOBAL OBJECT , WRAPPER FN ,WINDOW OBJECT
+//FUNCTION DECLARATION
 /* #region Main */
 
-
-//GLOBAL OBJECT(ES5 - NODE)
-/*
-global {                                         --> Global Object has properties and  functions  which can be called by 
-                                                      global.member OR member(node will by default put global ahead of it)
-       
-setTimeout(time in  ms); --> global object’s  fn which delay the fn by t ms;
-clearTimeout();-->global object’s  fn which  stop the elay
-setInterval() --> global object’s   fn which  call a fnrepetitively after delay
-clearInterval() --> global object’s   fn which  stop calling a fn repetitively after a delay
-console.log(“msg”)-> global object’s   fn which  logs the msg
-console.error(“msg”)--> global object’s   fn which  logs the msg as red
-console.warn(“msg”)--> global object’s   fn which  logs the message as warning 
-}
-*/
-
-//WRAPPER FN(ES5 - NODE)
-/*
-function((exports , require , module, filename , __filename, __dirname)){   --> Every File is a module  and everything defined inside a module is 
-                                                                                wrapped inside a fn and is  private to that module
-     
-
-        module-->wrapper  fns parameter which is a object 
-        {
-        id: '.',
-        path: 'C:\\Users\\DELL\\Desktop\\JavaScript\\NodeVsCode\\VSCode\\audio-transcoder\\mitron',
-        exports: {},
-        parent: null,
-        filename: 'C:\\Users\\DELL\\Desktop\\JavaScript\\NodeVsCode\\VSCode\\audio-transcoder\\mitron\\ztest.js',
-        loaded: false,
-        children: [],
-        paths: [    'C:\\Users\\DE………]
-        }
-        module.exports.key = value; --> wrapper  fns parameter “module”  is a object ; in “module” object we set the “exports ” oject
-        exports.key = value ;       --> wrapper fns parameter  “exports” is a object which we set with key value pair
-        require(‘filepath’)         --> wrapper fns parameter “require”  is a fn() which retuens the “module object” ka “exportobject”
-                                        OR “export” object itself depending on which obj you used to export
-        __filename                  --> wrapper fns parameter “__filename”  is a string which returns the filename 
-         __diename                  --> wrapper fns parameter __diename”  is a string which returns the directory in which  the file is 
-
-  
-         ///OUR CODE  
-        }       
-         
- */     
-
-
- //WINDOW OBJECT(ES6 - BROWSER)
- /*
- window { }                                        --> Windoe Object has properties and  functions  which can be called by 
-                                                      window.member OR member( browser will by default put window ahead of it)
- */
-
-/* #endregion */
-
-
-//IMPORT EXPORT
-/* #region Main */
-
-//IMPORT , EXPORT (ES5 - BROWSER)
-/*
-//SINLE(ANY  FN)                           
-module1.js                                module2.js
-async function(){}                        var fnName = require('externalmodulename' OR './modulename1' OR '../modulename1') 
-let fnName = async function() =>{}        fnName(args)/fnName if no args for expr,arrow fns             
-let fnName = async() =>{}
-module.exports = fnName            
-
-
-
-//MULTIPLE(ARROW FN)
-module1.js                                module2.js                     
-exports.fnName1  = async() =>{}           var {fnName1,fnName2} = require('externalmodulename' OR './modulename1' OR '../modulename1') 
-exports.fnName2 = async() =>{}            fnName1(arg)/fnName1 if no params used for expr,arrow fns  
-
-
-
-*/
-
-//IMPORT , EXPORT (ES6 - NODEJS)
-/*
-
-//SINLE(ANY  FN)                           
-module1.js                                module2.js
-async function(){}                        import fnName from 'externalmodulename' OR './modulename1' OR '../modulename1''    
-let fnName = async function() =>{}        fnName(args)/fnName if no args for expr,arrow fns             
-let fnName = async() =>{}
-export default fnName              
-
-
-
-
-//MULTIPLE(ARROW FN)
-module1.js                                  module2.js                     
-export const fnName1  = async() =>{}        import {varname1,varname2} from 'externalmodulename' OR './modulename1' OR '../modulename1 
-export const fnName1  = async() =>{}        fnName1(arg)/fnName1 if no params used for expr,arrow fns 
-
-
-
-
-
-
-*/
-/* #endregion */
-
-
-//FUNCTION DECLARATION(FUNCTION IS A OBJECT WHICH RETURNS A OBJECT)
-/* #region Main */
-
-//NORMAL FN,AFRROW FN,EXPRESSION FN(
+//NORMAL FN,AFRROW FN,EXPRESSION FN
 /*
 //NORMAL FN(HOISTED TO TOP)
 async function fnName(param){}                      -->Declare fn ; call fn
 fnName(arg);
 
-//AFRROW FN(NOT HOISTED TO TOP)
-let fnName = async(params) =>{}                     -->Declare fn which returns a fn which is stored in a variable; Call the var as fn
-fnName(arg)
+
 
 //EXPRESSION FN(NOT HOISTED TO TOP)
 let fnName = async function fnNameOptional(param){} -->Declare fn which returns a fn which is stored in a variable;Call the var as fn
 fnName(arg)
+
+//AFRROW FN(NOT HOISTED TO TOP)
+let fnName = async(params) =>{}                     -->Declare fn which returns a fn which is stored in a variable; Call the var as fn
+fnName(arg)
+
+
 
 
 
@@ -543,9 +549,10 @@ const obj = {
 };
 console.log(obj.sum);
 
+EG 2(EXPRESSION FN):
+a,b,c, -->Same as arrow fn just replace arrow fn with expression fn
 
-
-EG 2(ARROW FN):
+EG 3(ARROW FN):
 a.
 let  sum1 = (a,b) =>{return a+b;}    -->Declare fn which returns a fn stored in variable(sum1)
 const obj = {
@@ -569,8 +576,7 @@ WEBDEVELOPMENT--clientI, server folders
 
 
 
-EG 3(EXPRESSION FN):
-a,b,c, -->Same as arrow fn just replace arrow fn with expression fn
+
 
 
 
@@ -831,6 +837,7 @@ let total = sum(1,2,3,4,5,6,7);
 /* #endregion */
 
 
+
 //FUNCTION 
 /* #region Main */
 
@@ -858,7 +865,7 @@ function extend(Child , Parent){
 function Circle(radius,x,y){ -->CAMEL CASE
 */
 
-        ////INSTANCE MEMBERS////  --->THese members belong to Circle class  
+        ////INSTANCE MEMBERS////  --->THese members belong to Circle fn  
         //INITIALISE
          /*
          let   angle = 20;    --> private scope : they are available inside fn only  ie let c = new Circe() c.member cant
@@ -1006,10 +1013,11 @@ ${const_obj.constructor}      -->function constructorFunction(a){our code} as th
 /* #endregion */
 
 
-//CLASS  DECLARATION(CLASSES ARE  SUGARCOAT OVER  FUNCTION WHICH ARE OBJECT WHICH RETTURN OBJECT)
+
+//CLASS  DECLARATION(CLASSES ARE  SUGARCOAT OVER  FUNCTION)
 /* #region Main */
 
-//NORMAL/EXPRESSION CLASS --> CLASS WITH DECLARATION 
+//NORMAL CLASS --> CLASS WITH DECLARATION 
 /*
 //CLASS DECLARATION
 class classname{}                -->normal class     --NOT HOISTED
@@ -1023,7 +1031,7 @@ let varname = new class(arg)
 */
 
 /* #endregion */
-                                                     
+   
 
 //CLASSES
 /* #region Main */
@@ -1867,14 +1875,6 @@ else{                                  defaultL sout(“xyz”)
   sout(“xyz”)
 }
 
-
-3.HARDCODE VALUE:     
-Int temp = 30;      --> int temp = 30;      --> a = (temp == 30)
-boolean a                   boolean a = false
-If (temp == 30)          if (temp == 30)
-{ a = True}                 a = True;                                  
-else
-{a = false}
 */
 
  
@@ -1914,11 +1914,11 @@ for(let i of arr , obj.keys(obj)  ,obj.entries(obj) ){ }--> i = value of array ,
 
 
 FOR-EACH
-array.forEach(  function(element, index, arr){ operations }  ,   thisValue / .bind(value) ) --> for each iterationin array ;                  
-                                                                                                element =  element at that iteration ,
-                                                                                                index(optional) = index of element at that iteration
-                                                                                                arr(optional) = array itself , 
-                                                                                                thisValue = value  given to  this inside the function ,  
+array.forEach(function(element, index, arr){ operations } ,thisValue / .bind(value) ) --> for each iterationin array ;                  
+                                                                                         element =  element at that iteration ,
+                                                                                         index(optional) = index of element at that iteration
+                                                                                         arr(optional) = array itself , 
+                                                                                         thisValue = value  given to  this inside the function ,  
 */
 
 
