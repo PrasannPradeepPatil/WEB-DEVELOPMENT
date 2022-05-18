@@ -16,6 +16,18 @@ function  circle(radius){ -->PASCAL CASE     function   Circlr(radius) {-->CAMEL
 let varname =fnName(arg)-->fn returns object     let varname = new FnName(arg)-->new creates empty obj {} and assigns this to {}     
 */
 
+
+//REMAINING
+/*
+
+1.THEN(OTHER TYPES OF CODES) ,AWAIT 
+2.THIS 
+3.EXPORT
+3.React JS ,Node JS Code
+IMPOPT
+*/
+
+
 //STRUCTURE 
 /*
 (MEMBER , THIS)
@@ -499,18 +511,18 @@ export const fnName1  = async() =>{}        fnName1(arg)/fnName1 if no params us
 //FUNCTION DECLARATION(FUNCTION IS A OBJECT WHICH RETURNS A OBJECT)
 /* #region Main */
 
-//DECLARING AND CALLING FN
+//NORMAL FN,AFRROW FN,EXPRESSION FN(
 /*
 //NORMAL FN(HOISTED TO TOP)
 async function fnName(param){}                      -->Declare fn ; call fn
 fnName(arg);
 
 //AFRROW FN(NOT HOISTED TO TOP)
-let fnName = async(params) =>{}                     -->Declare fn which returns a fn stored in a variable; call variable
+let fnName = async(params) =>{}                     -->Declare fn which returns a fn which is stored in a variable; Call the var as fn
 fnName(arg)
 
 //EXPRESSION FN(NOT HOISTED TO TOP)
-let fnName = async function fnNameOptional(param){} -->Declare fn which returns a fn stored in a variable; call variable
+let fnName = async function fnNameOptional(param){} -->Declare fn which returns a fn which is stored in a variable;Call the var as fn
 fnName(arg)
 
 
@@ -533,7 +545,7 @@ a.
 let  sum1 = (a,b) =>{return a+b;}    -->Declare fn which returns a fn stored in variable(sum1)
 const obj = {
   name:"pras",
-  sum : sum1(1,2),                  -->Call variable(sum1(1,2))
+  sum : sum1(1,2),                  --> Call the var as fn(sum1(1,2))
 };
 console.log(obj.sum)
 
@@ -542,21 +554,13 @@ const obj = {
   name:"pras",
   sum : (a,b) =>{return a+b;},        -->Declare fn which returns a fn stored in variable(sum)
 };
-console.log(obj.sum(1,2));            -->Call variable(sum(1,2))
+console.log(obj.sum(1,2));            -->Call the var as fnn(sum(1,2))
                                          
 
 c.
-function sum(data, sum) {         -->Declare Fn   
-  console.log("get data ", data, "From Database");
-  let a = sum(1, 2);              -->Call variable(sum(1,2))
-  console.log("Sum is ",a);
-
-}
-sum("1",                          -->Call Fn
-     (a, b) => { return a + b;}  -->Declare Fn which returns a fn stored in variable(sum)
-    )                              EG:Look in ASYNCHRONOUS FN (CALLBACK)
-
-d.
+Look in ASYNCHRONOUS FN (CALLBACK),ASYNCHRONOUS FN (PROMISET USING THEN-CATCH),ASYNCHRONOUS FN (PROMISET USING ASYNC AWAIT),
+WEBDEVELOPMENT--clientI, server folders 
+               
 
 
 
@@ -565,15 +569,10 @@ a,b,c, -->Same as arrow fn just replace arrow fn with expression fn
 
 
 
-//REMAINING
-1.React JS code
-2.Node JS Code
-3.THEN , PROMISE JS CODE
-4.THIS vagere
+
 
 
 */
-
 
 //SYNCHRONOUS FN
 /* 
@@ -589,77 +588,128 @@ Console.log(“code after calling the synchronous fn ”)
 
 //ASYNCHRONOUS FN (CALLBACK)
 /*
-//ASYNCHRONOUS FUNCTION THAT TAKES CALLBACK 
-function asyncFnName (fnArg,callBackFn) {
-    code
-    callBackFn(callBackParam) ;                         -->calls the callback fn and callbackParam = callBackArg 
+//DECLARING ASYNCHRONOUSFN
+function asyncFnName (fnParam,callBackFn) {
+    code for Fn
+    callBackFn(arg) ;                         -->Call the var as fn(callBackFn(callBackParam))
 }
 
-//USING CALLBACK 
-asyncFnName (fnArg , (callBackArg)=>{                -->start asyncFN and the code after the asyncFn ; complete asyncFn task  
-            console.log();                              after completion of asyncFn task execute callback fn 
-            });
+//CALLING ASYNCHRONOUSFN  
+asyncFnName (fnArg , (param)=>{                -->declare Fn which returns a fn stored in variable(callBackFn)
+            console.log();                              SO
+            });                                         start executing code of asyncFnName and start executing code after asyncFnName  
+Console.log(“code after calling the asynchronous fn ”)  after executing code of asyncFnName  execute callback fn with  param = arg
 
-Console.log(“code after calling the asynchronous fn ”)
+                                                        
 */
 
-
-//ASYNCHRONOUS FN (PROMISET USING THEN-CATCH: THEN/CATCH AND ASYNC/AWAIT DO SAME THING BUT ASYNC/AWAIT MAKES ASYNC CODE LOOK SYNCHRONOUS)
+//ASYNCHRONOUS FN (PROMISE USING THEN-CATCH)
 /*
-//ASYNCHRONOUS FUNCTION THAT RETURNS ROMISE 
-function asyncFnName (id) {
-    return new Promise ((resolve,reject)=>{
-             anotherAsyncFn (() => {
-                       resolve(arg1 )  --> calls the fn inside then and arg1 = param1
-                       reject(arg2)    -->calls the fn inside catch and arg1 = param2
-                      });
-      
+//DECLARING ASYNCHRONOUS FN THAT RETURNS PROMISE 
+let asyncFnName = function asyncFn(fnParam) {    -->1.Declare fn that returns a promise and store it in var(asyncFnName)
+    code of asyncFnName                                   
+    return new Promise ((resolve,reject)=>{ 
+            resolve(arg1 )                       -->4.Call the var as fn(resolve(arg1) ie param1 = arg1)
+            reject(arg2)                              Call the var as fn(reject(arg2) ie param2 = arg2)
     });
+      
 }
 
-//USING PROMISE(THEN,CATCH)
-asyncFnName                                       -->start asyncFn and the code after the asyncFn ; complete the asyncFn and return a promise  
-        .then((param1)=>{console.log("param1")})     if promise sucessful execute then whose param1 = arg1
-        .catch((param2) => {console.log("param2")}); if failded execute catch whose param2 = arg2(param2 is usually error)
+//CALLING ASYNCHRONOUSFN  
+asyncFnName(fnArg)                                  -->2.Call the promise as fn(asyncFnName(fnArg));apply then,catch on the returned promise                               
+        .then((param1)=>{console.log(param1)})      -->3.declare a fn inside then  which returns a fn which is stored in variable(resolve)  
+        .catch((param2) => {console.log(param2)})        declare a fn inside catch which returns a fn which is stored in variable(reject)  
+                                                            
+                                                         SO
+                                                         start executing code of asyncFnName and start executing code after asyncFnName
+                                                         after executing code of asyncFnName  it returns a promise  
+                                                         if promise sucessful execute then with param1 = arg1 of resolve
+                                                         if promise  failded execute catch with param2 = arg2 or reject
+
+
+
+
+
                                                        
 */
 
-//ASYNCHRONOUS FN (PROMISET USING ASYNC AWAIT : THEN/CATCH AND ASYNC/AWAIT DO SAME THING BUT ASYNC/AWAIT MAKES ASYNC CODE LOOK SYNCHRONOUS)
+//ASYNCHRONOUS FN (PROMISET USING ASYNC-AWAIT)
 /*
-//ASYNCHRONOUS FUNCTION THAT RETURNS ROMISE 
-function asyncFnName (id) {
-    return new Promise ((resolve,reject)=>{
-             anotherAsyncFn (() => {
-                    resolve(arg1 ) --> passes the arg to var inside try
-                    reject(arg2)         passes arg to var inside catch
-                    });
-      
+//DECLARING ASYNCHRONOUS FN THAT RETURNS PROMISE 
+function asyncFn(fnParam) {                      -->1.Declare fn that  returns a promise 
+    code of asyncFnName                                  
+    return new Promise ((resolve,reject)=>{ 
+            resolve(arg1)                        
+            reject(arg2)                          
     });
+      
 }
-
-
-// USING PROMISE(ASYNC,AWAIT)
-async function fnName(){
-    let user = null;
+//CALLING ASYNCHRONOUSFN  
+async function fnName(){                                          
     try{
-       param1 = await asyncFnName (1);  --> start asyncfnname and the code after the fn;complete the asyncFn and return a promise 
-       console.log(user);                    if promise sucessful  run try and return arg1  to param1  
-     }                                       if promise failed return  exxcept arnd return arg2 to param2(param2 is usually error)
-    catch(param2){                          NOTE: await keyword can be used only if it is wrapped inside async fn 
+       const param1 = await asyncFn(fnArg);      -->2.Apply try catch on promise                       
+     }                                              param1 gets arg1    
+    catch(param2){                                  param2 gets arg2
         console.log(param2);                 
     }
 }
 fnName();
-Console.log(“code after calling the asynchronous fn ”)
+Console.log(“code after ”)                      SO
+                                                start executing code of asyncFnName and "wait"
+                                                after executing code of asyncFnName  it returns a promise  
+                                                if promise sucessful execute then with param1 = arg1 of resolve
+                                                if promise  failded execute catch with param1 = arg2 of rjecr
+                                                Start executing code after asyncFnName
+                                                NOTE: await keyword can be used only if it is wrapped inside async fn 
+
+
+
+
+                                                        
 */
 
 //PROMISE
 /*
-Promise.resolve() --> replace new Promise(resolve,reject) ith Promise.resolve() and 
-                      Value inside resolve  goes toparameter in then ; catch gets no value so  not used
-                      Value inside resolve  goes to parameter Itry  ; catch gets no but catch cant be removed so don’t use async await
+//Promise promise = new Promise((resolve,reject))
+let asyncFnName = function asyncFn(fnParam) {    -->Fn return promise
+    code for Fn 
+    return new Promise ((resolve,reject)=>{ 
+            resolve(arg1 )                               
+            reject(arg2)                               
+    });     
+}
+asyncFnName(fnArg)                              -->we apply then,catch on the fn which returns Promise                                              
+        .then((param1)=>{console.log(param1)})              
+        .catch((param2) => {console.log(param2)})     
+OR
+Promise myPromise = new Promise((resolve,reject) =>{  -->return promise 
+    resolve("foo");
+    reject("bar");
+});
+myPromise.then(() => {})                             -->apply then catch on promise
+         .catch(()=>{})
 
-Promise.reject() --> replace  new Promise(resolve,reject) with Promise.reject()  and we can only use catch  and not then
+
+//Promise.resolve()
+let asyncFnName = function asyncFn(fnParam) {    -->Fn return promise
+    code for Fn                                    
+    return  Promise.resolve(arg1);
+}
+
+asyncFnName(fnArg)                                ->we apply then,catch on the fn which returns Promise                                                   
+        .then((param1)=>{console.log(param1)})     (as we use Promise.resolve()) we can only use then)           
+          
+//Promise.reject()
+let asyncFnName = function asyncFn(fnParam) {    -->Fn return promise
+    code for Fn                                    
+    return  Promise.reject(arg1);
+}
+
+asyncFnName(fnArg)                                ->we apply then,catch on the fn which returns Promise                                                   
+        .catch((param1)=>{console.log(param1)})     (as we use Promise.reject()) we can only use reject)                 
+
+
+
 Promise.all(arr) --> collect all the fns that return promise in an array and all fn’s resolve arg will be collected in an array  and given  to then 
                         parameter/parameter in try  ; all fn’s reject  arg will be collected in an array  and given to catch  parameter/parameter in catch()
 */
@@ -908,7 +958,6 @@ class classname{}                -->normal class     --NOT HOISTED
 var classNmae = class{}          ->expression class  --NOT HOISTED
 
 //CALLING CLASS
-
 class classname{}           
 let varname = new class(arg)         
 
