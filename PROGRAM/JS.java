@@ -19,12 +19,17 @@ let varname =fnName(arg)-->fn returns object     let varname = new FnName(arg)--
 
 //REMAINING
 /*
-
-1.THEN(OTHER TYPES OF CODES) ,AWAIT 
-2.THIS 
-3.EXPORT
-3.React JS ,Node JS Code
-IMPOPT
+1.STRUCTURE 
+2.THOS
+3.GLOBAL OBJECT , WRAPPER FN ,WINDOW OBJECT
+4.IMPORT EXPORT
+6.FN
+7.CLASS  DECLARATION
+8.CLASS
+9.OBJECTS'
+10.EXCEPTION
+11.CONDITIONAL
+12.JS NODE MODULES
 */
 
 
@@ -606,7 +611,7 @@ Console.log(“code after calling the asynchronous fn ”)  after executing code
 //ASYNCHRONOUS FN (PROMISE USING THEN-CATCH)
 /*
 //DECLARING ASYNCHRONOUS FN THAT RETURNS PROMISE 
-let asyncFnName = function asyncFn(fnParam) {    -->1.Declare fn that returns a promise and store it in var(asyncFnName)
+let promiseName = function asyncFn(fnParam) {    -->1.Declare fn that returns a fn as promise and store it in var(asyncFnName)
     code of asyncFnName                                   
     return new Promise ((resolve,reject)=>{ 
             resolve(arg1 )                       -->4.Call the var as fn(resolve(arg1) ie param1 = arg1)
@@ -616,7 +621,7 @@ let asyncFnName = function asyncFn(fnParam) {    -->1.Declare fn that returns a 
 }
 
 //CALLING ASYNCHRONOUSFN  
-asyncFnName(fnArg)                                  -->2.Call the promise as fn(asyncFnName(fnArg));apply then,catch on the returned promise                               
+promiseName(fnArg)                                  -->2.Call the promise as fn(asyncFnName(fnArg));apply then,catch on the returned promise                               
         .then((param1)=>{console.log(param1)})      -->3.declare a fn inside then  which returns a fn which is stored in variable(resolve)  
         .catch((param2) => {console.log(param2)})        declare a fn inside catch which returns a fn which is stored in variable(reject)  
                                                             
@@ -636,7 +641,7 @@ asyncFnName(fnArg)                                  -->2.Call the promise as fn(
 //ASYNCHRONOUS FN (PROMISET USING ASYNC-AWAIT)
 /*
 //DECLARING ASYNCHRONOUS FN THAT RETURNS PROMISE 
-function asyncFn(fnParam) {                      -->1.Declare fn that  returns a promise 
+function asyncFnName(fnParam) {                      -->1.Declare fn that  returns a fn as promise
     code of asyncFnName                                  
     return new Promise ((resolve,reject)=>{ 
             resolve(arg1)                        
@@ -647,7 +652,7 @@ function asyncFn(fnParam) {                      -->1.Declare fn that  returns a
 //CALLING ASYNCHRONOUSFN  
 async function fnName(){                                          
     try{
-       const param1 = await asyncFn(fnArg);      -->2.Apply try catch on promise                       
+       const param1 = await asyncFnName(fnArg);   -->2.Apply try catch on promise                       
      }                                              param1 gets arg1    
     catch(param2){                                  param2 gets arg2
         console.log(param2);                 
@@ -671,47 +676,100 @@ Console.log(“code after ”)                      SO
 //PROMISE
 /*
 //Promise promise = new Promise((resolve,reject))
-let asyncFnName = function asyncFn(fnParam) {    -->Fn return promise
+let promiseName = function asyncFnName(fnParam) {    -->Fn return promise
     code for Fn 
     return new Promise ((resolve,reject)=>{ 
             resolve(arg1 )                               
             reject(arg2)                               
     });     
 }
-asyncFnName(fnArg)                              -->we apply then,catch on the fn which returns Promise                                              
-        .then((param1)=>{console.log(param1)})              
-        .catch((param2) => {console.log(param2)})     
 OR
-Promise myPromise = new Promise((resolve,reject) =>{  -->return promise 
+Promise promiseName = new Promise((resolve,reject) =>{  -->return promise 
     resolve("foo");
     reject("bar");
 });
-myPromise.then(() => {})                             -->apply then catch on promise
-         .catch(()=>{})
+
+promiseName(fnArg)                              -->we apply then,catch on Promise                                              
+        .then((param1)=>{console.log(param1)})              
+        .catch((param2) => {console.log(param2)})     
+
 
 
 //Promise.resolve()
-let asyncFnName = function asyncFn(fnParam) {    -->Fn return promise
+let promiseName = function asyncFnName(fnParam) {    -->Fn return promise
     code for Fn                                    
     return  Promise.resolve(arg1);
 }
+OR
+const promiseName =  Promise.resolve(arg1);
 
-asyncFnName(fnArg)                                ->we apply then,catch on the fn which returns Promise                                                   
+promiseName(fnArg)                                ->we apply then,catch on the fn which returns Promise                                                   
         .then((param1)=>{console.log(param1)})     (as we use Promise.resolve()) we can only use then)           
           
 //Promise.reject()
-let asyncFnName = function asyncFn(fnParam) {    -->Fn return promise
+let promiseName = function asyncFnName(fnParam) {    -->Fn return promise
     code for Fn                                    
     return  Promise.reject(arg1);
 }
+OR
+const promiseName =  Promise.reject(arg1);
 
-asyncFnName(fnArg)                                ->we apply then,catch on the fn which returns Promise                                                   
-        .catch((param1)=>{console.log(param1)})     (as we use Promise.reject()) we can only use reject)                 
+promiseName(fnArg)                                ->we apply then,catch on the fn which returns Promise                                                   
+        .carcg((param1)=>{console.log(param1)})     (as we use Promise.reject()) we can only use catch)               
 
 
+//Promse.all()
+Promise.all([P1,P2,P3]              Collect all promises in an array
+             .then((results) => {})  If all promises resolve hence then is executed and results= [arg1,arg2,arg3] of resolve  
+             .catch(results) =>{})   If even 1 promise rejects hence catch is executed and results= [arg1,arg2,arg3] of reject  
 
-Promise.all(arr) --> collect all the fns that return promise in an array and all fn’s resolve arg will be collected in an array  and given  to then 
-                        parameter/parameter in try  ; all fn’s reject  arg will be collected in an array  and given to catch  parameter/parameter in catch()
+EG1:
+const p1 = new Promise((resolve, reject) => {
+    console.log('The first promise has resolved');
+    resolve(1);
+    reject(10);
+});
+const p2 = new Promise((resolve, reject) => {
+    console.log('The second promise has resolved');
+    resolve(2);
+    reject(20);
+});
+const p3 = new Promise((resolve, reject) => {
+    console.log('The third promise has resolved');
+    resolve(3);
+     reject(20);
+});
+
+Promise.all([p1, p2, p3])                      
+.then((results) => {console.log(results);})   -->All promises resolve  hence then is executed and results= [1,2,3] 
+.catch((results) => {console.log(results);});    OP
+                                                The first promise has resolved
+                                                The second promise has resolved
+                                                The third promise has resolved
+                                                Results: 10,20,30
+                                                Total: 60
+
+EG2:
+const p1 = new Promise((resolve, reject) => {
+    console.log('The first promise has resolved');
+    resolve(1);
+    reject(10);
+});
+const p2 = new Promise((resolve, reject) => {
+    console.log('The second promise has rejected');
+    reject(20);
+});
+const p3 = new Promise((resolve, reject) => {
+    console.log('The third promise has resolved');
+    resolve(3);
+    reject(30);
+});
+
+Promise.all([p1, p2, p3])
+.then((results) => {console.log(results);})
+.catch((results) => {console.log(results);});-->1 promise rejects hence catch is executed and results = [20]
+
+
 */
 
 
