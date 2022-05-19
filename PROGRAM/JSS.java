@@ -6,80 +6,68 @@
 
 //NORMAL FN,AFRROW FN,EXPRESSION FN
 /*
+
+fnObj   :f fnName() OR f () if we do not have fnName 
+objOfFn :fnName() {member1:valu1,member2:value2 only members declared with this}
+
 //NORMAL FN(HOISTED TO TOP)
-async function fnName(param){}                      -->Declare fn which returns a fnObj; call fn which returns a fnObj
-fnName(arg)                                            (this inside fn = windows/global obj)
+async function fnName(param){}                      -->Declare fn which returns a fnObj
+fnName(arg)                                         -->call fnObj which returns value  
 
 
-async function fnName(param){}                      -->Declare fn which returns a fnObj; call fn which returns a fnObj + new  which returns another fnObj
-let fnObj = new fnName(arg)                           (this inside fn = object returned by fn = fnObj)
-
+async function fnName(param){}                      -->Declare fn which returns a fnObj
+let objOfFn = new fnName(arg)                       -->call fnObj + new which returns objOfFn     
 
 
 
 //EXPRESSION FN(NOT HOISTED TO TOP)
-let fnObj = async function fnNameOptional(param){} -->Declare fn which returns a fnObj ;Call fnObj
-fnObj(arg)                                           (this inside fn = windows/global obj)
+let fnObj = async function fnNameOptional(param){} -->Declare fn which returns a fnObj
+fnObj(arg)                                         -->Call fnObj which returns a value  
 
-let fnObj = async function fnNameOptional(param){} -->Declare fn which returns a fnObj ;Call fnObj + "new" which returns another fnObj 
-let fnObj2 = new fnObj(arg)                          (this inside fn = object returned by fn= fnObj2)
+let fnObj = async function fnNameOptional(param){} -->Declare fn which returns a fnObj
+let objOfFn = new fnObj(arg)                        -->Call fnObj + "new" which returns ObjOfFn  
+
 
 //AFRROW FN(NOT HOISTED TO TOP)
-let fnName = async(params) =>{}                     -->Declare fn which returns a fnObj ;Call the fnObj
-fnName(arg)                                             (this inside fn = windows/global obj)
-
+let fnName = async(params) =>{}                     -->Declare fn which returns a fnObj 
+fnName(arg)                                         -->Call the fnObj which returns value  
 
 let fnName = async(params) =>{}                     -->XX cant use new for arrow fn for arrow fn 
-let fnObj2 = new fnObj(arg)                            |
-                                                       |
-                                                       "this" explained in FUNCTION/THIS         
-
-
-
-
+let objOfFn = new fnObj(arg)                             
+                                                         
+                                                                                                                
 EG 1(NORMAL FN):
-function sum1(a,b){       -->Declare Fn which returns a fnObj
+function sum(a,b){       -->Declare Fn which returns a fnObj(f sum())
     return a+ b;
 }
 const obj = {
-  name:"pras",
-  sum : sum1(1,2),        -->Call Fn  which returns a fnObj
+name:"pras",
+sum1 : sum(1,2),        -->Call fnObj which returns a value(3)
 };
-console.log(obj.sum);
+console.log(obj.sum1);
 
 EG 2(EXPRESSION FN):
 a,b,c, -->Same as arrow fn just replace arrow fn with expression fn
 
 EG 3(ARROW FN):
 a.
-let  sum1 = (a,b) =>{return a+b;}    -->Declare fn which returns a fnObj(sum1)
+let  sum = (a,b) =>{return a+b;}    -->Declare fn which returns a fnObj(f sum())
 const obj = {
-  name:"pras",
-  sum : sum1(1,2),                  --> Call fnObj(sum1(1,2))
+name:"pras",
+sum1 : sum(1,2),                  --> Call fnObj which returns value(3)
 };
-console.log(obj.sum)
+console.log(obj.sum1)
 
 b.
 const obj = {
-  name:"pras",
-  sum : (a,b) =>{return a+b;},        -->Declare fn which returns fnObj(sum)
+name:"pras",
+sum : (a,b) =>{return a+b;},        -->Declare fn which returns fnObj(f sum())
 };
-console.log(obj.sum(1,2));            -->Call fnObj(sum(1,2))
-                                         
+console.log(obj.sum(1,2));            -->Call fnObj which returns value(3)
+                                        
 
 c.
 Look in ASYNCHRONOUS FN (CALLBACK),ASYNCHRONOUS FN (PROMISET USING THEN-CATCH),ASYNCHRONOUS FN (PROMISET USING ASYNC AWAIT),
-WEBDEVELOPMENT--clientI, server folders 
-               
-
-
-
-
-
-
-
-
-
 
 */
 
@@ -100,7 +88,7 @@ Console.log(“code after calling the synchronous fn ”)
 //DECLARING ASYNCHRONOUSFN
 function asyncFnName (fnParam,callBackFn) {
     code for Fn
-    callBackFn(arg) ;                                 -->2.Call fnObj stored as variable callBackFn and gove arg to param
+    callBackFn(arg) ;                                 -->2.Call fnObj stored as variable callBackFn and give arg to param
 }
 
 //CALLING ASYNCHRONOUSFN  
@@ -280,96 +268,105 @@ Promise.all([p1, p2, p3])
 /* #endregion */
 
 
-//FUNCTION
+//FUNCTION(FN ARE OBJECTS)
 /* #region Main */
 
-
-
 //function fnName extend(Child , Parent){ -->CAMEL CASE
-        //THIS 
+        //MEMBERS,THIS(BASED ON OBJ OF FN) 
         /*
-        this inside fn = window/global object OR undefined(if we use 'use strict' to prevent updating window obj) if new keyword is not used
-                    = fnObj returned by fn if new kwyword is used 
+        member=objOfFn having values of this used for acessing members of fn 
+        this  =objOfFn 
+              =parent objOfFn/obj(EG 6) if fn doesnt have obOfFn(default parent is window obj/global obj OR undefinded('use strict' sets value of this to undefined to prevent updation of window obj) )
+
+        EG1:
+        function calculate(){           -->declare fn which returns fnObj(f calculate())
+            console.log(this)              //this = parent objOfFn as fn doesnt have objOfFn  = Window {}/global {} OR undefined
+            let val = 111;
+            let sum  = function(a,b){
+                console.log(this);         //this =  parent objOfFn as fn doesnt have objOfFn   = Window {}/global {} OR undefined
+                return a+b;
+            }
+        }
+        let calculate1 = calculate(); -->call fnObj which returns val(3)
+                                         members cant be acessed as objOfFn is not present
 
 
+        EG2:
+        function calculate(){           -->declare fn which returns fnObj(f calculate())
+            console.log(this)              //this = parent objOfFn as fn doesnt have objOfFn  = Window {}/global {} OR undefined 
+            this.val = 111;
+            this.sum  = function(a,b){
+                console.log(this);         //this = parent objOfFn as fn doesnt have objOfFn = Window {}/global {} OR undefined 
+                return a+b;
+            }
+        }
+
+        calculate();                 -->call fnObj which returns val(3) 
+                                         //members cant be acessed as objOfFn is not present   
 
 
-        this            --> references object {}  that is executing current function 
-        this in fn      -->this =  windows/global  objecr   if we are in normal fn
-                        -->this = object returned by new  FnName()  if we are in const fn
-                                = window/global  object   FnName()  if e are in Constructor  fn and we forget new keyword
-        this in method  -->this = Object_In_Which_Method_Declared {} 
-                        'use strict'--> Prevents accidently modifying global/window object in case 2 and sets this = undefined
-                                        For fns we require to explicittly mention ‘strict mode’
-                                        Classes implicitly work in strict mode
+        EG3:
+        function calculate(){           -->declare fn which returns fnObj(f calculate())
+            console.log(this)             //this = objOfFn  = calculate1 = calculate {} 
+            let val = 111;
+            let sum  = function(a,b){
+                console.log(this);        //this = parent objOfFn as fn doesnt have objOfFn    = calculate1 = calculate {} 
+                return a+b;
+            }
+        }
+
+        let calculate1 = new calculate(); -->call fnObj + new which returns objOfFn(calculate1 = {} )
+                                             //members cant be acessed as objOfFn is  present but doesnt have values
         
-                                        function Circle(){
-                                            this.draw = function(){colsole.log(this)}
-                                        }
+        EG4:
+        function calculate(){                   -->declare fn which returns fnObj(f calculate())
+            console.log(this)                     //this =  objOfFn  = calculate1 = {val:111, sum:f ()}  
+            this.val = 111;
+            this.sum  = function(a,b){
+                console.log(this);                //this = parent objOfFn as fn doesnt have objOfFn  = calculate1 = calculate {val:111, sum:f ()}  
+                return a+b;
+                }
+            }
+        }
+        let calculate1 = new calculate();    -->call fnObj + new which returns objOfFn  (calculate {val:111, sum:f ()} )  
+        calculate1.val;                        //members can be acessed as objOfFn with this values present
+        calculate1.sum(1,2); 
+            
+        
+        EG5:
+        function calculate(){                -->declare fn which returns fnObj(f calculate())
+            console.log(this)                      //this =  objOfFn  = calculate1 = calculate {val:111, sum:f ()}  
+            this.val = 111;
+            this.sum  = function(a,b){
+                console.log(this);                //this = objOfFn  = sum1 = sum {}
+                return a+b;
+                }
+        }
+        
+        let calculate1 = new calculate();     -->call fnObj + new which returns objOfFn(calculate {val:111, sum:f ()})   
+        let sum1 = new calculate1.sum();        sum1 = {sum: f()}
+        calculate1.val;                         members can be acessed as objOfFn with this values present
+        calculate1.sum(1,2); 
+ 
+       
 
-                                        //method call
-                                        Let c = new Circle();
-                                        c.draw()  -->"In fn this  = object returned by new fn()""
+        EG6
+        function sum(){                    -->declare fn which returns fnObj(f sum())
+            console.log(this);
+            let video = {
+                tittle:"pras",
+                play:function(){
+                    console.log(this);      //this = parent obj as fn doesnt have objFn= video{title:"pras",play:f ()}}
+                }
+            }
 
-                                        //fn call
-                                        let c = new Circle()
-                                        let draw = c.draw();
-                                        draw(); -->"In fn this =  window/global object hence we must ‘use-strict’ at top to prevent this
-                                                from being et to window object"
+            return video;
+        }
 
-                                        EG1
-                                        function sum(){
-                                        console.log(this) }           --> this in nrml fn -> this = window { key:value, key:value }
-                                        sum();
-
-                                        EG2
-                                        function sum(){
-                                        this.a = 2                     -->  this in constructor --> this = sum {} ;   
-                                        
-                                            this.calculate = function(){   -->  this in constructor --> this = sum {} ; 
-                                                    let a = this.radius   -->(){-->  this in methdod  ---> this = sum {} ; "equivalent to s.calculate = fn()"
-                                                        }}
-                                        let s = new sum()
-
-                                        EG3
-                                        Function sum(){
-                                        let obj = {
-                                            tittle:a.
-                                            play:function(){
-                                                console.log(this)--> this in method  --> this = obj {}
-                                            }
-                                            return video
-                                        }
-
-
-                                        EG 4 
-                                        let video = {
-                                            tittle:a,
-                                            play:function(){
-                                                    console.log(this) --> this in method --> this = video {}
-                                                }
-
-                                        "
-                                        Video.stop = function(){
-                                            console.log(this)                   --> this in method(method is added outside video obj ) --> this = video {}
-                                        }
-                                        "
-
-
-                                        Video.play()-> video{tite:a ,play : f  , video:f}
-                                        Video.stop() -> video{tite:a ,play : f  , video:f}
-
-
-                                        EG 5
-                                        let video = {
-                                            tittle:a.
-                                            tags:[‘a’,’b’,’c’];
-                                            play:function(){
-                                                this.tags.forEach(function (tag){  --> this in method --> this = video {}
-                                                    console.log(this)              --> this in nrml fn --> this = window {}
-                                                } );
-                                            }
+        let sum1 = sum();               -->call fnObj which returns value(video{title:"pras",play:f ()})
+        sum1.play();
         */
+        
         //CHANGING THIS
         /*
         https://medium.com/@omergoldberg/javascript-call-apply-and-bind-e5c27301f7bb
@@ -441,10 +438,14 @@ Promise.all([p1, p2, p3])
 
         */
 
+
+
         //MEMBER
         /*
         
         */
+
+
         //CHILD , PROTOTYPE
          /*
          Child.prototype = Object.create(Parent.prototypte)  --> theprototype of child inherit from prototype of parent
