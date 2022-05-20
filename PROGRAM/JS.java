@@ -1,33 +1,16 @@
-//REMAINING
-/*
-Date – Mosh Hemadani -->JavaScript Basics for Beginners-->5. Objects-->14.Date
-BABEL;WEBPACK -- MOSH HEMADANI ->JS ->2.OOP->06.ES6MODULES ->61;62   
-*/
-
 
 //REMAINING
 /*
 1.STRUCTURE 
-2.THIS
-3.GLOBAL OBJECT , WRAPPER FN ,WINDOW OBJECT
-4.IMPORT EXPORT
 6.FN
 7.CLASS  DECLARATION
 8.CLASS
-9.OBJECTS'
+9.OBJECTS
+10.JSS.JAVA
 10.EXCEPTION
 12.JS NODE MODULES
 
 
-function  circle(radius){ -->PASCAL CASE     function   Circlr(radius) {-->CAMEL CASE
-    return {                                      
-        radius ,                                 this.radius = radius
-        draw(){                                  this.draw = function(){
-            console.log(radius);                   console.log(radius)''
-        }                                         }
-    }                                         }
-
-let varname =fnName(arg)-->fn returns object     let varname = new FnName(arg)-->new creates empty obj {} and assigns this to {}  
 */
 
 
@@ -80,52 +63,58 @@ const readXlsxFile = require('read-excel-file/node');
 
 */
 
-
-
 //IMPORT EXPORT
 /* #region Main */
 
-//IMPORT , EXPORT (ES5 - BROWSER)
+//IMPORT , EXPORT (ES5 - NODE)
 /*
 //SINLE(ANY  FN)                           
-module1.js                                module2.js
-async function(){}                        var fnName = require('externalmodulename' OR './modulename1' OR '../modulename1') 
-let fnName = async function() =>{}        fnName(args)/fnName if no args for expr,arrow fns             
+module1.js                                        module2.js
+async function fnName(){}                        var fnName = require('externalmodulename' OR './modulename1' OR '../modulename1') 
+let fnName = async function fnNameOpt() =>{}     fnName(args)            
 let fnName = async() =>{}
 module.exports = fnName            
 
 
 
-//MULTIPLE(ARROW FN)
+//MULTIPLE(ONLY EXPRESSION/ARROW FN)
 module1.js                                module2.js                     
 exports.fnName1  = async() =>{}           var {fnName1,fnName2} = require('externalmodulename' OR './modulename1' OR '../modulename1') 
-exports.fnName2 = async() =>{}            fnName1(arg)/fnName1 if no params used for expr,arrow fns  
+exports.fnName2 = async() =>{}            fnName1(arg)   
 
 
 
 */
 
-//IMPORT , EXPORT (ES6 - NODEJS)
+//IMPORT , EXPORT (ES6 - REACT ie BROWSER)
 /*
 
 //SINLE(ANY  FN)                           
-module1.js                                             module2.js
-async function(){}                        import fnName from 'externalmodulename' OR './modulename1' OR '../modulename1''    
-let fnName = async function() =>{}        fnName(args)/fnName if no args for expr,arrow fns             
+module1.js                                   module2.js
+async function fnName(){}                   import fnName from 'externalmodulename' OR './modulename1' OR '../modulename1'   
+let fnName = async function() =>{}          fnName(args)           
 let fnName = async() =>{}
 export default fnName              
 
 
 
 
-//MULTIPLE(ARROW FN)
+
+//MULTIPLE(EXPRESSION FN OR ARROW FN)
 module1.js                                  module2.js                     
-export const fnName1  = async() =>{}        import {varname1,varname2} from 'externalmodulename' OR './modulename1' OR '../modulename1 
-export const fnName1  = async() =>{}        fnName1(arg)/fnName1 if no params used for expr,arrow fns 
+export const fnName1  = async() =>{}        import {fnName1,fnName2} from 'externalmodulename' OR './modulename1' OR '../modulename1 
+export const fnName1  = async() =>{}        fnName1(arg)
 
+                                             AS,*
+                                             as -- replace word
+                                             * -- everything
+                                             Eg
+                                             import * as React from 'React'
+                                             React.app()
+                                             
+                                             
+                                        
 
-Note: Check in react client
-* as React
 
 
 
@@ -136,7 +125,7 @@ Note: Check in react client
 /* #endregion */
 
 
-//GLOBAL OBJECT , WRAPPER FN ,WINDOW OBJECT
+//GLOBAL OBJECT ,WINDOW OBJECT, WRAPPER FN 
 /* #region Main */
 
 
@@ -145,23 +134,29 @@ Note: Check in react client
 global {                                         --> Global Object has properties and  functions  which can be called by 
                                                       global.member OR member(node will by default put global ahead of it)
        
-setTimeout(time in  ms); --> global object’s  fn which delay the fn by t ms;
-clearTimeout();-->global object’s  fn which  stop the elay
-setInterval() --> global object’s   fn which  call a fnrepetitively after delay
-clearInterval() --> global object’s   fn which  stop calling a fn repetitively after a delay
-console.log(“msg”)-> global object’s   fn which  logs the msg
-console.error(“msg”)--> global object’s   fn which  logs the msg as red
-console.warn(“msg”)--> global object’s   fn which  logs the message as warning 
+    setTimeout(time in  ms); --> global object’s  fn which delay the fn by t ms;
+    clearTimeout();-->global object’s  fn which  stop the elay
+    setInterval() --> global object’s   fn which  call a fnrepetitively after delay
+    clearInterval() --> global object’s   fn which  stop calling a fn repetitively after a delay
+    console.log(“msg”)-> global object’s   fn which  logs the msg
+    console.error(“msg”)--> global object’s   fn which  logs the msg as red
+    console.warn(“msg”)--> global object’s   fn which  logs the message as warning 
 }
 */
+
+ //WINDOW OBJECT(ES6 - BROWSER)
+ /*
+ window { }                                        --> Windoe Object has properties and  functions  which can be called by 
+                                                      window.member OR member( browser will by default put window ahead of it)
+ */
 
 //WRAPPER FN(ES5 - NODE)
 /*
 function((exports , require , module, filename , __filename, __dirname)){   --> Every File is a module  and everything defined inside a module is 
                                                                                 wrapped inside a fn and is  private to that module
      
-
-        module-->wrapper  fns parameter which is a object 
+        PARAMETERS OF WRAPPER FN
+        module--> object 
         {
         id: '.',
         path: 'C:\\Users\\DELL\\Desktop\\JavaScript\\NodeVsCode\\VSCode\\audio-transcoder\\mitron',
@@ -172,12 +167,12 @@ function((exports , require , module, filename , __filename, __dirname)){   --> 
         children: [],
         paths: [    'C:\\Users\\DE………]
         }
-        module.exports.key = value; --> wrapper  fns parameter “module”  is a object ; in “module” object we set the “exports ” oject
-        exports.key = value ;       --> wrapper fns parameter  “exports” is a object which we set with key value pair
-        require(‘filepath’)         --> wrapper fns parameter “require”  is a fn() which retuens the “module object” ka “exportobject”
-                                        OR “export” object itself depending on which obj you used to export
-        __filename                  --> wrapper fns parameter “__filename”  is a string which returns the filename 
-         __diename                  --> wrapper fns parameter __diename”  is a string which returns the directory in which  the file is 
+        module.exports.key = value; --> "module"  is a object ; in "module" object we set the "exports"  oject
+        exports.key = value ;       --> "exports" is a object which we set with key value pair
+        require(‘filepath’)         --> "require"  s a fn() which retuens the "module object" ka "exportobject"
+                                        OR "export" object itself depending on which obj you used to export
+        __filename                  --> wrapper fns parameter "__filename"  is a string which returns the filename 
+         __diename                  --> wrapper fns parameter "__diename"  is a string which returns the directory in which  the file is 
 
   
          ///OUR CODE  
@@ -186,249 +181,472 @@ function((exports , require , module, filename , __filename, __dirname)){   --> 
  */     
 
 
- //WINDOW OBJECT(ES6 - BROWSER)
- /*
- window { }                                        --> Windoe Object has properties and  functions  which can be called by 
-                                                      window.member OR member( browser will by default put window ahead of it)
- */
 
 /* #endregion */
 
-//MEMBER,THIS
+
+//FUNCTION DECLARATION(FN ARE OBJECTS)
 /* #region Main */
 
+//NORMAL FN,AFRROW FN,EXPRESSION FN
+/*
 
-//INSTANCE  MEMBERS ,PROTOTYPE MEMBERS
-/*
-Instance members -->Members that belong to the object
-Prototype members-->Members belonging to all above Prototpes of object;Prototype is a object from which the object inherits                               
+fnObj   :f fnName() OR f () if we do not have fnName 
+objOfFn :fnName() {member1:valu1,member2:value2 only members declared with this}
+
+//NORMAL FN(HOISTED TO TOP)
+async function fnName(param){}                      -->Declare fn which returns a fnObj
+fnName(arg)                                         -->call fnObj which returns value  
+
+
+async function fnName(param){}                      -->Declare fn which returns a fnObj
+let objOfFn = new fnName(arg)                       -->call fnObj + new which returns objOfFn     
+
+
+
+//EXPRESSION FN(NOT HOISTED TO TOP)
+let fnObj = async function fnNameOptional(param){} -->Declare fn which returns a fnObj
+fnObj(arg)                                         -->Call fnObj which returns a value  
+
+let fnObj = async function fnNameOptional(param){} -->Declare fn which returns a fnObj
+let objOfFn = new fnObj(arg)                        -->Call fnObj + "new" which returns ObjOfFn  
+
+
+//AFRROW FN(NOT HOISTED TO TOP)
+let fnName = async(params) =>{}                     -->Declare fn which returns a fnObj 
+fnName(arg)                                         -->Call the fnObj which returns value  
+
+let fnName = async(params) =>{}                     -->XX cant use new for arrow fn for arrow fn 
+let objOfFn = new fnObj(arg)                             
+                                                         
+                                                                                                                
+EG 1(NORMAL FN):
+function sum(a,b){       -->Declare Fn which returns a fnObj(f sum())
+    return a+ b;
+}
+const obj = {
+name:"pras",
+sum1 : sum(1,2),        -->Call fnObj which returns a value(3)
+};
+console.log(obj.sum1);
+
+EG 2(EXPRESSION FN):
+a,b,c, -->Same as arrow fn just replace arrow fn with expression fn
+
+EG 3(ARROW FN):
+a.
+let  sum = (a,b) =>{return a+b;}    -->Declare fn which returns a fnObj(f sum())
+const obj = {
+name:"pras",
+sum1 : sum(1,2),                  --> Call fnObj which returns value(3)
+};
+console.log(obj.sum1)
+
+b.
+const obj = {
+name:"pras",
+sum : (a,b) =>{return a+b;},        -->Declare fn which returns fnObj(f sum())
+};
+console.log(obj.sum(1,2));            -->Call fnObj which returns value(3)
+                                        
+
+c.
+Look in ASYNCHRONOUS FN (CALLBACK),ASYNCHRONOUS FN (PROMISET USING THEN-CATCH),ASYNCHRONOUS FN (PROMISET USING ASYNC AWAIT),
+
 */
-//OBJECT(ObjectBase Prototype -->Object)
-/*
-let obj = {x:1;y:2};
-Console.log(obj)--> //INSTANCE MEMBERS 
-                        x:1                           -->Object    
-                        y:2.
-                    //PROTOTYE  MEMBERS
-                    __proto__:Object                 -->ObjectBase  Prototype
-                    constructor: ƒ Object()  as Object ; 
-                    hasOwnProperty: ƒ hasOwnProperty()
-*/
-//FUNCTION(ObjectBase Prototype --> FunctionBasePrototype -->  Function)
-/*
-function Circle(radius){
-    this.radius = radius;
-    this.draw = function(){
-    }
+
+//SYNCHRONOUS FN
+/* 
+//SYNCHRNOUS FN
+function synchronousFnname(arg){
+     Synchronous task;
 }
 
-let circle = new Circle(1);
-console.log(circle);--> //INSTANCE MEMBERS
-                        radius:1                                    -->Function
-                        draw: f()
-                        //PROTOTYPE MEMBERS
-                        __proto__:Object                           -->FunctionBase Prototype
-                            constructor:f Circle(radius)   
-                            __proto__:Object                      -->ObjectBase Prototype
-                                constructor: ƒ Object()  as Object ; 
-                                hasOwnProperty: ƒ hasOwnProperty()
+//USING SYNCHRONOUSFN
+synchronousFnname(par)                                   -->Start and complete  syncFn then execute code after syncFn 
+Console.log(“code after calling the synchronous fn ”)
 */
-//CLASS(ObjectBasePrototype -->ClassBasePrototype -->Class)
+
+//ASYNCHRONOUS FN (CALLBACK)
 /*
-Class Circle{
-    Constructor(radius){
-    this.radius = radius;
-    this.draw = function(){
-    }
+//DECLARING ASYNCHRONOUSFN
+function asyncFnName (fnParam,callBackFn) {
+    code for Fn
+    callBackFn(arg) ;                                 -->2.Call fnObj stored as variable callBackFn and give arg to param
 }
 
-let circle = new Circle(1);
-console.log(circle);--> //INSTANCE MEMBERS
-                        radius:1                                    -->Class
-                        draw: f()
-                        //PROTOTYPE MEMBERS
-                        __proto__:Object                            -->ClassBase Prototype
-                            constructor:f Circle(radius)   
-                            __proto__:Object                        -->ObjectBase Prototype
-                                constructor: ƒ Object()  as Object ; 
-                                hasOwnProperty: ƒ hasOwnProperty()
+//CALLING ASYNCHRONOUSFN  
+asyncFnName (fnArg , (param)=>{                        -->1.declare fn  which returns a fnObj which is passed to variable callbackFn
+            console.log();                              SO
+            });                                         start executing code of asyncFnName and start executing code after asyncFnName  
+Console.log(“code after calling the asynchronous fn ”)  after executing code of asyncFnName  execute callback fn with  param = arg
+
+                                                        
 */
-//ARRAY(ObjectBase Prototype --> ArrayBasePrototype -->  Array)
+
+//ASYNCHRONOUS FN (PROMISE USING THEN-CATCH)
 /*
-let x = [1,2]
-console.log(x)--> //INSTANCE MEMBERS
-            1:1                                      -->Array
-            2:2
-            //PROTOTYE  MEMBERS
-            __proto__: Array(2)                      -->ArrayBase Prototype        
-                        concat: ƒ concat()           
-                        constructor: ƒ Array()    
-                        find: ƒ find()                     
-                        __proto__: Object              -->Object Base Prototype
-                                constructor: ƒ Object()  as Object ; 
-                                hasOwnProperty: ƒ hasOwnProperty()
+//DECLARING ASYNCHRONOUS FN THAT RETURNS PROMISE 
+let promiseName = function asyncFn(fnParam) {    -->1.Declare fn that returns a fnObj as promise
+    code of asyncFnName                                   
+    return new Promise ((resolve,reject)=>{ 
+            resolve(arg1 )                       -->4.Call fnObj stored in resolve and give arg1 to param1
+            reject(arg2)                              Call fnObj stored in reject and give arg2 to param2
+    }); 
+      
+}
+
+//CALLING ASYNCHRONOUSFN  
+promiseName(fnArg)                                  -->2.Call the fnObj ie promise(asyncFnName(fnArg));apply then,catch on the returned promise                               
+        .then((param1)=>{console.log(param1)})      -->3.declare a fn inside then  which returns a fnObj which is passed to variable resolve 
+        .catch((param2) => {console.log(param2)})        declare a fn inside catch which returns a fnObj which is passed to variable reject  
+                                                            
+                                                         SO
+                                                         start executing code of asyncFnName and start executing code after asyncFnName
+                                                         after executing code of asyncFnName  it returns a promise  
+                                                         if promise sucessful execute then with param1 = arg1 of resolve
+                                                         if promise  failded execute catch with param2 = arg2 or reject
+
+
+
+
+
+                                                       
 */
 
-
-//INSTANCE MEMBERS , PPROTOTYPE MEMBERS CHANGES
-//OBJECT.GETPROTOTYPEOF(MYOBJ)
+//ASYNCHRONOUS FN (PROMISET USING ASYNC-AWAIT)
 /*
-Object.getPrototypeof(myobj)/                    -->returns the prototypeobject   of the object passed    
-myObj.__proto__ /                                     Eg let arr = [1,2,3,4]  new Array() under the hood constructor fn
-Constructorfn.prototype(deprecated)                       arr.__proto__/ Object.getprototype(arr)/ Array.prototype      
-                                                      Eg function Circle(radius){ }
-                                                         let c1 = new Circle();
-                                                         C1.__proto__/ Object.getprototype(c1)/ Circle.prototype      
-*/
-//OBJECT.GETOWNPROPERTYDESCIPTOR(MYOBJ ,”MEMBER” )
-/*                                                                                                                                                 
-Object.getOwnPropertyDesciptor(myobj ,”member” ) -->returns attributes attached to   the member of the object passd  
-                                                    value: gives the value of the member
-                                                    configurable: if true we can delete the  member
-                                                    enumarable: if true means while iterating we will see that member 
-`                                                   writable:if true means we can overrite the value  of the member 
+//DECLARING ASYNCHRONOUS FN THAT RETURNS PROMISE 
+function asyncFnName(fnParam) {                      -->1.Declare fn that  returns a fnObj as promise
+    code of asyncFnName                                  
+    return new Promise ((resolve,reject)=>{ 
+            resolve(arg1)                            -->4.Call fnObj stored in resolve and give arg1 to param1              
+            reject(arg2)                                Call fnObj stored in reject and give arg2 to param2
+    });
+      
+}
+//CALLING ASYNCHRONOUSFN  
+async function fnName(){                                          
+    try{
+       const param1 = await asyncFnName(fnArg);   -->2.Apply try catch on fnObj ie promise                       
+     }                                               3.Step 3 happens internally and params get arg directly
+    catch(param2){                                 
+        console.log(param2);                 
+    }
+}
+fnName();
+Console.log(“code after ”)                      SO
+                                                start executing code of asyncFnName and "wait"
+                                                after executing code of asyncFnName  it returns a promise  
+                                                if promise sucessful execute then with param1 = arg1 of resolve
+                                                if promise  failded execute catch with param1 = arg2 of rjecr
+                                                Start executing code after asyncFnName
+                                                NOTE: await keyword can be used only if it is wrapped inside async fn 
 
-                                                    EG
-                                                    let person ={x:1};
-                                                    let attributes = Object.getOwnPropertyDescriptor(person,'x');
-                                                    console.log(attributes);--> value: 1  --> value of member  x is 1                  
-                                                                                configurable: true  --> we can delete member x
-                                                                                enumerable: true    -->for(i in person) we can see member  x
-                                                                                writable: true   --> we can overwrite value of member  x  
-                                                                                __proto__: Object
 
-                                                    EG
-                                                    let person ={x:1};
-                                                    let objectBase = person.__proto__/Object.getPrototypeOf(person);
-                                                    let attr = Object.getOwnPropertyDescriptor(objectBase,'toString');
-                                                    console.log(attr);--> value: ƒ toString()-->value of member  toString  is toString()
-                                                                        configurable: true  --> we can delete member toString
-                                                                        enumerable: false --> for(i in person) we cant see member toString 
-                                                                        writable: true --> we can overwrite value of member  toString
-                                                                        __proto__: Object
+
+
+                                                        
 */
-//OBJECT.GETOWNPROPERTYDESCIPTOR(MYOBJ ,”MEMBER” )
+
+//PROMISE
 /*
-Object.defineProperty(object ,”property ” { attribute:value}) --> we can change the ttributes atached to a property of object passed
-                                                        value = anyvalue: gives the value of the member
-                                                        configurable : t/f: if true we can delete the  member
-                                                        enumarable : t/f: if true means while iterating we will see that member
-                                                        writable =:t/f:if true means we can overrite the value  of the member
-                                                        get:function(){return prop} :we can do obj. member no need of obj.get()
-                                                        set:function(vall){prop = val} :we can do obj. member = val no need of obj.set(val) 
+//Promise promise = new Promise((resolve,reject))
+let promiseName = function asyncFnName(fnParam) {    -->Declate Fn return fnObj as promise
+    code for Fn 
+    return new Promise ((resolve,reject)=>{ 
+            resolve(arg1 )                               
+            reject(arg2)                               
+    });     
+}
+OR
+Promise promiseName = new Promise((resolve,reject) =>{  -->return promise  directly
+    resolve("foo");
+    reject("bar");
+});
 
-                                                       	EG
-                                                        function Circle(radius,x,y){ 
-                                                            Object.defineProperty(this,"angle",{
-                                                                    Configurable: false         -->you cant delete angle member 
-                                                                    writble:false               --> tou cant overwrite angle member value
-                                                                    get:function(){             -->let c1 = new Circle(1,2,3) ; you can directly do   c1.angle 
-                                                                            return angle},          no  need of c1.getAngle()   
-                                                                    set:function(value){        --> let c1 = new Circle(1,2,3) ; you can dir do   c1.angle =22
-                                                                                angle = value;}     no  need of c1.setAngle(22)   
-                                                            })
+promiseName(fnArg)                                    -->apply then,catch on foObj ie Promise                                              
+        .then((param1)=>{console.log(param1)})              
+        .catch((param2) => {console.log(param2)})     
+
+
+
+//Promise.resolve()
+let promiseName = function asyncFnName(fnParam) {    -->Declate Fn return fnObj as promise
+    code for Fn                                    
+    return  Promise.resolve(arg1);
+}
+OR
+const promiseName =  Promise.resolve(arg1);         -->return promise  directly
+
+promiseName(fnArg)                                  -->apply then,catch on the fnObj ie Promise                                                   
+        .then((param1)=>{console.log(param1)})       (as we use Promise.resolve()) we can only use then)           
+          
+//Promise.reject()
+let promiseName = function asyncFnName(fnParam) {   -->Declate Fn return fnObj as promise
+    code for Fn                                    
+    return  Promise.reject(arg1);
+}
+OR
+const promiseName =  Promise.reject(arg1);         -->return promise  directly
+
+promiseName(fnArg)                                ->apply then,catch on the fnObj ie Promise                                                    
+        .carcg((param1)=>{console.log(param1)})     (as we use Promise.reject()) we can only use catch)               
+
+
+//Promse.all()
+Promise.all([P1,P2,P3]              Collect all promises in an array
+             .then((results) => {})  If all promises resolve hence then is executed and results= [arg1,arg2,arg3] of resolve  
+             .catch(results) =>{})   If even 1 promise rejects hence catch is executed and results= [arg1,arg2,arg3] of reject  
+
+EG1:
+const p1 = new Promise((resolve, reject) => {
+    console.log('The first promise has resolved');
+    resolve(1);
+    reject(10);
+});
+const p2 = new Promise((resolve, reject) => {
+    console.log('The second promise has resolved');
+    resolve(2);
+    reject(20);
+});
+const p3 = new Promise((resolve, reject) => {
+    console.log('The third promise has resolved');
+    resolve(3);
+     reject(20);
+});
+
+Promise.all([p1, p2, p3])                      
+.then((results) => {console.log(results);})   -->All promises resolve  hence then is executed and results= [1,2,3] 
+.catch((results) => {console.log(results);});    OP
+                                                The first promise has resolved
+                                                The second promise has resolved
+                                                The third promise has resolved
+                                                Results: 10,20,30
+                                                Total: 60
+
+EG2:
+const p1 = new Promise((resolve, reject) => {
+    console.log('The first promise has resolved');
+    resolve(1);
+    reject(10);
+});
+const p2 = new Promise((resolve, reject) => {
+    console.log('The second promise has rejected');
+    reject(20);
+});
+const p3 = new Promise((resolve, reject) => {
+    console.log('The third promise has resolved');
+    resolve(3);
+    reject(30);
+});
+
+Promise.all([p1, p2, p3])
+.then((results) => {console.log(results);})
+.catch((results) => {console.log(results);});-->1 promise rejects hence catch is executed and results = [20]
+
+
 */
-//OBJECT.HASOWNPROPERTY(‘MEMBER’)
-/*                                                                                                                                                                                            
-Object.hasOwnProperty(‘member’)                         --> returns true if the member is an instance member and false if the member is a prototye member
-                                                            EG
-                                                            function Circle(radius){
-                                                            //Instance member
-                                                            this.radius = radius;}
 
-                                                            //prototype member
-                                                            Circle.prototype.draw= function(){     
-                                                                    console.log(“”circle with” + this.radius)  }
-
-                                                            Object.hasOwnProperty(‘radius’) --> true         
-                                                            Object.hasOwnProperty(‘draw’) --> false
-*/
-//OBJECT.KEYS(MYOBJ)
-/*
-Objects.keys(myObj)                                      -->returns an array of instance members of the object  whose enumerate = true
-                                                            If you want both instance;prototype members  whose enumerate = true use FOR-IN
-                                                            EG
-                                                            function Circle(radius){
-                                                            //Instance member
-                                                            this.radius = radius;}
-
-                                                            //prototype member
-                                                            Circle.prototype.draw= function(){     
-                                                                console.log(“”circle with” + this.radius)  }
-
-                                                            let c1 = new Circle(1)
-
-
-                                                            Object.keys(c1) -->[“radius”]
-                                                            for(key n c1){        -->”radius” , “draw”
-                                                                console.log(key)}
-*/                                                                                              
 
 /* #endregion */
 
 
+//FUNCTION(FN ARE OBJECTS)
+/* #region Main */
+
+//function fnName { -->CAMEL CASE
+        //MEMBERS:MEMBER,THIS 
+        /*
+        member=objOfFn having values of this used for acessing members of fn 
+        this  =objOfFn 
+              =parent objOfFn/obj(EG 6) if fn doesnt have obOfFn(default parent is window obj/global obj OR undefinded('use strict' sets value of this to undefined to prevent updation of window obj) )
+
+        EG1:
+        function calculate(){           -->declare fn which returns fnObj(f calculate())
+            console.log(this)              //this = parent objOfFn as fn doesnt have objOfFn  = Window {}/global {} OR undefined
+            let val = 111;
+            let sum  = function(a,b){
+                console.log(this);         //this =  parent objOfFn as fn doesnt have objOfFn   = Window {}/global {} OR undefined
+                return a+b;
+            }
+        }
+        let calculate1 = calculate(); -->call fnObj which returns val(3)
+                                         members cant be acessed as objOfFn is not present
+
+
+        EG2:
+        function calculate(){           -->declare fn which returns fnObj(f calculate())
+            console.log(this)              //this = parent objOfFn as fn doesnt have objOfFn  = Window {}/global {} OR undefined 
+            this.val = 111;
+            this.sum  = function(a,b){
+                console.log(this);         //this = parent objOfFn as fn doesnt have objOfFn = Window {}/global {} OR undefined 
+                return a+b;
+            }
+        }
+
+        calculate();                 -->call fnObj which returns val(3) 
+                                         //members cant be acessed as objOfFn is not present   
+
+
+        EG3:
+        function calculate(){           -->declare fn which returns fnObj(f calculate())
+            console.log(this)             //this = objOfFn  = calculate1 = calculate {} 
+            let val = 111;
+            let sum  = function(a,b){
+                console.log(this);        //this = parent objOfFn as fn doesnt have objOfFn    = calculate1 = calculate {} 
+                return a+b;
+            }
+        }
+
+        let calculate1 = new calculate(); -->call fnObj + new which returns objOfFn(calculate1 = {} )
+                                             //members cant be acessed as objOfFn is  present but doesnt have values
+        
+        EG4:
+        function calculate(){                   -->declare fn which returns fnObj(f calculate())
+            console.log(this)                     //this =  objOfFn  = calculate1 = {val:111, sum:f ()}  
+            this.val = 111;
+            this.sum  = function(a,b){
+                console.log(this);                //this = parent objOfFn as fn doesnt have objOfFn  = calculate1 = calculate {val:111, sum:f ()}  
+                return a+b;
+                }
+            }
+        }
+        let calculate1 = new calculate();    -->call fnObj + new which returns objOfFn  (calculate {val:111, sum:f ()} )  
+        calculate1.val;                        //members can be acessed as objOfFn with this values present
+        calculate1.sum(1,2); 
+            
+        
+        EG5:
+        function calculate(){                -->declare fn which returns fnObj(f calculate())
+            console.log(this)                      //this =  objOfFn  = calculate1 = calculate {val:111, sum:f ()}  
+            this.val = 111;
+            this.sum  = function(a,b){
+                console.log(this);                //this = objOfFn  = sum1 = sum {}
+                return a+b;
+                }
+        }
+        
+        let calculate1 = new calculate();     -->call fnObj + new which returns objOfFn(calculate {val:111, sum:f ()})   
+        let sum1 = new calculate1.sum();        sum1 = {sum: f()}
+        calculate1.val;                         members can be acessed as objOfFn with this values present
+        calculate1.sum(1,2); 
+ 
+       
+
+        EG6
+        function sum(){                    -->declare fn which returns fnObj(f sum())
+            console.log(this);
+            let video = {
+                tittle:"pras",
+                play:function(){
+                    console.log(this);      //this = parent obj as fn doesnt have objFn= video{title:"pras",play:f ()}}
+                }
+            }
+
+            return video;
+        }
+
+        let sum1 = sum();               -->call fnObj which returns value(video{title:"pras",play:f ()})
+        sum1.play();
+        */
+        
+        ////INSTANCE MEMBERS////  --->Members that belong to the object
+        //INITIALISE
+        /*
+         let   angle = 20;     --> private scope : cannot be acessed outside fn
+         this.radius = radius; -->public scope : can be acessed outside fn using fnObj
+                                (Explained above in MEMBERS:MEMBER,THIS )
+         */                     
+        
+        //GETTER , SETTER (USING THIS)-->you need to call method let c1 = new Circle() c1.getAngle() ; c1.setAngle() = 22
+        /*
+         this.getAngle = function(){        -->public scope : can be acessed outside fn using fnObj       
+            return angle;}
+
+         this.setAngle = function(value){               
+            angle = value;}
+         OR
+         Object.defineProperty(this,"angle",{
+            get:function(){
+                    return angle; },
+            set:function(value){
+                    angle = value;
+
+            }
+        })
+
+         */
+  
+        //METHODS
+        /*
+        let area= function(){             --> private scope : cannot be acessed outside f
+                return radius*radius; }       
+
+        this.calculate = function(){     -->public scope : can be acessed outside fn using fnObj
+                let ar = area();            
+                let ch = chord();            
+                return ar;
+        }    
+        */    
+    
+
+        ///PROTOTYPE MEMBERS//// -->Members belonging to Prototype of a Fn
+        /*
+        INHERITANCE CHART
+                ------------ Parent.prototype
+                |                   |
+        Child.prototype             |
+                |                   |
+        Child Fn                 Parent Fn 
+        
+        function ParentFn(height){
+            this.height = height;
+            this.bark = function(){ console.log("oo");}
+        }
+
+        function ChildFn(height , size)                           //INHERIT
+            ParentFnName.call(this, height);                  --> child Fn inherits  parent.prototype ke prototype members and ParentFn ke instance members
+            this.size = size;
+        }                                    
+                                                                  //INHERIT
+        ChildFn.prototype = Object.create(ParentFn.prototypte)  --> the child protype inherit from parent prototype and child Fn inherit from Child Prototype
+        ChildFn.prototype.constructor = ChildFn                     so child Fn inherits parent.prototype ke prototype members 
+        OR
+        ChildFn.prototype = new ParemtFn()                      --> the child prootype inherit from parent prototype and child Fn inherit from Child Prototype
+        ChildFn.prototype.constructor = ChildFn                     so child Fn inherits parent.prototype ke prototype members and ParentFn ke instance members
+    
+                                                                    //ADD      
+        ParentFn.prototype.bark = function(){ console.log("gg"); } -->add  Parent.prototpye ke prototype members 
+
+                                                                    //OVERRIDE
+        ChildFn.prototype.bark = function(){ console.log("gg"); }  -->override Child.prototpye ke protype members
+        
+                                                                     //EXTEND
+        ChildFn.prototype.bark = function(){                       -->extend Child.prototpye ke prototype members
+                Shape.prototype.bark.call(this);   
+                Console.log(“gg”);
+        }
+
+        //
+        */
+
+
+
+    
+
+    
 
 
 
 
-//FUNCTION DECLARATION-- PARAMETER ; ARGUEMENT 
-/*
-//NORMAL PARAMETERS
-fnname(parameter){                              -->PROVIDES VALUE TO PARAM ; IF PARAM > ARG REMAINING PARAM = UNDEFINED ; IF ARG > PARAM REMAINING ARG IGNORED 
-                                                   (DEFAULT PARAM)            (REST PARAM)
-
-
-//DEFAULT PARAMETER(EG 1)
-fnname(parameter = value){                         -->PROVIDES DEFAULT VALUE TO PARAM AND  IF ARG PASSES VALUE OVERRIDE
-     OR                                               DEFAULT  PARAM MUST BE LAST
-     let parameter = parameter|| defaultvalue :       EG1
-
-
-//REST PARAMETERS, SPREAD ARGUEMENTS
-fnName(a,...arr){}                                  -->COLLECTS REMAINING ARG IN ARRAY  CALLED "ARRAYNAME" AND  REST PARAMETER MUST BE LAST PARAMETER
-fnName(...arr)                                      -->SPREADS THE ELEMENTS OD ARR INTO INDIVIDUAL ELEMENTTS 
-                                                       Note: ...arr as parameter is rest parameter ; ... arr as arguement is spread parameter
-                                                       EG2
-                
-//ARGUEMENT KEYWORD
-fnname(parameters){
-       arguments                                    -->COLLECTS REMAINING ARG IN ITERATOR  CALLED "ARGUEMENT"  
-                                                      EG3
-
-                                                            
-
-Eg1
-functon sum(a,b,c = 3){
-   let a = a||1;let b = b||2 ; }
-
-sum()
-
-EG2
-function sum(a,...NUMS){   --> collects remaining args into arr called "num" [2,3,4,5,6]
-    return  name.reduce((a,b) =>a + b );}
-sum(1,2,3,4,5,6)
-
-Math.min(...arr)    -->spreads the elements of arr/obj  into individual elements and  give those elements as arguements to min so it will be Math.min(1,2,3,4,5)
-
-
-Eg3
-function sum(){                       
-let total = 0;
-for(i of arguments){total = total + i;}
-return total;
-}
-let total = sum(1,2,3,4,5,6,7);
 
 
 
 
 
-*/
 
-
-
-
-
+/* #endregion */
 
 
 
