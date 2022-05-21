@@ -1,39 +1,23 @@
-
-//REMAINING
-/*
-1.STRUCTURE 
-6.FN
-7.CLASS  DECLARATION
-8.CLASS
-9.OBJECTS
-10.JSS.JAVA
-10.EXCEPTION
-12.JS NODE MODULES
-
-
-*/
-
-
 //STRUCTURE 
 /*
 const var = require('')                  -->IMPORT , EXPORT(ES5) , IMPORT EXPORT(ES6)
 exports.fnname = fnname(){} 
 
-this                                      -->MEMBER,THIS
+
 global{}                                 -->GLOBAL OBJECT,WRAPPER FN(ES5), WINDOW OBJECT(ES6)
 function(exports,require...){//OUR CODE}     
 
 
 
-function circle(radius,x,y){ }           -->NAMED FN,ANONYMOUS FN ,                                 
-                                           SYNC FN ,ASYNC FN(CALLBACK),ASYNC FN(PROMISET USING THEN-CATCH),ASYNC FN (PROMISET USING ASYNC AWAIT)PROMISE
-function circle(radius,x,y){ }           --.FN DETAILS
+function circle(radius,x,y){ }           -->NAMED FN,EXPRESSION FN,ANONYMOUS FN ,                                 
+                                           SYNC FN ,ASYNC FN(CALLBACK),ASYNC FN(PROMISET USING THEN-CATCH),ASYNC FN (PROMISET USING ASYNC AWAIT),PROMISE
+                                           PARAMETER,ARG
+                                           **FACTORY FN, CONSTRUCTOR FNS
+function circle(radius,x,y){ }           -->FN DETAILS
 
 
 class classnama{}                       -->NAMED CLASS, ANONYMOUS CLASS
 class classnama{}                       -->CLASS DETAILS      
-
-
 
 OBJECT                                 --> NUMBER;BOOLEAN;NULL;NaN;SYMBOL ;STRING; OBJECT ; ARRAY
 
@@ -62,6 +46,7 @@ const readXlsxFile = require('read-excel-file/node');
 
 
 */
+
 
 //IMPORT EXPORT
 /* #region Main */
@@ -188,7 +173,7 @@ function((exports , require , module, filename , __filename, __dirname)){   --> 
 //FUNCTION DECLARATION(FN ARE OBJECTS)
 /* #region Main */
 
-//NORMAL FN,AFRROW FN,EXPRESSION FN
+//NORMAL FN,EXPRESSION FN,AFRROW FN
 /*
 
 fnObj   :f fnName() OR f () if we do not have fnName 
@@ -217,8 +202,9 @@ let fnName = async(params) =>{}                     -->Declare fn which returns 
 fnName(arg)                                         -->Call the fnObj which returns value  
 
 let fnName = async(params) =>{}                     -->XX cant use new for arrow fn for arrow fn 
-let objOfFn = new fnObj(arg)                             
-                                                         
+let objOfFn = new fnObj(arg)                                 |
+                                                             |
+                                                             member , this :Look inFUNCTIONS/MEMBER:MEMBER,THIS
                                                                                                                 
 EG 1(NORMAL FN):
 function sum(a,b){       -->Declare Fn which returns a fnObj(f sum())
@@ -448,6 +434,79 @@ Promise.all([p1, p2, p3])
 
 */
 
+//PARAMETER ; ARGUEMENT 
+/*
+//NORMAL PARAMETERS
+fnname(parameter){                              -->PROVIDES VALUE TO PARAM ; IF PARAM > ARG REMAINING PARAM = UNDEFINED ; IF ARG > PARAM REMAINING ARG IGNORED 
+                                                   (DEFAULT PARAM)            (REST PARAM)
+
+
+//DEFAULT PARAMETER(EG 1)
+fnname(parameter = value){                         -->PROVIDES DEFAULT VALUE TO PARAM AND  IF ARG PASSES VALUE OVERRIDE
+     OR                                               DEFAULT  PARAM MUST BE LAST
+     let parameter = parameter|| defaultvalue :       EG1
+
+
+//REST PARAMETERS, SPREAD ARGUEMENTS
+fnName(a,...arr){}                                  -->COLLECTS REMAINING ARG IN ARRAY  CALLED "ARRAYNAME" AND  REST PARAMETER MUST BE LAST PARAMETER
+fnName(...arr)                                      -->SPREADS THE ELEMENTS OD ARR INTO INDIVIDUAL ELEMENTTS 
+                                                       Note: ...arr as parameter is rest parameter ; ... arr as arguement is spread parameter
+                                                       EG2
+                
+//ARGUEMENT KEYWORD
+fnname(parameters){
+       arguments                                    -->COLLECTS REMAINING ARG IN ITERATOR  CALLED "ARGUEMENT"  
+                                                      EG3
+
+                                                            
+
+Eg1
+functon sum(a,b,c = 3){
+   let a = a||1;let b = b||2 ; }
+
+sum()
+
+EG2
+function sum(a,...NUMS){   --> collects remaining args into arr called "num" [2,3,4,5,6]
+    return  name.reduce((a,b) =>a + b );}
+sum(1,2,3,4,5,6)
+
+Math.min(...arr)    -->spreads the elements of arr/obj  into individual elements and  give those elements as arguements to min so it will be Math.min(1,2,3,4,5)
+
+
+Eg3
+function sum(){                       
+let total = 0;
+for(i of arguments){total = total + i;}
+return total;
+}
+let total = sum(1,2,3,4,5,6,7);
+
+
+
+
+
+*/
+
+
+//**FACTORY FN AND CONSTRUCTOR FN**
+/*
+FACTORY FN                                      CONSTRUCTOR FN
+function  circle(radius){ -->PASCAL CASE        function   Circlr(radius) {-->CAMEL CASE
+    return {                                      
+        radius ,                                     this.radius = radius
+        draw(){                                      this.draw = function(){
+            console.log(radius);                       console.log(radius)''
+        }                                            }
+    }                                             }
+
+let var =fnName(arg)-->If fn returns obj(normal obj)     let varname = new FnName(arg)-->If fn returns an obj(ObjOfFn)   
+                      without new keyword                                                with new keyword 
+                      it is called factory fn                                            it is called constructor fn
+
+*/
+
+
 
 /* #endregion */
 
@@ -458,10 +517,19 @@ Promise.all([p1, p2, p3])
 //function fnName { -->CAMEL CASE
         //MEMBERS:MEMBER,THIS 
         /*
-        member=objOfFn having values of this used for acessing members of fn 
+        member=members are acessed by objOfFn having values of "this"
+              EG1-EG6
         this  =objOfFn 
               =parent objOfFn/obj(EG 6) if fn doesnt have obOfFn(default parent is window obj/global obj OR undefinded('use strict' sets value of this to undefined to prevent updation of window obj) )
-
+               EG1- EG6
+              =changinhg this
+                fnObj(arg1,arg2)                      --this = whatever it is
+                fnObj.call(obj,arg1,arg2)             --For fnObj sets the value of this = obj  and hence only for that particular call (args are taken normally)
+                fnObj.apply(obj,[arg1,arg2])          --For fnObj  sets the value of this = obj and hence only for that particular call (args are taken in array)
+                fnObj2 = fnObj.bind(obj)              --For new fnObj sets the value of this = obj and hence for all future calls      (arg taken on fnObj2)
+                fnObj2(arg1,arg2)                      **fnObj cant be arrow fn 
+                                                        EG-7,8,9            
+            
         EG1:
         function calculate(){           -->declare fn which returns fnObj(f calculate())
             console.log(this)              //this = parent objOfFn as fn doesnt have objOfFn  = Window {}/global {} OR undefined
@@ -549,9 +617,79 @@ Promise.all([p1, p2, p3])
 
         let sum1 = sum();               -->call fnObj which returns value(video{title:"pras",play:f ()})
         sum1.play();
+
+        EG 7:
+        function sum(a, b) {console.log(this);}          //this =  parent objOfFn as fn doesnt have objOfFn   = Window {}/global {} OR undefined
+        OR function sum = (a,b) =>{ console.log(this);}          
+        sum(1,2);              
+
+
+        function sum(a, b) {console.log(this);}         //this = obj for 1st call ; this = window for 2nd call
+        var obj = {firstname: 'Prasann',lastname: 'Patil'};
+        sum.call(obj,1,2);                               (fn cant be arrow fn)
+        sum(1,2)            
+
+        function sum(a, b) {console.log(this);}         //this = obj for 1st call ; this = window for 2nd call
+        var obj = {firstname: 'Prasann',lastname: 'Patil'};
+        sum.apply(obj,[1,2]);                             (fn cant be arrow fn)
+        sum(1,2)               
+
+        function sum(a, b) {console.log(this);}         //this = obj for 1st call ; this = obj for 2nd call
+        var obj = {firstname: 'Prasann',lastname: 'Patil'};
+        let summ = sum.bind(obj)                          (fn cant be arrow fn)
+        summ(1,2);          
+        summ(1,2);          
+
+
+        EG 8
+        let video = {
+            tittle:'a',
+            tags:['a','b','c'],
+            play:function(){
+            console.log(this);                  //this = parentObjFn as Fn doesnt have objOfFn =  video {}
+            this.tags.forEach(function (tag){    
+                console.log(this );               //this = parentObjFn as Fn doesnt have objOfFn =  Window {}                                                                       
+                } ); 
+            }
+        }
+        video.play(); 
+
+
+        let obj = {name:"pras"};
+        let video = {
+            tittle:'a',
+            tags:['a','b','c'],
+            play:function(){
+            console.log(this);                  //this = parentObjFn as Fn doesnt have objOfFn =  video {}
+                this.tags.forEach(function (tag){    
+                console.log(this );               //this = obj{}                                                                       
+                }.bind(obj) );                     (fn cant be arrow fn)
+            }
+        }
+        video.play();
+
+        EG 9
+        arr  = [1,2,3];
+
+        arr.forEach((ele) => {
+        console.log(this);  //this = parentObjFn as Fn doesnt have objOfFn =  window {}
+        });   
+
+        let obj = {name:"prasann"};
+        arr.forEach(function(ele){
+        console.log(this);  //this = obj{}
+        }.bind(obj));         (fn cant be arrow fn)
+        OR
+        arr.forEach(function(ele) {
+        console.log(this);  //this = parentObjFn as Fn doesnt have objOfFn =  window {}
+        },obj);              (fn cant be arrow fn)
+                                **array takees this value as an arguement also (Look in OBJECTS/ARRAY) 
+
+
         */
-        
-        ////INSTANCE MEMBERS////  --->Members that belong to the object
+
+      
+        ////INSTANCE MEMBERS////  --->Members of Fn
         //INITIALISE
         /*
          let   angle = 20;     --> private scope : cannot be acessed outside fn
@@ -559,7 +697,7 @@ Promise.all([p1, p2, p3])
                                 (Explained above in MEMBERS:MEMBER,THIS )
          */                     
         
-        //GETTER , SETTER (USING THIS)-->you need to call method let c1 = new Circle() c1.getAngle() ; c1.setAngle() = 22
+        //GETTER , SETTER 
         /*
          this.getAngle = function(){        -->public scope : can be acessed outside fn using fnObj       
             return angle;}
@@ -591,40 +729,46 @@ Promise.all([p1, p2, p3])
         */    
     
 
-        ///PROTOTYPE MEMBERS//// -->Members belonging to Prototype of a Fn
+        ///PROTOTYPE,INHERITED MEMBERS//// -->Prototype Members:Members of ParentFn ka PrototypeFn  ;Inherited members:Instance members of ParentFn 
         /*
         INHERITANCE CHART
-                ------------ Parent.prototype
+                ------------ ParentFn.prototype
                 |                   |
-        Child.prototype             |
+        ChildFn.prototype           |
                 |                   |
-        Child Fn                 Parent Fn 
+        ChildFn                 ParentFn Fn 
         
         function ParentFn(height){
             this.height = height;
             this.bark = function(){ console.log("oo");}
         }
 
-        function ChildFn(height , size)                           //INHERIT
-            ParentFnName.call(this, height);                  --> child Fn inherits  parent.prototype ke prototype members and ParentFn ke instance members
+        function ChildFn(height , size)                          
+            ParentFnN.call(this, height);                         //syntax to inherit                      
             this.size = size;
         }                                    
                                                                   //INHERIT
-        ChildFn.prototype = Object.create(ParentFn.prototypte)  --> the child protype inherit from parent prototype and child Fn inherit from Child Prototype
-        ChildFn.prototype.constructor = ChildFn                     so child Fn inherits parent.prototype ke prototype members 
+        ChildFn.prototype = Object.create(ParentFn.prototypte)    childFn inherits prototype members  of parentFn.prototype 
+        ChildFn.prototype.constructor = ChildFn                   childFn inherits prototype members  of childFn.prototype  
         OR
-        ChildFn.prototype = new ParemtFn()                      --> the child prootype inherit from parent prototype and child Fn inherit from Child Prototype
-        ChildFn.prototype.constructor = ChildFn                     so child Fn inherits parent.prototype ke prototype members and ParentFn ke instance members
+        ChildFn.prototype = new ParemtFn()                        childFn inherits prototype members of parentFn.prototype and instance members members ParentFn
+        ChildFn.prototype.constructor = ChildFn                    
     
                                                                     //ADD      
-        ParentFn.prototype.bark = function(){ console.log("gg"); } -->add  Parent.prototpye ke prototype members 
+        ParentFn.prototype.bark = function(){ console.log("gg"); }  add prototype members to ParentFn.prototpye
+        ChildFn.prototype.bark = function(){ console.log("gg"); }   add prototype members to ChildFn.prototpye  
 
                                                                     //OVERRIDE
-        ChildFn.prototype.bark = function(){ console.log("gg"); }  -->override Child.prototpye ke protype members
-        
+        ChildFn.prototype.bark = function(){ console.log("gg"); }    override prototype members of ParentFn.prototpye 
+        ParentFnFn.prototype.bark = function(){console.log("gg"); }  override prototype members of ChildFn.prototpye 
+
                                                                      //EXTEND
-        ChildFn.prototype.bark = function(){                       -->extend Child.prototpye ke prototype members
-                Shape.prototype.bark.call(this);   
+        ParentFn.prototype.bark = function(){                         extend prototype members of Parent.prototpye 
+                Parent.prototype.bark.call(this);   
+                Console.log(“gg”);
+        }
+        ChildFn.prototype.bark = function(){                         extend prototype members of ChildFn.prototpye 
+                Parent.prototype.bark.call(this);   
                 Console.log(“gg”);
         }
 
@@ -633,125 +777,112 @@ Promise.all([p1, p2, p3])
 
 
 
-    
-
-    
-
-
-
-
-
-
-
-
-
-
 /* #endregion */
 
 
-
-
-//CLASS  DECLARATION(CLASSES ARE  SUGARCOAT OVER  FUNCTION)
+//CLASS  DECLARATION(CLASSES ARE OBJECT;CLASSES ARE SYNTATICAL SUGARCOAT OVER  FUNCTION)
 /* #region Main */
 
-//NORMAL CLASS --> CLASS WITH DECLARATION 
+//NORMAL, EXPRESSION CLASS 
 /*
-//CLASS DECLARATION
-class classname{}                -->normal class     --NOT HOISTED
-var classNmae = class{}          ->expression class  --NOT HOISTED
+fnObj    :f className() OR f () if we do not have className(class is sugarcoat over fn ) 
+objOfFn  :className() {member1:valu1,member2:value2 only members declared with this}
 
-//CALLING CLASS
-class classname{}           
-let varname = new class(arg)         
+//NORMAL CLASS(HOISTED TO TOP)
+class className{}                              -->Declare class which returns a classObj
+let objName = new className(arg)               -->call classObj + new which returns objOfClass
 
 
+//EXPRESSION FN(NOT HOISTED TO TOP)
+let fnObj = class fnNameOptional{}                -->Declare class which returns a classObj(class is sugarcoat over fn )
+let objOfFn = new fnObj(arg)                      -->Call classObj + "new" which returns objOfClass                                       
 */
+
 
 /* #endregion */
    
 
-//CLASSES
+//CLASSES(CLASSES ARE OBJECT;CLASSES ARE SYNTATICAL SUGARCOAT OVER  FUNCTION)
 /* #region Main */
 
-/*
-let _radius = Symbol(); --> Symbol produces a unique value every time ; But when  the members will be visible as instance members but not 
-let _draw = Symbol();      acessible
+//class classNae extends parentClassName{ -->CAMEL CASE
+        //MEMBERS:MEMBER,THIS
+        /*
+        Same as Fn
+        */
 
-let _radius = new WeakMap();  --> weakMaps are Objects with key =:Object ;  value:any value ; The members will not be visible in instance 
-let __draw2 = new WeakMap()     members and will not be acessible also
+        ////INSTANCE MEMBERS////  --->Members that belong to the object
+        //CONSTRUCTOR INITIALISE
+        /*
+        constructor(radius1,radius2){
+            super()                                        -->super() must be calld to inherit superclas constructor must be called in constructor  
+            this.radius = radius;                          -->public scope: they ae available outside class
+            this.draw = function(){}                          (Explained above in MEMBERS:MEMBER,THIS )
+        }                                             
 
-class Circle extends Shape{-->CAMEL CASING
-*/
+         */                     
+        
+        
+        //GETTER , SETTER 
+        /*
+         this.getAngle = function(){        -->public scope : can be acessed outside fn using classObj       
+            return angle;}
+
+         this.setAngle = function(value){               
+            angle = value;}
+
+         */
   
-    ////INSTANCE MEMBERS////--->These are members of Circle class
-    //CONSTRUCTOR
-    /* 
-    constructor(radius1,radius2){
-        super()    -->super() must be calld to inherit superclas constructor must be called in constructor  
-        this[_radius] /_radius.set(this,radius        -->private scope :  they are not available outside class
-        this [_draw]()  /_radius.set(this,radius)       closure: members can be  acess ie inside any method as  this[_radius]/_radius.get(this)
+        //METHODS
+        /*
+        this.calculate = function(){     -->public scope : can be acessed outside fn using classObj
+                let ar = area();            
+                let ch = chord();            
+                return ar;
+        }    
+        */    
+    
 
-        this.radius = radius;                          -->public scope: they ae available outside class
-        this.draw = function(){}                          closure: members can be  acess ie inside any method as  this.radius  ; this.draw()                   
-                                                                 
-    */       
- 
-    ////PROTOTYPE MEMBER//// -->These members are added to the CirleBase 
-    //GETTER SETTER(USING GET METHDNAME)--> We need to call method let c= new Circle() ; c.getradius() ; c.setradius()22
-    /*
-    getRradius(){                     (declare a short fn)
-        return radius; }
+        ///PROTOTYPE,INHERITED MEMBERS//// -->Prototype Members:Members of ParentFn ka PrototypeFn  ;Inherited members:Instance members of ParentFn 
+        /*
+        INHERITANCE CHART
+                ------------ ParentClass.prototype
+                |                   |
+        ChildClass.prototype        |
+                |                   |
+        ChildClass                 ParentClass
+        
+        function ParentClass(height){
+            this.height = height;
+            this.bark = function(){ console.log("oo");}
+        }
 
-    setradius(value){                 (declare a short fn)
-        radius = value;}
-    */
-    //GETTER SETTER(USING GETMETHDNAME)--> We can directly do let c = new Circle(1,2) c.radius c.radius = 22 no need of methodcall
-    /*
-    get radius(){
-        return radius;}
-    set radius(value){
-            radius = value;}
-   */
-    //METHODS
-    /*
-    aceddmod      this [_draw2]() /=_draw2.set(this, function(){}   --> private scope :  they are not available outside class
-                                                                        acess modifier: static members are not added to proto/nonstatic are added 
-    acessmod draw2(){ }                                             -->  public  scope :  they are  available outside class
-                                                                         acess modifier: static are not added to proto/nonstatic are added
-                                                                          (declare a short fn)
-                                                
-   */                                                                    
+        class ChildClass extends ParentClass(height , size)  -->syntax to inherit        
 
-    ////INHERITED  MEMBERS////-->These Members inherited from Shape Object
-    /*
-                              -->inherit members 
-    move2(){}                 --> create  members
-    move(){                   --> extend members
-        super.move();
-        consol.log(“mve2”)}
-        move(){}             -->overwrite members
-    }
-    */
+                                                //INHERIT
+                                                childClass inherit prototype members of parentClass.prototype  and ParentClass ke instance members
+                                                childClass inherit prototype members of childClass.prototype
+
+                                                //ADD      
+        fnName(){ console.log("gg"); }          add prototype members to ChildClass.prototpye 
+                                                (Fn declarations without this  are added as prototypoe members to childClass)
+        
+                                                //OVERRIDE
+        fnName(){ console.log("gg"); }          add prototype members to ChildClass.prototpye 
+                                                (Fn declarations without this  are added as prototypoe members to childClass)
+
+                                                //EXTEND
+         fnName(){                               extend prototype members of ChildClass.prototpye 
+            super.fnName();                      (Fn declarations without this  are added as prototypoe members to childClass)
+            consol.log(“mve2”)}
+         }                                                       
+
+        
+    
 
 
-
-
-/////**ACESS////
-/*
-let c = new Circlee(1);--> Cis the object retrned by circle class
-console.log(c);
-*/
-
-////**CLASSES  ARE FNS WHICH ARE OBJECTS////
-/*
-Circle.name --> returns name of fn  ie circle
-Circle.length--> returns number of arg of fn ie 3
-Circle.constructor --> returns constructor fn object used to build fn object   ie  ƒ Function() { [native code] }
-Circle.call({} , 1,2,3) --> returns new Circle(1,2,3)  and {} referennces to this
-Circle.apply({} , [1,2,3])--> return new Circle(1,2,3); and {} references to this 
-
-*/
-
+        //
+        */
 
 /* #endregion */
 
@@ -853,7 +984,7 @@ Circle.apply({} , [1,2,3])--> return new Circle(1,2,3); and {} references to thi
 
 
     */
-    //CONVERSION
+    //CONVERSION(CONVERSION OP)
     /*
             i.toSTring()                        s.split(RE)
     number --------------------> string ------------------------------> arr
@@ -866,43 +997,33 @@ Circle.apply({} , [1,2,3])--> return new Circle(1,2,3); and {} references to thi
     //COMPARISION(COMPARISION OP, LOGICAL OP , INCLUSION OP)
     /*
     COMPARISION OPERATOR
-    PRIM :== ,<=,>= ,!=/=== !== ;     -->Compare values/values + datatype                        ** = is assignment operator                                                                
-    REF  :equals(a,b)           ; === --> Compare values/values + datatype;compare reference  
-            |                           COMPARE VALUES /VALUES + DATATYPE    
-        form equals method              int i1 = 3
-        where you apply == / ===        String s1 ='3'
-                                        i1 == s1 -- true    
-                                        i1 === b1 -- false
-
-                                        Dog d1 = new Dog(1,2,3);
-                                        Dog d2 = new Dog(1,2,3);
-                                        Dog d3 = new Dog(4,5,6);
-                                        d1.equals(d2) -->True as bth object have same value
-                                        d1.equals(d3)--> false as both object hve different value
-                                        function equals(a,b,c){
-                                            return d1.a == d2.a && d1.b == d2.b && d1.c == d2.c
-                                            return d1.a === d2.a && d1.b === d2.b && d1.c === d2.c
-                                        }
-
-                                        COMPARE REFERENCE
-                                        Dog d1 = new Dog(1,2,3)
-                                        Dod d2 = new Dog(1,2,3)
-                                        d3 = d2
-                                        d1 == d2 --> False as  both reference different objects
-                                        d2 == d3 -->True as both referennce same objects                                                  
-                                                            
-        
-                                        Eg  
-                                        i1 == < , > ;!=/=== ,!=  i2  -- return boolean by comparing value/value + datatype of integers 
-
-                                        s1 == < , > ;!=/=== ,!=  s2  -- return boolean by comparing value/value + datatype of string
-
-                                        arr1.equals(arr2)        -- returns boolean by comparing value/value + datatype of arr1,arr2
-                                        arr1== arr2              -- returns boolean by comparing  reference  of arr1,arr2
+    PRIMITIVE :== ,<=,>= ,!=/=== !== ;   -->Compare values/values + datatype                         ** = is assignment operator           
+    REFERENCE : equals()             ;== -->compare values + datatype;compare reference
+                |                            EG
+                |                           i1 == ,<=,>= ,!=/=== !== i2  -- return boolean by comparing  values/values + datatype  of integers 
+          You need to write this fn         s1 == ,<=,>= ,!=/=== !== s2   --return boolean by comparing  values/values + datatype  of string 
+          function equals(a,b){                                             Eg:int i1 = 3;String s1 ='3'
+              return d1.a == d2.a && d1.b == d2.b                            i1 == s1 -- true  ; i1 === s1 -- false
+}
+                                            arr1.equals(arr2)            -- returns boolean by comparing value/value + datatype of arr1,arr2
+                                            arr1== arr2                  -- returns boolean by comparing  reference  of arr1,arr2
 
 
-                                        obj1.equals(obj2)        -- returns boolean by comparing value/value + datatype of obj1,obj2
-                                        obj1== obj2             -- returns boolean by comparing  reference  of obj1,obj2
+                                            obj1.equals(obj2)            -- returns boolean by comparing value/value + datatype of obj1,obj2
+                                            obj1== obj2                  -- returns boolean by comparing  reference  of obj1,obj2
+
+
+                                            Dog d1 = new Dog(1,2,3);
+                                            Dog d2 = new Dog(1,2,3);
+                                            Dog d3 = new Dog(4,5,6);
+                                            d1.equals(d2) -->True as bth object have same value
+                                            d1.equals(d3)--> false as both object hve different value
+                                            d3 = d2
+                                            d1 == d2 --> False as  both reference different objects
+                                            d2 == d3 -->True as both referennce same objects
+
+                                        
+
 
     LOGICAL OPERATOR    
     &&                               -->go on till values are true and return false if value is false   ** & | ^ are bitwise operators
@@ -1035,12 +1156,12 @@ let num = 1; 1.0022;( new Number()  is default constructor fn that returns the n
 
 ** Calculation with fractional nos are not guaranteed to be precise
 
-1.LOOKUP ,INSERT , SIZE
+1. lookup , insert , length
 --
 
-2.SLICING
+2. Slicing
 --
-3.FNS
+3.Fns
 (Math is an object)
 Math.max(a,b) -> takes int a  b finds max and returns int     
 Math.min(a,b) -> takes int a b finds minand returns int
@@ -1055,12 +1176,12 @@ Math.randdom() -> gives random double value bw 0(incl) ,1(excl)
 /*
 let bool= true/false
 
-1.LOOKUP ,INSERT , SIZE
+1. lookup , insert , length
 --
 
-2.SLICING
+2.slicing
 --
-3.FNS
+3.fns
 --
 */
 
@@ -1069,12 +1190,12 @@ let bool= true/false
 /*
 let varname = Symbol() --> Symbol returns a unique value for every call so let s1 = Symbol() ; let s2 = Symbol() s1 !== s2
 
-1.LOOKUP ,INSERT , SIZE
+1. lookup , insert , length
 --
 
-2.SLICING
+2.slicing
 --
-3.FNS
+3.fns
 --
 */
 
@@ -1086,12 +1207,12 @@ letvarname = undefined --> var is declared but not initialised (undefined is its
                         **typeOf(null/NaN/undefined) -->return Object /Object/Undefined
                         **null*2 ; undefined*2 --> return NaN
                         **2+3 +”5” -->return 55
-1.LOOKUP ,INSERT , SIZE
+1. lookup , insert , length
 --
 
-2.SLICING
+2.slicing
 --
-3.FNS
+3.fns
 --
 */
 
@@ -1103,7 +1224,7 @@ let s = “prasann”  (new String()  is default constructor fn that returns the
 
 
 
-1.LOOKUP ,INSERT , SIZE
+1. lookup , insert , length
 #lookup
 charat(index)/s[index]      --> returns the character at given index
 indexOf(“as”)               -->returns first index of character
@@ -1120,7 +1241,7 @@ s.length()                            -> returns length of string
 
 
 
-2.SLICING
+2.slicing
 #slicing
 s[index] --> returns character  at index
 s.trim(); - returns a new string by removing  whitespace before and after string
@@ -1139,7 +1260,7 @@ s = "i'mSPAMaSPAMlumberjack"
 s1  = s.rstrip().split("SPAM")  # string seperated by SPAM not including spam["i'm", 'a', 'lumberjack']
 
 
-3.FNS
+3.fns
 --
 */
 
@@ -1154,7 +1275,7 @@ let  obj = {key: value ; key : value}; (new bject({key:value}) is default  const
                     methods   :keys with value = fn
                                EG : area:function(){} OR  function(){}
 
-1.LOOKUP ,INSERT , SIZE
+1. lookup , insert , length
 #lookup
 obj.staticKey /object[dynamicKey]     --> return the value at dynamickey(key not known) , statickKey(key known)
 Object.keys(obj)                      --> return  array of keys of instance members whose enumerate = True 
@@ -1173,14 +1294,14 @@ delete obj.member                    --> delete object members
 --
 
 
-2. SLICING
-#SLICE
+2. slicing
+#sluce
 object[dynamicKey]                         --> return the value at dynamickey(key not known) 
 
 #COPY
 obj2 = {…obj1}                            -->returns new copy object (spreads the elements of object  into individual elements and  put those elements into new object and return new obj
 
-#CONCATENATE 
+#concatenate 
 obj = {...obj1,..obj2}                         -->returns new concatenated obj(spreads the elements of obj1,obj2 into individual elements and  put those elements into new object and return a new obj
 obj = Object.assign(target obj,source objects)  -->returns new concatenated object  by copying  all source objects into target object
                                                  EG let circle2 = Object.assign({r:22}, circle)
@@ -1190,7 +1311,7 @@ obj = Object.assign(target obj,source objects)  -->returns new concatenated obje
 
 
 
-3.FNS
+3.fns
 for(let i in obj ){}             --> i = key1 , key2...
 for(let i of Object.keys(obj)){ } --> i = key1 , key2...
 for(let i of Obj.entries(obj) ){  }-->i = ["key1","value1" ], ["key2","value2"]
@@ -1211,7 +1332,7 @@ let   arr = [value1,value2] (new Array() is a default constructor which returns 
 
 
 
-1.LOOKUP ,INSERT , SIZE
+1. lookup , insert , length
 #lookup
 arr[index]                                                      --> returns element at index
 arr.indexof(element, fromindex)/lastindexOf(element,fromindex)-> returns the firstOccurence/lastOccuremce  of the element and searh starts from startindex; if not fond returns -1
@@ -1231,7 +1352,7 @@ arr.length--> return the length of array
 
 
 
-2. SLICING
+2. slice
 #SLICE
 arr[index];    --> return the value at index
 arr.splice(startind, n , elements) -->return new arr by  slicing after start index delete “n” number of items of array(pass 0 if you want to add elements)  and 
@@ -1251,7 +1372,7 @@ arr = arr.join(seperator)                ->return a strrng join the elements of 
 
 
 
-3.FNS --> callbackfns passed as arguments can be written in 2 ways  :.function(arg) {body}  OR  (arg)  => {body}
+3.fns --> callbackfns passed as arguments can be written in 2 ways  :.function(arg) {body}  OR  (arg)  => {body}
 FN TYPES
 Consumer function: Takes  argument returns nothing
 Supplier function: Takes no arg and returns no  value
@@ -1264,18 +1385,23 @@ for(let i  in  arr , obj ){}                                                --> 
 
 for(let i of arr , obj.keys(obj)  ,obj.entries(obj) ){ }                    --> i = value of array , key of object ,[“key” , value] of object 
 
-array.forEach(Function function(element, index, arr){ operations },thisValue / .bind(value) ) 
+array.forEach(FunctionFn(element, index, arr){},thisValue / .bind(thisValue) ) 
                                                                             --> for each iterationin array ;                  
                                                                                 element =  element at that iteration ,
                                                                                 index(optional) = index of element at that iteration
                                                                                 arr(optional) = array itself , 
                                                                                 thisValue = value  given to  this inside the function ,  
+                                                                                            Look in FUNCTION/MEMBERS:MEMBER,THIS ka EG 9
+                                                                                Eg
+                                                                                let arr = [1,2,3,4,5,6,-1,2,3];
+                                                                                arr.forEach((ele)=>{return ele*2;})
 
-array.every(Predicate fn(element , index ,arr) {} , thisvalue )             --> for every element in array ,   
+array.every(Predicate fn(element , index ,arr) {},thisValue / .bind(thisValue))  --> for every element in array ,   
                                                                                 element to index ,arr , this (same as forEach)
                                                                                 as soon the boolean condiion is false  every method returns false 
                                                                                 and stops  ; if boolean cond does not retuen false till end the end 
                                                                                 then every  method will  return true
+                                                                                ele,index,arr,thisValue -- same as above
                                                                                 Eg
                                                                                 let arr = [1,2,3,4,5,6,-1,2,3];
                                                                                 let allPositive = arr.every(function(element ) {  --> return false at                            
@@ -1287,6 +1413,7 @@ array.some(Predicate fn  (element , index ,arr) { } , thisvalue )           --> 
                                                                                 as soon the boolean condiion is true  then some  method returns 
                                                                                 true  and stops  ; if boolean cond does not retuen true till end the 
                                                                                 end   then some method will  return false
+                                                                                ele,index,arr,thisValue -- same as above
                                                                                 Eg
                                                                                 let arr = [1,2,3,4,5,6,-1,2,3];
                                                                                 let atLeastOnePositive = arr.every(function(element ) {  --> return 
@@ -1298,6 +1425,7 @@ array.filter(Predicate fn  (element , index ,arr) { } , thisvalue )          -->
                                                                                 element to index ,arr , this (same as forEach)
                                                                                 if the boolean returns true  filter adds the  element in new array 
                                                                                 and at he end filter method returnsthe  new  array
+                                                                                ele,index,arr,thisValue -- same as above
                                                                                 Eg
                                                                                 let arr = [1,2,3,4,5,6,-1,2,3];
                                                                                 let positivearr = arr.filter(function(element ) {  --> return  
@@ -1307,11 +1435,12 @@ array.filter(Predicate fn  (element , index ,arr) { } , thisvalue )          -->
 
 
 
-array.reduce(Function fn(accumulator, element) {retrn value} , initialvalue )               --> for every element in array ,   
+array.reduce(Function fn(accumulator, element) {retrn value} , initialvalue )   --> for every element in array ,   
                                                                                 accumulator =  initial value (initial value not given acc = arr[0] by 
                                                                                 and  element starts from arr[1] not arr[0])
                                                                                 accumulator = return value   
                                                                                 at the end the reduce fn returns a value 
+                                                                                ele,index,arr,thisValue -- same as above
                                                                                 Eg
                                                                                 let arr = [1,2,3,4,5,6];
                                                                                 let positivearr = arr.reduce(function(a,ib ) {  --> return  20
@@ -1403,22 +1532,19 @@ let a = movies
 
 //(
     /*
-    EXCEPTOPN --> Method  throws exception; exception  goes down stack to find  exception handler  . So when eexception handler not found till               
-                end then java gives the stack trace in  err window (method on top ofstack wghich throws err wrtten 1st , method below it 2nd) 
+    EXCEPTOPN --> Method  throws exception; exception  goes down stack to find exception handler  . 
+                  So when exception handler not found till   end then JS gives the stack trace in  err window (method on top ofstack wghich throws err wrtten 1st , method below it 2nd) 
     Eg
-    Public class  Animal{
-        public static void barker()[
+    function Animal{
+        this.barker = function()[
             bark(null)}
-        public  stativ void bark(String name){
-        Sout(name.toUppercase();)}}
+        this.bark = function(String name){
+            cinsole.log(name.toUppercase();)
+        }
+    }
 
-    Public class main{
-    Public statoic vod main(String[] args){
-            Animal.barker()}}
-
-    Bark   -> Bark Throws exception no handler found , exception  goes to barker no handler found  , goes to main no handler found      Exceprion at Java.Animal.Bark ExceptionType (Link to bark)
-    Barker    Exceprion at Java.Animal.Barker ExceptionType (Link to Barker)
-    Main      Exceprion at Java.Animal.Main  ExceptionType (Link to Main)
+    let animal = new Animal
+    Animal.barker()
     */
 //)
 
@@ -1447,15 +1573,15 @@ functionnamename(){
                                     Catch(e){                               --> e = new Objecttype()    
                                         e.method()}                                                      
                
-2.If function throws  exc because you throw new exception()-->DON’T WANT  AUTOMATIC  EXC                                                                                       
+2.Function throws  exc because you throw new exception()-->DON’T WANT  AUTOMATIC  EXC                                                                                       
 functionname(){                                                        
-            throw new Error();}     --> Make fn  throws Excption () so exception  is not   handed here so it will   travel down the 
+            throw new Error();}     --> Exception  is not  handed here so it will   travel down the 
                                        stack and wrap the method call in try catch finally block
-                                       fnname1() throws Exception(X dont do throws EXC) {
+                                       fnname1()
                                             throw new Exception () }} --> throws new Exception()
                                         fnname2()
                                             try{
-                                                fnname1()}                      --> throws new Exception()
+                                                fnname1()}                     --> throws new Exception()
                                             catch(e){                          --> catch e =  new Exception()                    
                                                }
 */
@@ -1565,6 +1691,226 @@ break --> stop at certsin iteration and jump out of loop block
 continue --> skip certain cond and jump  to start of loop 
 */
 
+/* #endregion */
+
+
+//MISCALLENOUS
+/* #region Main */
+
+//1.INSTANCE MEMBERS,PROTOTYPE MEMBERS 
+//FUNCTION(ObjectBase Prototype --> FunctionBase Prototype -->  Function)
+/*
+function Circle(radius){
+    this.radius = radius;
+    this.draw = function(){
+    }
+}
+
+let circle = new Circle(1);
+console.log(circle);--> //INSTANCE MEMBERS
+                        radius:1                                    -->Function
+                        draw: f()
+                        //PROTOTYPE MEMBERS
+                        __proto__:Object                           -->FunctionBase Prototype
+                            constructor:f Circle(radius)   
+                            __proto__:Object                      -->ObjectBase Prototype
+                                constructor: ƒ Object()  as Object ; 
+                                hasOwnProperty: ƒ hasOwnProperty()
+*/
+//CLASS(ObjectBasePrototype -->ClassBase Prototype -->Class)
+/*
+Class Circle{
+    Constructor(radius){
+    this.radius = radius;
+    this.draw = function(){
+    }
+}
+
+let circle = new Circle(1);
+console.log(circle);--> //INSTANCE MEMBERS
+                        radius:1                                    -->Class
+                        draw: f()
+                        //PROTOTYPE MEMBERS
+                        __proto__:Object                            -->ClassBase Prototype
+                            constructor:f Circle(radius)   
+                            __proto__:Object                        -->ObjectBase Prototype
+                                constructor: ƒ Object()  as Object ; 
+                                hasOwnProperty: ƒ hasOwnProperty()
+*/
+//ARRAY(ObjectBase Prototype --> ArrayBase Prototype -->  Array)
+/*
+let x = [1,2]
+console.log(x)--> //INSTANCE MEMBERS
+            1:1                                      -->Array
+            2:2
+            //PROTOTYE  MEMBERS
+            __proto__: Array(2)                      -->ArrayBase Prototype        
+                        concat: ƒ concat()           
+                        constructor: ƒ Array()    
+                        find: ƒ find()                     
+                        __proto__: Object              -->Object Base Prototype
+                                constructor: ƒ Object()  as Object ; 
+                                hasOwnProperty: ƒ hasOwnProperty()
+*/
+//OBJECT(ObjectBase Prototype -->Object)
+/*
+let obj = {x:1;y:2};
+Console.log(obj)--> //INSTANCE MEMBERS 
+                        x:1                           -->Object    
+                        y:2.
+                    //PROTOTYE  MEMBERS
+                    __proto__:Object                 -->ObjectBase  Prototype
+                    constructor: ƒ Object()  as Object ; 
+                    hasOwnProperty: ƒ hasOwnProperty()
+*/
+
+
+//2.INSTANCE MEMBERS , PPROTOTYPE MEMBERS CHANGES
+//OBJECT.GETPROTOTYPEOF(MYOBJ)
+/*
+Object.getPrototypeof(myobj)/                    -->returns the prototypeobject   of the object passed    
+myObj.__proto__ /                                     Eg let arr = [1,2,3,4]  new Array() under the hood constructor fn
+Constructorfn.prototype(deprecated)                       arr.__proto__/ Object.getprototype(arr)/ Array.prototype      
+                                                      Eg function Circle(radius){ }
+                                                         let c1 = new Circle();
+                                                         C1.__proto__/ Object.getprototype(c1)/ Circle.prototype      
+*/
+//OBJECT.GETOWNPROPERTYDESCIPTOR(MYOBJ ,”MEMBER” )
+/*                                                                                                                                                 
+Object.getOwnPropertyDesciptor(myobj ,”member” ) -->returns attributes attached to   the member of the object passd  
+                                                    value: gives the value of the member
+                                                    configurable: if true we can delete the  member
+                                                    enumarable: if true means while iterating we will see that member 
+`                                                   writable:if true means we can overrite the value  of the member 
+
+                                                    EG
+                                                    let person ={x:1};
+                                                    let attributes = Object.getOwnPropertyDescriptor(person,'x');
+                                                    console.log(attributes);--> value: 1  --> value of member  x is 1                  
+                                                                                configurable: true  --> we can delete member x
+                                                                                enumerable: true    -->for(i in person) we can see member  x
+                                                                                writable: true   --> we can overwrite value of member  x  
+                                                                                __proto__: Object
+
+                                                    EG
+                                                    let person ={x:1};
+                                                    let objectBase = person.__proto__/Object.getPrototypeOf(person);
+                                                    let attr = Object.getOwnPropertyDescriptor(objectBase,'toString');
+                                                    console.log(attr);--> value: ƒ toString()-->value of member  toString  is toString()
+                                                                        configurable: true  --> we can delete member toString
+                                                                        enumerable: false --> for(i in person) we cant see member toString 
+                                                                        writable: true --> we can overwrite value of member  toString
+                                                                        __proto__: Object
+*/
+//OBJECT.GETOWNPROPERTYDESCIPTOR(MYOBJ ,”MEMBER” )
+/*
+Object.defineProperty(object ,”property ” { attribute:value}) --> we can change the ttributes atached to a property of object passed
+                                                        value = anyvalue: gives the value of the member
+                                                        configurable : t/f: if true we can delete the  member
+                                                        enumarable : t/f: if true means while iterating we will see that member
+                                                        writable =:t/f:if true means we can overrite the value  of the member
+                                                        get:function(){return prop} :we can do obj. member no need of obj.get()
+                                                        set:function(vall){prop = val} :we can do obj. member = val no need of obj.set(val) 
+
+                                                       	EG
+                                                        function Circle(radius,x,y){ 
+                                                            Object.defineProperty(this,"angle",{
+                                                                    Configurable: false         -->you cant delete angle member 
+                                                                    writble:false               --> tou cant overwrite angle member value
+                                                                    get:function(){             -->let c1 = new Circle(1,2,3) ; you can directly do   c1.angle 
+                                                                            return angle},          no  need of c1.getAngle()   
+                                                                    set:function(value){        --> let c1 = new Circle(1,2,3) ; you can dir do   c1.angle =22
+                                                                                angle = value;}     no  need of c1.setAngle(22)   
+                                                            })
+*/
+//OBJECT.HASOWNPROPERTY(‘MEMBER’)
+/*                                                                                                                                                                                            
+Object.hasOwnProperty(‘member’)                         --> returns true if the member is an instance member and false if the member is a prototye member
+                                                            EG
+                                                            function Circle(radius){
+                                                            //Instance member
+                                                            this.radius = radius;}
+
+                                                            //prototype member
+                                                            Circle.prototype.draw= function(){     
+                                                                    console.log(“”circle with” + this.radius)  }
+
+                                                            Object.hasOwnProperty(‘radius’) --> true         
+                                                            Object.hasOwnProperty(‘draw’) --> false
+*/
+//OBJECT.KEYS(MYOBJ)
+/*
+Objects.keys(myObj)                                      -->returns an array of instance members of the object  whose enumerate = true
+                                                            If you want both instance;prototype members  whose enumerate = true use FOR-IN
+                                                            EG
+                                                            function Circle(radius){
+                                                            //Instance member
+                                                            this.radius = radius;}
+
+                                                            //prototype member
+                                                            Circle.prototype.draw= function(){     
+                                                                console.log(“”circle with” + this.radius)  }
+
+                                                            let c1 = new Circle(1)
+
+
+                                                            Object.keys(c1) -->[“radius”]
+                                                            for(key n c1){        -->”radius” , “draw”
+                                                                console.log(key)}
+*/                                                                                              
+
+
+//3.FUNCTIONS ARE OBJECTS
+/*
+function Circle(){}
+Circle.name             --> returns name of fn  ie circle
+Circle.length           --> returns number of arg of fn ie 3
+Circle.constructor      --> returns constructor fn object used to build fn object   ie  ƒ Function() { [native code] }
+Circle.call({} , 1,2,3) --> returns new Circle(1,2,3)  and {} referennces to this
+Circle.apply({} , [1,2,3])--> return new Circle(1,2,3); and {} references to this 
+
+*/
+
+
+//4.CLASSES ARE OBJECTS
+/*
+class Circle(){}
+Circle.name --> returns name of fn  ie circle
+Circle.length--> returns number of arg of fn ie 3
+Circle.constructor --> returns constructor fn object used to build fn object   ie  ƒ Function() { [native code] }
+Circle.call({} , 1,2,3) --> returns new Circle(1,2,3)  and {} referennces to this
+Circle.apply({} , [1,2,3])--> return new Circle(1,2,3); and {} references to this 
+
+*/
+
+
+//5.INBUILT CONSTRUCTOR
+/*
+Every obj literal  is converted to constructor fn which returns an object    under the hood                     
+let  num = 22 new Number(22)  which returns Number object
+let bool = true new Boolean(true) which returns Boolean objetc
+let str = “pras” new String(“pras”) which returns String object 
+let arr  =[1,2,3,4,5]  new Array([1,2,3,4,5]))  whhic h returns Array object
+let obj = {a:1;b:2} new Object{{a:1,b:2}}  which returns object
+let fn =function(param){content}  new Function(param , `content of fn`)    which  return function object   
+let fact_obj = factoryFunction(); new Function() which returns object
+let const_obj = new ConstructorFn() this is itself an constructor fn which returns object
+                     
+We  can find constructor function  which returned the object(All on the right sides are constructor fns)
+console.log(`
+${num.constructor}            -->function Number() { [native code] } 
+${bool.constructor}           -->function Boolean() { [native code] } 
+${str.constructor}            -->function String() { [native code] } 
+${arr.constructor}            -->function Array() { [native code] } 
+${obj.constructor}            -->function Object() { [native code] } 
+${fn.constructor}             -->function Function() { [native code] }
+${fact_obj.constructor}       -->function Function() { [native code] }
+${factoryFunction.constructor}-->function Function() { [native code] }
+${const_obj.constructor}      -->function constructorFunction(a){our code} as the const fn we wite is itself an const fn
+ 
+ `);
+
+*/
 
 /* #endregion */
 
@@ -1574,14 +1920,14 @@ continue --> skip certain cond and jump  to start of loop
 
 //PATH--https://nodejs.org/docs/latest-v8.x/api/path.html
 /*
-const  path = require(‘path’); -->returns  path object
+const  path = require('path'); -->returns  path objOfFn
 
 path.parse(“filepath to  .js file”) --> returns object containing important feature of path
 */
 
 //OS -- https://nodejs.org/docs/latest-v8.x/api/os.html
 /*
-const os = require(‘os’);    -->returns  os object
+const os = require(‘os’);    -->returns  os objOfFn
 
 os.totoalmem(); -->returns string  of total memory in OS
 os.fremem();    -->returns string of available mem in OS
@@ -1589,7 +1935,7 @@ os.fremem();    -->returns string of available mem in OS
 
 //FILE SYSTEM-- https://nodejs.org/docs/latest-v8.x/api/fs.html
 /*
-const fs  = require(‘fs’);  --> returns fs object
+const fs  = require(‘fs’);  --> returns fs objOfFn
 
 fs.writefilesync(“filepath”, data)           --> synchronously write data to filepath
 s.writefile(‘filepath’,data, (params) =>{})  --> asynchronously write data to filepath 
@@ -1599,8 +1945,8 @@ fs.copyfile(“filepath1” , “filepath2”,(params)=>{} ) -->asynchronously c
 
 //EVENT -- https://nodejs.org/docs/latest-v8.x/api/events.html
 /*
-const EventEmitter =  require(“emitter”);   --> retruns EventEmitter class
-const emitter = new EventEmmiter();        -->  returns EventEmmiter object
+const EventEmitter =  require(“emitter”);   --> retruns EventEmitter fnObj
+const emitter = new EventEmmiter();        -->  returns EventEmmiter ObjOfFn
 
 emmiter.emit(“eventname” , {id:1,name:pras}})         -->emit  event  
                                                            
