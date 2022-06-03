@@ -40,25 +40,36 @@ git config --global user.email “prasannpatil98@gmai.com”         so your com
 
 
 //CONFIGURE SSH KEYS --> CONFIGURE SSH KEY REQUIRED AND UN, PASS NOT REQUIRED
+a.GENERATE SSH KEY
+ON YOUR PC:
 ssh-keygen -t ed25519 -C prasannpatil98@gmail.com keep pon pressing enter -->this  will save your key on a path ; in op search “yourr public 
                                                                              key saves ap path”  copy this path
 cat path                                                                  --> create a file on this path which will generate ssh key copy this 
                                                                              ssh key  all until .com
-You can do this on  account level for all repo ( profile me click karke dropdown me settings ) 
-OR repo  level  only  for that repo but the repo must be private (setting gear sign   above project)
+ON GITHUB:
 go to settings -->SSH and GPC keys --> new ssh key -->
 Title: PrasannPatil Desktop
 Key:paste the key and press generate key
 
+
+b.USE SSH KEY
+Then use the SSH  key for remote add ,clone, pull , push etc and you will not be required to give credentials
 UN:not required
 PASS:Not required
 
-//CONFIGURE HTTP KEY  -->CONFIGURE HTTP KEY IS  REQUIRED;REQUIRE USERNAME/EMAIL AND PASSWORD  FOR LOGING INTO GITHUB AND UN/EMAIL AND PERSONAL ACESS TOKEN FOR CLONE,PULL PUSH
+//CONFIGURE HTTP KEY  --REQUIRE USERNAME/EMAIL AND PASSWORD  FOR LOGING INTO GITHUB AND UN/EMAIL AND PERSONAL ACESS TOKEN FOR CLONE,PULL PUSH
+a.GENERATE PERSONALISED ACESS TOKEN
+personal acess token is used for clone ,pull , push etc instead of password from AUGUST 13 2021 onwards
+https://www.theserverside.com/blog/Coffee-Talk-Java-News-Stories-and-Opinions/Fix-GitHubs-support-for-password-authentication-was-removed-error(tick all the boxes to allow full acess)
+
+b.USE HTTP KEY
+Then use the HTTP key for remote add ,clone, pull , push etc and you will be required to give credentials
+For github.com/PrasannPradeepPatil
 USERNAME:PrasannPradeepPatil                                     
 EMAILID:prasannpatil98@gmail.com
-PASS:prasann2788                                                  -->password is used for loging in to github                               
-PERSONAL ACESS TOKEN : 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   -->personal acess token is used for clone ,pull , push etc instead of password from AUGUST 13 2021 onwards
-                                                                   -->generate personal acess token : https://www.theserverside.com/blog/Coffee-Talk-Java-News-Stories-and-Opinions/Fix-GitHubs-support-for-password-authentication-was-removed-error
+PASS:prasann2788                                                                      
+PERSONAL ACESS TOKEN : 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 
+                                                                  
 
 */
 
