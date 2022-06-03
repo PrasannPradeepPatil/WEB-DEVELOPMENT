@@ -42,8 +42,11 @@ git config --global user.email “prasannpatil98@gmai.com”         so your com
 //CONFIGURE SSH KEYS --> CONFIGURE SSH KEY REQUIRED AND UN, PASS NOT REQUIRED
 a.GENERATE SSH KEY
 ON YOUR PC:
-ssh-keygen -t ed25519 -C prasannpatil98@gmail.com keep pon pressing enter -->this  will save your key on a path ; in op search “yourr public 
-                                                                             key saves ap path”  copy this path
+ssh-keygen -t ed25519 -C prasannpatil98@gmail.com keep pon pressing enter -->this  will save your key on a path which can be fount in op
+                                                                          Your identification has been saved in C:\Users\prasannpradp/.ssh/id_ed25519.
+                                                                          Your public key has been saved in C:\Users\prasannpradp/.ssh/id_ed25519.pub.
+                                                                          The key fingerprint is:SHA256:cqs7E8ikwVd3HHFRye/4Tiv19NXsCBvkgfqXeV10jB8 prasannpradp@adobe.com
+                                                                          Copy the 2nd path
 cat path                                                                  --> create a file on this path which will generate ssh key copy this 
                                                                              ssh key  all until .com
 ON GITHUB:
