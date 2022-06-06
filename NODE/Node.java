@@ -3,7 +3,7 @@
 //INSTALL NODE(WINDOWS)
 INSTALL     -- >Install using link -- https://nodejs.org/en/   
 SET ENV VAR -- >C:\Program Files\nodejs\                         
-                >node -version   
+                >node --version   
    
 //INSTALL NODE(LINUX) 
 INSTALL      -->sudo apt update              -->update installation
